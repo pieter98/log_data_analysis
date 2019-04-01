@@ -65,6 +65,7 @@ def makeProcessingServerHandler(database_connection):
                 loaded_session_ids = np.load("./files/graph_session_ids_for_session" + str(kwargs["session"]) + ".npy").tolist()
                 utils = AnalysisUtils()
                 normalized_loaded_session_ids = utils.normalize_session_id_list(loaded_session_ids)
+                print(len(set(normalized_loaded_session_ids)))
                 packed_data = list(zip(loaded_trees, normalized_loaded_session_ids, loaded_session_ids))
                 print("loaded trees")
                 print(loaded_trees)

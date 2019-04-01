@@ -26,7 +26,8 @@ var ClusteringAnalysis = {
         //console.log(entry);
         xCoords.push(entry[0][0]);
         yCoords.push(entry[0][1]);
-        cCoords.push(entry[1])
+        var rgb = hsluv.hsluvToRgb([entry[1]*3, 100, 50]);
+        cCoords.push(Colors.rgb2hex(Math.round(rgb[0] * 255), Math.round(rgb[1] * 255), Math.round(rgb[2] * 255)));
       });
       data = [{x:xCoords, y:yCoords, type:"scatter", mode:"markers", marker:{size:5, color: cCoords}}];
       layout = { hovermode:'closest', title:'Click on Points'};
