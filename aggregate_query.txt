@@ -1,0 +1,40 @@
+db.log.aggregate([  
+   {  
+      $match:{  
+         $and:[  
+            {  
+               "timestamp":{  
+                  $gt:1520343510000
+               }
+            },
+            {  
+               "timestamp":{  
+                  $lt:1520343512999
+               }
+            },
+            {  
+               "event.name":"changedWorkspace"
+            },
+            {  
+               "sessionId":/.*/
+            }
+         ]
+      }
+   },
+   {  
+      $sort:{  
+         "timestamp":1
+      }
+   },
+   {  
+      $group:{  
+         _id:"$sessionId",
+         eventsForSession:{  
+            $push:"$event"
+         }
+      }
+   }
+],
+{  
+   allowDiskUse:true
+})

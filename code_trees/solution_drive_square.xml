@@ -1,0 +1,78 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+   <block type="setup_loop_structure" id="O|KJ#)[7|HkrkV@v#gqq" x="0" y="0">
+      <statement name="LOOP">
+         <block type="dc_motor" id="Jf7}fKXN|_tC4!kWF4.6">
+            <value name="channel">
+               <block type="math_number" id="32">
+                  <field name="NUM">1</field>
+               </block>
+            </value>
+            <value name="speed">
+               <block type="math_number" id="37">
+                  <field name="NUM">100</field>
+               </block>
+            </value>
+            <next>
+               <block type="dc_motor" id="iSt!u6ir._0l/c,8ek9q">
+                  <value name="channel">
+                     <block type="math_number" id="dCXf`eik.#E%{|)0?,bh">
+                        <field name="NUM">2</field>
+                     </block>
+                  </value>
+                  <value name="speed">
+                     <block type="math_number" id=",:Yuje02g68#8ZJvxFQ4">
+                        <field name="NUM">100</field>
+                     </block>
+                  </value>
+                  <next>
+                     <block type="dwenguino_delay" id="zN#YQRn8]kZ$qqFBW]G5">
+                        <value name="DELAY_TIME">
+                           <block type="char_type" id="^m}xdVGyt.c9o]7*}PX^">
+                              <field name="BITMASK">1500</field>
+                           </block>
+                        </value>
+                        <next>
+                           <block type="dc_motor" id="!Xh53dzu)$$1.OeMa04T">
+                              <value name="channel">
+                                 <block type="math_number" id="NGWqZgi*Ir{$?VwC,ESV">
+                                    <field name="NUM">1</field>
+                                 </block>
+                              </value>
+                              <value name="speed">
+                                 <block type="math_number" id="%^~L/S.U^UngxV1z;+yL">
+                                    <field name="NUM">-100</field>
+                                 </block>
+                              </value>
+                              <next>
+                                 <block type="dc_motor" id="pp?4%QsO`Jp_3=PWxC*?">
+                                    <value name="channel">
+                                       <block type="math_number" id="Ph-/20Il27?%-(5X;G8|">
+                                          <field name="NUM">2</field>
+                                       </block>
+                                    </value>
+                                    <value name="speed">
+                                       <block type="math_number" id="jRaZ8@R;5]|1![lr%w/r">
+                                          <field name="NUM">100</field>
+                                       </block>
+                                    </value>
+                                    <next>
+                                       <block type="dwenguino_delay" id="N3!zmYMMeIcT{#Wv[IK-">
+                                          <value name="DELAY_TIME">
+                                             <block type="char_type" id="Mbxw|nsy(L}nps}Hj|H(">
+                                                <field name="BITMASK">174</field>
+                                             </block>
+                                          </value>
+                                       </block>
+                                    </next>
+                                 </block>
+                              </next>
+                           </block>
+                        </next>
+                     </block>
+                  </next>
+               </block>
+            </next>
+         </block>
+      </statement>
+   </block>
+</xml>
