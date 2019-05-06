@@ -1,16 +1,20 @@
 
 var ClusteringAnalysis = {
     tsne_data: [],
+    data: null,
     code_tree: 0,
-    session_number: 1,
+    experimentId: "_19-04-2019",
+    session_number: "",
     loadSessionData: function(){
         console.log("loading tsne data");
         $.ajax({
             type: "GET",
-            url: "http://localhost:20042/evaluate_clustering?session=" + ClusteringAnalysis.session_number,
+            url: "http://localhost:20042/evaluate_clustering?session=" + ClusteringAnalysis.session_number + "&experimentId=" + ClusteringAnalysis.experimentId,
             datatype: "json"},
         ).done(function(data){
-            ClusteringAnalysis.tsne_data = JSON.parse(data);
+            ClusteringAnalysis.data = JSON.parse(data);
+            ClusteringAnalysis.tsne_data = ClusteringAnalysis.data[0];
+            ClusteringAnalysis.cluster_distance_pairs = ClusteringAnalysis.data[1];
             console.log(ClusteringAnalysis.tsne_data);
             ClusteringAnalysis.plotClusteringData();
         }).fail(function(response, status)  {
@@ -21,20 +25,30 @@ var ClusteringAnalysis = {
       var myPlot = document.getElementById("db_clustering_plot");
       var xCoords = [];
       var yCoords = [];
+      var zCoords = [];
       var cCoords = [];
       this.tsne_data.forEach(function(entry){
         //console.log(entry);
         xCoords.push(entry[0][0]);
         yCoords.push(entry[0][1]);
-        var rgb = hsluv.hsluvToRgb([entry[1]*3, 100, 50]);
+        zCoords.push(entry[0][2])
+        var rgb = hsluv.hsluvToRgb([entry[3]*4, 100, 50]);
+        //cCoords.push(entry[3]*4)
         cCoords.push(Colors.rgb2hex(Math.round(rgb[0] * 255), Math.round(rgb[1] * 255), Math.round(rgb[2] * 255)));
       });
-      data = [{x:xCoords, y:yCoords, type:"scatter", mode:"markers", marker:{size:5, color: cCoords}}];
+      var data = [];
+      var scatterPoints = {x:xCoords, y:yCoords, z:zCoords, type:"scatter3d", mode:"markers", marker:{size:7, color: cCoords}};
+      this.cluster_distance_pairs[0].forEach(function(entry){
+        var trace = {x: [entry[0][0], entry[1][0]], y: [entry[0][1], entry[1][1]], z: [entry[0][2], entry[1][2]],
+        mode: 'lines', type: 'scatter3d', line: {width: 5}};
+        data.push(trace);
+      });
+      data.push(scatterPoints);
       layout = { hovermode:'closest', title:'Click on Points'};
       Plotly.newPlot('db_clustering_plot', data, layout);
       myPlot.on('plotly_click', function(eventdata){
         console.log(eventdata);
-        var pointIndex = eventdata.points[0].pointIndex;
+        var pointIndex = eventdata.points[0].pointNumber;
         console.log(pointIndex);
         ClusteringAnalysis.getCodeTreeForIndex(pointIndex);
       });
@@ -43,7 +57,7 @@ var ClusteringAnalysis = {
     getCodeTreeForIndex: function(index){
       $.ajax({
           type: "GET",
-          url: "http://localhost:20042/get_code_tree_for_index?session=" + ClusteringAnalysis.session_number + "&index=" + index,
+          url: "http://localhost:20042/get_code_tree_for_index?experimentId=" + ClusteringAnalysis.experimentId + "&session=" + ClusteringAnalysis.session_number + "&index=" + index,
           datatype: "json"},
       ).done(function(data){
           ClusteringAnalysis.code_tree = JSON.parse(data);
@@ -229,5 +243,10 @@ $(document).ready(function(){
     ClusteringAnalysis.initLanguage();
     ClusteringAnalysis.injectBlockly();
     ClusteringAnalysis.loadBlocks('<xml id="startBlocks" style="display: none">' + document.getElementById('startBlocks').innerHTML + '</xml>');
-
+    $("#experiment_id").change(function(val){
+        var selection_value = $( "select option:selected" ).val();
+        console.log(selection_value);
+        ClusteringAnalysis.experimentId = selection_value;
+        ClusteringAnalysis.loadSessionData();
+    });
 })

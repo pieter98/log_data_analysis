@@ -1,1 +1,4 @@
-./files/
+./files/*
+./results/*
+./.idea/*
+./__pycache__/*

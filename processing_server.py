@@ -10,12 +10,11 @@ from utils import AnalysisUtils
 
 def makeProcessingServerHandler(database_connection):
     class ProcessingServerHandler(BaseHTTPRequestHandler):
-        code_trees = []
+        cluster_pairs = []
         def __init__(self, *args, **kwargs):
             self.database_connection = database_connection
             print(database_connection.get_ordered_session_ids())
-            self.code_trees.append(np.load("./files/xml_trees_for_session0.npy").tolist())
-            self.code_trees.append(np.load("./files/xml_trees_for_session1.npy").tolist())
+            self.close_connection = True
             super(ProcessingServerHandler, self).__init__(*args, **kwargs)
 
         def _set_headers(self):
@@ -53,6 +52,7 @@ def makeProcessingServerHandler(database_connection):
                 self.wfile.write(json.dumps(query_result).encode())
             # Load the clustering data results
             elif urlparse(self.path).path == "/evaluate_clustering":
+
                 print("loading clustering results")
                 query = parse_qs(urlparse(self.path).query)
                 kwargs = dict()
@@ -60,30 +60,55 @@ def makeProcessingServerHandler(database_connection):
                 if "session" in keys:
                     print(query["session"])
                     kwargs["session"] = int(query["session"][0])
+                else:
+                    kwargs["session"] = ""
+                if "experimentId" in query.keys():
+                    print(query["experimentId"])
+                    kwargs["experimentId"] = query["experimentId"][0]
+                else:
+                    kwargs["experimentId"] = ""
                 print(kwargs)
-                loaded_trees = np.load("./files/session" + str(kwargs["session"]) + ".npy").tolist()
-                loaded_session_ids = np.load("./files/graph_session_ids_for_session" + str(kwargs["session"]) + ".npy").tolist()
+                cluster_pairs = []
+                # Load nearby cluster pair centroids
+                cluster_pairs.append(np.load("./files/nearby_cluster_pair_points" + kwargs["experimentId"] + ".npy").tolist())
+                # Load the t_sne embedding data points
+                loaded_trees = np.load("./files/session" + kwargs["experimentId"] + ".npy").tolist()
+                # Load the identifier for each code tree which determines which coding session it belongs to
+                loaded_session_ids = np.load("./files/graph_session_ids_for_session" + str(kwargs["experimentId"]) + ".npy").tolist()
+                # Load the ground truth labels for each code tree.
+                labels = np.load("./files/labels" + kwargs["experimentId"] + ".npy").tolist()
+                if len(labels) == 0:
+                    labels = np.zeros(10000)
+
                 utils = AnalysisUtils()
                 normalized_loaded_session_ids = utils.normalize_session_id_list(loaded_session_ids)
-                print(len(set(normalized_loaded_session_ids)))
-                packed_data = list(zip(loaded_trees, normalized_loaded_session_ids, loaded_session_ids))
+                max_elements = 2400
+
+                nr_of_trees = len(loaded_trees)
+                packed_data = list(zip(loaded_trees[0:max_elements], normalized_loaded_session_ids[0:max_elements], loaded_session_ids[0:max_elements], labels[0:max_elements]))
+                packed_data = [packed_data, cluster_pairs]
                 print("loaded trees")
                 print(loaded_trees)
                 json_string = json.dumps(packed_data).encode()
                 self.wfile.write(json_string)
             elif urlparse(self.path).path == "/get_code_tree_for_index":
-                print("loading clustering results")
                 query = parse_qs(urlparse(self.path).query)
                 kwargs = dict()
-                keys = query.keys()
-                if "index" in keys:
+                if "experimentId" in query.keys():
+                    print(query["experimentId"])
+                    kwargs["experimentId"] = query["experimentId"][0]
+                else:
+                    kwargs["experimentId"] = ""
+                if "index" in query.keys():
                     print(query["index"])
-                    kwargs["index"] = int(query["index"][0])
-                if "session" in keys:
-                    print(query["session"])
-                    kwargs["session"] = int(query["session"][0])
-                print(kwargs)
-                self.wfile.write(json.dumps(self.code_trees[kwargs["session"]][kwargs["index"]]).encode())
+                    kwargs["index"] = query["index"][0]
+                else:
+                    kwargs["index"] = 0
+
+                print("loading clustering results")
+                code_trees = []
+                code_trees.append(np.load("./files/xml_trees_for_session" + kwargs["experimentId"] + ".npy").tolist())
+                self.wfile.write(json.dumps(code_trees[0][int(kwargs["index"])]).encode())
             else:
                 self.wfile.write("<html><body><h1>hi!</h1></body></html>".encode())
 
