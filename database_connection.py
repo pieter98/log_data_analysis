@@ -18,10 +18,16 @@ class DatabaseConnection:
         self.client = MongoClient('localhost:27017')
         self.fix_database = self.client["BlocklyLogDebug"]
         self.create_database = self.client["BlocklyLogCreate"]
+        self.generated_data_log = self.client["GeneratedDataLog"]
+        self.generated2_data_log = self.client["Generated2"]
         self.fix_log = self.fix_database.log
         self.create_log = self.create_database.log
+        self.generated_data_log = self.generated_data_log.log
+        self.generated2_data_log = self.generated2_data_log.log
         self.db_logs.append(self.create_log)
         self.db_logs.append(self.fix_log)
+        self.db_logs.append(self.generated_data_log)
+        self.db_logs.append(self.generated2_data_log)
         self.get_ordered_session_ids()
 
 
@@ -110,6 +116,9 @@ class DatabaseConnection:
                     "_id": "$sessionId",
                     "eventsForSession": {
                         "$push": "$event"
+                    },
+                    "labelsForSession": {
+                        "$push": "$structureLabelString"
                     }
                 }
             }
@@ -120,9 +129,9 @@ class DatabaseConnection:
             code_trees_fix = list(self.db_logs[WorkshopType.FIX.value].aggregate(pipeline, allowDiskUse=True))
             code_trees = code_trees_create + code_trees_fix
         else:
+            print(self.db_logs[workshop_type.value].count_documents({}))
             code_trees = list(self.db_logs[workshop_type.value].aggregate(pipeline, allowDiskUse=True))
 
-        #print(code_trees)
         return code_trees
 
     def get_create_log(self):

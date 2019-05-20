@@ -6,7 +6,8 @@ from sklearn.manifold import TSNE as t_sne
 from sklearn.preprocessing import RobustScaler
 from sklearn import metrics as m
 import numpy as np
-from itertools import cycle
+
+
 
 class ClusteringAnalysis:
 
@@ -55,12 +56,9 @@ class ClusteringAnalysis:
         print('Estimated number of clusters: %d' % n_clusters_)
         return (labels, n_clusters_)
 
-    def cluster_tsne(self, affinity_matrix, color_labels, title="TSNE"):
-        tsne = t_sne(n_components=2, metric="precomputed")
+    def cluster_tsne(self, affinity_matrix, color_labels, title="TSNE", n_components=2, perplexity=30):
+        tsne = t_sne(n_components=n_components, metric="precomputed", perplexity=perplexity)
         embedding = tsne.fit_transform(affinity_matrix)
-        plt.scatter(embedding[:, 0], embedding[:, 1])
-        plt.title(title)
-        plt.show()
         return embedding
 
 
@@ -80,6 +78,35 @@ class ClusteringAnalysis:
         plt.imshow(normalized_distance_matrix, cmap='rainbow', interpolation='none')
         plt.show()
         return normalized_distance_matrix
+
+
+    def cluster_t_sne_result(self, embedding, true_labels):
+        clustering = dbs(eps=2.5, metric="euclidean").fit(embedding)
+
+        core_sample_indices = clustering.core_sample_indices_
+        cluster_centers_for_each_sample = clustering.components_
+        labels = clustering.labels_
+
+        n_clusters = len(set(labels))
+        noise = list(labels).count(-1)
+
+        cluster_centers = np.unique(cluster_centers_for_each_sample, axis=0)
+
+        print('Estimated number of clusters: %d' % n_clusters)
+        print('Estimated number of noise points: %d' % noise)
+        print("Homogeneity: %0.3f" % m.homogeneity_score(true_labels, labels))
+        print("Completeness: %0.3f" % m.completeness_score(true_labels, labels))
+        print("V-measure: %0.3f" % m.v_measure_score(true_labels, labels))
+        print("Adjusted Rand Index: %0.3f"
+              % m.adjusted_rand_score(true_labels, labels))
+        print("Adjusted Mutual Information: %0.3f"
+              % m.adjusted_mutual_info_score(true_labels, labels))
+        print("Silhouette Coefficient: %0.3f"
+              % m.silhouette_score(embedding, labels, metric='sqeuclidean'))
+
+        return labels, n_clusters
+
+
 
 
 

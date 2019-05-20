@@ -9,8 +9,6 @@ import json
 class dataLoggerRequestHandler(BaseHTTPRequestHandler):
     """Handle incomming requests."""
 
-    PORT = 8000
-
     def _set_headers(self):
         """Set headers, response 200."""
         self.send_response(200)
@@ -60,19 +58,20 @@ class dataLoggerRequestHandler(BaseHTTPRequestHandler):
         post_data = parse_qs(self.rfile.read(length).decode('utf-8'))
         print(post_data)
         data = json.loads(post_data['logEntry'][0])
+        dbname = post_data['dbname'][0]
         print(data)
         self._set_headers()
-        self.insertUpdate(data)
+        self.insertUpdate(data, dbname)
 
-    def getDatabase(self):
+    def getDatabase(self, dbname):
         """Get the connection to the mongodb database."""
         client = MongoClient('localhost:27017')
-        db = client.GeneratedDataLog
+        db = client[dbname]
         return db
 
-    def insertUpdate(self, data):
+    def insertUpdate(self, data, dbname):
         """Insert an log element into the log collection."""
-        db = self.getDatabase()
+        db = self.getDatabase(dbname)
         coll = db.log
         coll.insert(data)
 
@@ -82,7 +81,7 @@ class dataLoggerRequestHandler(BaseHTTPRequestHandler):
         print("Starting server")
 
         # Server settings
-        # Choose port 8080, for port 80,
+        # Choose port 8081, for port 80,
         # which is normally used for a http server, you need root access
         server_address = ('127.0.0.1', 8081)
         httpd = HTTPServer(server_address, dataLoggerRequestHandler)

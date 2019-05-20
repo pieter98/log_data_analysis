@@ -3,6 +3,7 @@ from igraph import *
 import graphkernels.kernels as gk
 import matplotlib.pyplot as plt
 import seaborn as sns
+from my_enums import WorkshopType
 
 class CodeTreeAnalyzer:
 
@@ -17,20 +18,23 @@ class CodeTreeAnalyzer:
         self.session_epochs.append(self.session1_epoch)
         self.session_epochs.append(self.session2_epoch)
 
-    def get_all_xml_code_trees(self):
+    def get_all_xml_code_trees(self, workshop_type=WorkshopType.BOTH):
         code_trees = []
         timestamps = []
         session_ids = []
-        code_trees_by_session = self.database_connection.get_code_trees_for()
+        labels = []
+        code_trees_by_session = self.database_connection.get_code_trees_for(workshop_type=workshop_type)
         for session in code_trees_by_session:
             for tree in session["eventsForSession"]:
                 code_trees.append(tree["data"])
                 timestamps.append(tree["timestamp"])
                 session_ids.append(session["_id"])
+            for label in session["labelsForSession"]:
+                labels.append(label)
 
         print("timestamps")
         print(timestamps)
-        return (code_trees, timestamps, session_ids)
+        return (code_trees, timestamps, session_ids, labels)
 
     def get_xml_code_trees_for_session(self, session):
         code_trees = []
@@ -58,12 +62,14 @@ class CodeTreeAnalyzer:
         return ast_trees
 
     def convert_ast_trees_to_igraph_ast_trees(self, ast_trees):
+        # fist count the number of unique labels:
+        nr_unique_labels = self.count_unique_vertex_labels(ast_trees)
         igraph_ast_trees = []
         node_label_conversion_table = []    # This list maps the original node names to unique integers.
         for i, ast_tree in enumerate(ast_trees):
             index = -1
             graph = Graph()
-            self.construct_igraph_subtree(ast_tree, index, -1, graph, node_label_conversion_table)
+            self.construct_igraph_subtree(ast_tree, index, -1, graph, node_label_conversion_table, nr_unique_labels)
             igraph_ast_trees.append(graph)
             if i % 1000 == 0:
                 print("Number of trees converted to igraph:")
@@ -75,8 +81,41 @@ class CodeTreeAnalyzer:
             plot(g, layout=layout)'''
         return igraph_ast_trees
 
+    def convert_ast_trees_to_igraph_ast_trees_connected_siblings(self, ast_trees):
+        # fist count the number of unique labels:
+        nr_unique_labels = self.count_unique_vertex_labels(ast_trees)
+        igraph_ast_trees = []
+        node_label_conversion_table = []    # This list maps the original node names to unique integers.
+        for i, ast_tree in enumerate(ast_trees):
+            index = -1
+            graph = Graph()
+            self.construct_igraph_subtree_connected_siblings(ast_tree, index, -1, graph, node_label_conversion_table, nr_unique_labels)
+            igraph_ast_trees.append(graph)
+            if i % 1000 == 0:
+                print("Number of trees converted to igraph:")
+                print(i)
+                #print(graph.vs["name"])
+                #print(graph.es["label"])
+                #summary(graph)
+                #print(graph)
+        return igraph_ast_trees
 
-    def construct_igraph_subtree(self, vertex, index, parent_index, graph, node_label_conversion_table):
+    def count_unique_vertex_labels(self, ast_trees):
+        c_tab = []
+        for ast_tree in ast_trees:
+            self.map_vertex_names_to_ints(ast_tree, c_tab)
+        return len(c_tab)
+
+
+    def map_vertex_names_to_ints(self, vertex, conversion_table):
+        if vertex.type not in conversion_table:
+            conversion_table.append(vertex.type)
+        for i, child in enumerate(vertex.childNodes):
+            self.map_vertex_names_to_ints(child, conversion_table)
+        return
+
+
+    def construct_igraph_subtree(self, vertex, index, parent_index, graph, node_label_conversion_table, nr_unique_labels):
         # Map the vertex name to an integer, if it does not exist yet -> add it
         if vertex.type not in node_label_conversion_table:
             node_label_conversion_table.append(vertex.type)
@@ -85,14 +124,39 @@ class CodeTreeAnalyzer:
         graph.add_vertex(name=new_label)
         index += 1
         if (parent_index != -1):
-            graph.add_edges([(index, parent_index)])
+            edge_label = graph.vs[parent_index]["name"]*nr_unique_labels + graph.vs[index]["name"]
+            graph.add_edge(index, parent_index, label=edge_label)
         parent_index = index
         for i, child in enumerate(vertex.childNodes):
-            index = self.construct_igraph_subtree(child, index, parent_index, graph, node_label_conversion_table)
+            index = self.construct_igraph_subtree(child, index, parent_index, graph, node_label_conversion_table, nr_unique_labels)
         return index
 
+    def construct_igraph_subtree_connected_siblings(self, vertex, index, parent_index, graph, node_label_conversion_table, nr_unique_labels):
+        # Map the vertex name to an integer, if it does not exist yet -> add it
+        if vertex.type not in node_label_conversion_table:
+            node_label_conversion_table.append(vertex.type)
+        new_label = node_label_conversion_table.index(vertex.type)
+
+        graph.add_vertex(name=new_label)
+        index += 1
+        if (parent_index != -1):
+            edge_label = graph.vs[parent_index]["name"] * nr_unique_labels + graph.vs[index]["name"]
+            graph.add_edge(index, parent_index, label=edge_label)
+        parent_index = index
+        child_indeses = []
+        for i, child in enumerate(vertex.childNodes):
+            index = self.construct_igraph_subtree_connected_siblings(child, index, parent_index, graph, node_label_conversion_table, nr_unique_labels)
+            child_indeses.append(index)
+
+        for i in range(len(child_indeses) - 1):
+            edge_label = graph.vs[child_indeses[i]]["name"] * nr_unique_labels + graph.vs[child_indeses[i + 1]]["name"]
+            graph.add_edge(child_indeses[i], child_indeses[i + 1], label=edge_label)
+
+        return index
+
+
     def calculate_WL_subtree_kernel(self, igraph_list):
-        K_wl = gk.CalculateWLKernel(igraph_list, par = 50)
+        K_wl = gk.CalculateWLKernel(igraph_list, par=50)
         print(K_wl.shape)
         print(K_wl)
         plt.imshow(K_wl, cmap='gist_ncar', interpolation='none')
@@ -131,6 +195,6 @@ class CodeTreeAnalyzer:
         # kernel_matrices.append(gk.CalculateKStepRandomWalkKernel(igraph_list))
         # kernel_matrices.append(gk.CalculateShortestPathKernel(igraph_list))
         kernels.append(gk.CalculateWLKernel)
-        # kernel_matrices.append(gk.CalculateGraphletKernel(igraph_list))
-        # kernel_matrices.append(gk.CalculateConnectedGraphletKernel(igraph_list))
+        kernels.append(gk.CalculateGraphletKernel)
+        kernels.append(gk.CalculateConnectedGraphletKernel)
         return kernels
