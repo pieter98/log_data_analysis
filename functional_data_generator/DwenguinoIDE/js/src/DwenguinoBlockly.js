@@ -106,7 +106,7 @@ var DwenguinoBlockly = {
         });
 
         //turn on the simulator by default
-        DwenguinoBlockly.toggleSimulator();
+        //DwenguinoBlockly.toggleSimulator();
 
         //save/upload buttons
         $("#db_menu_item_run").click(DwenguinoBlockly.runEventHandler);
@@ -367,7 +367,7 @@ var DwenguinoBlockly = {
         DwenguinoSimulation.handleSimulationStop();
       } else {
         newStateArray = ['50%', 'on', true];
-        DwenguinoSimulation.setupEnvironment();
+        DwenguinoSimulation.setupEnvironment('randomSimulatedEnvironment');
       }
       $("#db_blockly").width(newStateArray[0]);
       this.simButtonStateClicked = newStateArray[2];
@@ -401,7 +401,7 @@ var DwenguinoBlockly = {
     * This function submits an event to the python logging server.
     */
     recordEvent: function(eventToRecord){
-      var serverSubmission = {
+      /*var serverSubmission = {
         "sessionId": DwenguinoBlockly.sessionId,
         "agegroup": DwenguinoBlockly.agegroupSetting,
         "gender": DwenguinoBlockly.genderSetting,
@@ -420,7 +420,7 @@ var DwenguinoBlockly = {
         }).fail(function(response, status)  {
             console.warn('Failed to submit recording:', status);
         });
-      }
+      }*/
     },
 
     runEventHandler: function(){
@@ -429,7 +429,6 @@ var DwenguinoBlockly = {
       $("#db_menu_item_dwengo_robot_teacher_image").css({padding: "10px 25px", maxHeight: "100%", float: "right"});
       $("#db_menu_item_run").css({color: "gray"});
       setTimeout(function(){
-        console.log("timeout")
         $("#db_menu_item_run").click(DwenguinoBlockly.runEventHandler);
         $("#db_menu_item_run").css({color: "black"});
         $("#db_menu_item_run").hover(function() {
@@ -445,7 +444,6 @@ var DwenguinoBlockly = {
       if ((typeof dwenguinoBlocklyServer) != 'undefined' && dwenguinoBlocklyServer){
           dwenguinoBlocklyServer.uploadCode(code);
       }
-      console.log(code.replace(/\r?\n|\r/g, "\n"));
       //DwenguinoBlockly.build(code.replace(/\r?\n|\r/g, "\\n"));
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("runClicked", ""));
     },
@@ -526,7 +524,7 @@ var DwenguinoBlockly = {
         DwenguinoBlockly.difficultyLevel = level;
         $("#toolbox").load("DwenguinoIDE/levels/lvl" + level + ".xml", function(){
             DwenguinoBlockly.doTranslation();
-            DwenguinoBlockly.workspace.updateToolbox(document.getElementById("toolbox"));
+            //DwenguinoBlockly.workspace.updateToolbox(document.getElementById("toolbox"));
         });
     },
 
@@ -573,7 +571,9 @@ var DwenguinoBlockly = {
     },
 
     injectBlockly: function(){
-        var blocklyArea = document.getElementById('db_blockly');
+        DwenguinoBlockly.workspace = new Blockly.Workspace();
+
+        /*var blocklyArea = document.getElementById('db_blockly');
         var blocklyDiv = document.getElementById('blocklyDiv');
         DwenguinoBlockly.workspace = Blockly.inject(blocklyDiv,
             {
@@ -584,7 +584,8 @@ var DwenguinoBlockly = {
         window.addEventListener('resize', DwenguinoBlockly.onresize, false);
         DwenguinoBlockly.onresize();
         Blockly.svgResize(DwenguinoBlockly.workspace);
-        DwenguinoBlockly.workspace.addChangeListener(DwenguinoBlockly.renderCode);
+        DwenguinoBlockly.workspace.addChangeListener(DwenguinoBlockly.renderCode);*/
+
     },
 
     changeLanguage: function() {
@@ -815,22 +816,11 @@ var DwenguinoBlockly = {
     });
   },
 
-  //TODO: remove following function: not used anywhere
-    setWorkspaceBlockFromXml: function(xml){
-        DwenguinoBlockly.workspace.clear();
-        try {
-            var xmlDom = Blockly.Xml.textToDom(xml);
-        } catch (e) {
-            console.log("invalid xml");
-            return;
-        }
-        Blockly.Xml.domToWorkspace(xmlDom, DwenguinoBlockly.workspace);
-    },
 
     setupEnvironment: function(){
         DwenguinoBlockly.initLanguage();
         DwenguinoBlockly.injectBlockly();
-        DwenguinoBlockly.loadBlocks('<xml id="startBlocks" style="display: none">' + document.getElementById('startBlocks').innerHTML + '</xml>');
+        //DwenguinoBlockly.loadBlocks('<xml id="startBlocks" style="display: none">' + document.getElementById('startBlocks').innerHTML + '</xml>');
         DwenguinoBlockly.initDwenguinoBlockly();
         DwenguinoBlockly.doTranslation();
         DwenguinoBlockly.setDifficultyLevel(0);
@@ -848,4 +838,5 @@ var DwenguinoBlockly = {
 
 $(document).ready(function() {
   DwenguinoBlockly.setupEnvironment();
+  CodeLoader.init();
 });

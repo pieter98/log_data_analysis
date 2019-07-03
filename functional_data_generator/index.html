@@ -16,51 +16,7 @@
 
 </head>
 
-<body id="db_body">
-    <div class="db_logloadinterface">
-        <div class="db_logloadinterface_item">
-            <span>Session: </span>
-            <select id="session_ids">
-            </select>
-        </div>
-        <div class="db_logloadinterface_item">
-            <span>Start date: </span>
-            <input id="start_date" type="datetime-local" name="start_date" style="width:180px">
-        </div>
-        <div class="db_logloadinterface_item">
-            <span>End date: </span>
-            <input id="end_date" type="datetime-local" name="end_date" style="width:180px">
-        </div>
-        <div class="db_logloadinterface_item">
-            <span>Workshop Type: </span>
-            <select id="workshop_type">
-                <option value="0">Create</option>
-                <option value="1">Fix</option>
-                <option value="2">Both</option>
-            </select>
-        </div>
-        <div class="db_logloadinterface_item">
-            <span>Selected sessions: </span>
-            <select id="selected_sessions">
-            </select>
-        </div>
-        <div class="db_logloadinterface_item">
-            <span>Session steps: </span>
-            <select id="session_steps">
-                <option disabled="disabled" selected="selected" value=-1>--Select a step--</option>
-            </select>
-        </div>
-        <div class="db_logloadinterface_item">
-            <button id="prev_session_step"> < </button>
-        </div>
-        <div class="db_logloadinterface_item">
-            <button id="next_session_step"> > </button>
-        </div>
-        <div class="db_loginterface_codetrees_to_images_button">
-            <button id="to_images_button">I</button>
-        </div>
-    </div>
-    <div class="db_header">
+<body id="db_body">    <div class="db_header">
         <div class="db_logo">
           <img id="db_wegostem_logo_top_left" src="DwenguinoIDE/img/wegostem.png" alt="The WeGoSTEM logo" />
           <img id="db_dwengo_logo_top_left" src="DwenguinoIDE/img/dwengo_logo.png" alt="The dwengo logo" />
@@ -525,13 +481,15 @@
     <script src="DwenguinoIDE/js/lib/debugjs.js"></script>
     <script src="DwenguinoIDE/js/lib/socket.io.js"></script>
     <script src="DwenguinoIDE/js/lib/dropzone.js"></script>
+    <script src="DwenguinoIDE/js/lib/seedrandom.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenario.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobot.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobotWithWall.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenarioSpyrograph.js"></script>
+    <script src="DwenguinoIDE/js/src/DwenguinoRandomSimulatedEnvironment.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulation.js"></script>
+    <script src="DwenguinoIDE/js/src/CodeLoader.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoBlockly.js"></script>
-    <script src="DwenguinoIDE/js/src/DataAnalysis.js"></script>
 
 
     </body>

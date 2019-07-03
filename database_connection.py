@@ -20,14 +20,32 @@ class DatabaseConnection:
         self.create_database = self.client["BlocklyLogCreate"]
         self.generated_data_log = self.client["GeneratedDataLog"]
         self.generated2_data_log = self.client["Generated2"]
+        self.recorded_data_log = self.client["RecordedDataLog"]
+
         self.fix_log = self.fix_database.log
         self.create_log = self.create_database.log
         self.generated_data_log = self.generated_data_log.log
         self.generated2_data_log = self.generated2_data_log.log
+        self.recorded_data_log_log = self.recorded_data_log.log
+
+        self.functional_data = []
+        self.functional_data.append(self.client["FunctionalData"])
+        self.functional_data.append(self.client["FunctionalData2"])
+        self.functional_data.append(self.client["FunctionalRealDataCreate"])
+        self.functional_data.append(self.client["FunctionalData3"])
+        self.functional_data.append(self.client["FunctionalData4"])
+        self.functional_data.append(self.client["FunctionalDataRecorded"])
+        self.functional_data.append(self.client["FunctionalData5"])
+        self.functional_data_log = []
+
+        for i in range(len(self.functional_data)):
+            self.functional_data_log.append(self.functional_data[i].log)
+
         self.db_logs.append(self.create_log)
         self.db_logs.append(self.fix_log)
         self.db_logs.append(self.generated_data_log)
         self.db_logs.append(self.generated2_data_log)
+        self.db_logs.append(self.recorded_data_log_log)
         self.get_ordered_session_ids()
 
 
@@ -134,11 +152,41 @@ class DatabaseConnection:
 
         return code_trees
 
+    '''
+    @brief this function adds an entry to the functional database
+    @param experiment_id the identifier of the experiment
+    @param vector functional identifier of the program in vector format
+    @param xml_blocks the program in xml format
+    '''
+    def add_functional_log_entry(self, experiment_id, vector, xml_blocks, label, log_nr):
+        self.functional_data_log[int(log_nr)].insert_one({"experiment_id": experiment_id, "vector": vector, "xml_blocks": xml_blocks, "label": label})
+
+    def get_functional_log_data(self, log_nr):
+        return self.functional_data_log[int(log_nr)].find({})
+
+    def get_fid_vectors(self, log_nr):
+        return self.functional_data_log[int(log_nr)].find({}, {"vector": 1, "_id": 0})
+
+    def get_f_programs(self, log_nr):
+        return self.functional_data_log[int(log_nr)].find({}, {"xml_blocks": 1, "_id": 0})
+
+    def get_f_labels(self, log_nr):
+        return self.functional_data_log[int(log_nr)].find({}, {"label": 1, "_id": 0})
+
     def get_create_log(self):
         return self.create_log
 
     def get_fix_log(self):
         return self.fix_log
+
+
+
+
+    def insertIntoRecordedDataLog(self, data):
+        """Insert an log element into the log collection."""
+        print("saving data")
+        coll = self.recorded_data_log_log
+        coll.insert(data)
 
 
 

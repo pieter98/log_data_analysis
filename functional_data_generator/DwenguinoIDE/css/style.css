@@ -22,7 +22,6 @@ body{
 }
 
 .db_header{
-    margin-top: 50px;
     position: relative;
     height: 55px;
     border-bottom: solid #8bab42 5px;
@@ -130,7 +129,7 @@ body{
 
 .db_content{
     position:absolute;
-    top:150px;
+    top:50px;
     bottom:0;
     left:0;
     right:0;

@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="DwenguinoIDE/js/lib/jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="DwenguinoIDE/css/prettify.css">
     <link rel="stylesheet" href="DwenguinoIDE/css/hopscotch.css">
-
-
-
-
 </head>
 
 <body id="db_body">
@@ -44,7 +40,7 @@
             <select id="selected_sessions">
             </select>
         </div>
-        <div class="db_logloadinterface_item">
+        <!--<div class="db_logloadinterface_item">
             <span>Session steps: </span>
             <select id="session_steps">
                 <option disabled="disabled" selected="selected" value=-1>--Select a step--</option>
@@ -58,6 +54,12 @@
         </div>
         <div class="db_loginterface_codetrees_to_images_button">
             <button id="to_images_button">I</button>
+        </div>-->
+        <div class="db_record_interactions_buttion db_logloadinterface_item">
+            <button id="record_interactions_button">false</button>
+        </div>
+        <div class="db_record_interactions_buttion db_logloadinterface_item">
+            <input type="text" name="label" id="label" placeholder="label"></input>
         </div>
     </div>
     <div class="db_header">
@@ -525,6 +527,7 @@
     <script src="DwenguinoIDE/js/lib/debugjs.js"></script>
     <script src="DwenguinoIDE/js/lib/socket.io.js"></script>
     <script src="DwenguinoIDE/js/lib/dropzone.js"></script>
+    <script src="DwenguinoIDE/js/src/interaction_recorder.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenario.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobot.js"></script>
     <script src="DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobotWithWall.js"></script>

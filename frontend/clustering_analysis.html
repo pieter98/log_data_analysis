@@ -16,16 +16,30 @@
 <body id="db_body">
         <div id="resultset">
             <select id="experiment_id">
-              <option value="_19-04-2019">19-04-2019</option>
-              <option value="_02-05-2019_perp-50">02-05-2019 perplexity=50</option>
-              <option value="_02-05-2019_perp-50-Create">02-05-2019 perplexity=50 create</option>
-              <option value="_02-05-2019_perp-30-Create">02-05-2019 perplexity=30 Create</option>
+                <option value="_19-04-2019">19-04-2019</option>
+                <option value="_02-05-2019_perp-50">02-05-2019 perplexity=50</option>
+                <option value="_02-05-2019_perp-50-Create">02-05-2019 perplexity=50 create</option>
+                <option value="_02-05-2019_perp-30-Create">02-05-2019 perplexity=30 Create</option>
+                <option value="_functional_24-06-2019">24-06-2019 functional2</option>
+                <option value="_functional_27-06-2019">27-06-2019 functional2 nnmf</option>
+                <option value="_functionalreal_data_27-06-2019">27-06-2019 functional2 nnmf</option>
+                <option value="_functional_28-06-2019">27-06-2019 testing</option>
+                <option value="_functional_28-06-2019_data_generated1" data-reduced=true>28-06-2019 testing</option>
+                <option value="_functional_01-07-2019_functional_with_recordings" data-reduced=true>01-07-2019 with recordings</option>
+                <option value="_functional_02-07-2019_functional_with_recordings" data-reduced=true>02-07-2019 with recordings</option>
+                <option value="_functional_03-07-2019_functional_with_recordings" data-reduced=true>03-07-2019 with recordings</option>
+
 
             </select>
         </div>
         <div id="db_clustering_plot" class="db_clustering_plots"></div>
-        <div id="db_main_content" class="db_content resize-container">
-        <div id="db_blockly" class="resize-drag"></div>
+        <!--<div id="db_main_content" class="db_content resize-container">-->
+        <div id="analysis_container">
+            <div id="functional_vector">
+                <canvas id="functional_vector_canvas" width="200" height="20" style="border:1px solid #000000;"></canvas>
+            </div>
+            <div id="db_blockly" class="resize-drag"></div>
+        </div>
     </div>
     <!--Blockly is injected into the following div, therafter it is positioned over the db_blockly div -->
     <div id="blocklyDiv" style="position: absolute"></div>

@@ -409,6 +409,7 @@ var DwenguinoBlockly = {
         "timestamp": $.now(),
         "event": eventToRecord
       };
+      InteractionRecorder.recordEvent(serverSubmission);
       console.log(eventToRecord);
       if (DwenguinoBlockly.sessionId !== undefined){
         $.ajax({

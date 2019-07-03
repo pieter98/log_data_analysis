@@ -15,16 +15,15 @@ var DwenguinoSimulation = {
 
   isSimulationRunning: false,
   isSimulationPaused: false,
-  speedDelay: 16,
-  baseSpeedDelay: 16,
+  speedDelay: 50,
+  baseSpeedDelay: 100,
   debuggingView: false,
   scenarios: {
-    "moving": new DwenguinoSimulationScenarioRidingRobot(),
-    "wall": new DwenguinoSimulationScenarioRidingRobotWithWall(),
+    "randomSimulatedEnvironment": new DwenguinoRandomSimulatedEnvironment(),
     //"spyrograph": new DwenguinoSimulationScenarioSpyrograph() /*, "moving", "wall", "spyrograph"*/
   },
   currentScenario: null,
-  scenarioView: "moving",
+  scenarioView: "randomSimulatedEnvironment",
   simulationViewContainerId: "#db_robot_pane",
   debugger: {
     debuggerjs: null,
@@ -38,9 +37,9 @@ var DwenguinoSimulation = {
   /*
   * Initializes the environment when loading page
   */
-  setupEnvironment: function() {
-    this.currentScenario = this.scenarios[this.scenarioView];
-    DwenguinoSimulation.initDwenguinoSimulation();
+  setupEnvironment: function(scenarioView) {
+    this.currentScenario = this.scenarios[scenarioView];
+    this.setupDebugger();
   },
 
   translateSimulatorInterface: function(){
@@ -76,240 +75,7 @@ var DwenguinoSimulation = {
     $("a[href$='#db_code_pane']").text(MSG.simulator['code']);
   },
 
-  /*
-  * inits the right actions to handle the simulation view
-  */
-  initDwenguinoSimulation: function() {
-    //Add scenarios to the dropdown
-    $("#sim_scenario").empty();
-    $.each(Object.keys(DwenguinoSimulation.scenarios), function(index, value){
-      var container = $("<div></div>").attr("class", "scenario_radio_container");
-      var newOpt = $("<input></input>").attr("type", "radio").attr("name", "scenario_type").attr("id", "sim_scenario_" + value).attr("value", value);
-      console.log(value);
-      console.log(DwenguinoSimulation.scenarioView);
-      if (value == DwenguinoSimulation.scenarioView){
-        newOpt.attr("checked", "checked");
-      }
-      var image = $("<img></img>").attr("class", "scenario_image").attr("src", "DwenguinoIDE/img/scenarios/scenario_" + value + ".png");
-      container.append(newOpt);
-      container.append(image);
-      $("#sim_scenario").append(container);
-    });
 
-    //Translate the interface.
-    DwenguinoSimulation.translateSimulatorInterface();
-
-    //Init the current scenario view
-    DwenguinoSimulation.currentScenario.initSimulationDisplay(DwenguinoSimulation.simulationViewContainerId);
-
-    // start/stop/pause
-    $("#sim_start").click(function() {
-      DwenguinoSimulation.setButtonsStart();
-      // start
-      if (!DwenguinoSimulation.isSimulationRunning && !DwenguinoSimulation.isSimulationPaused) {
-        DwenguinoSimulation.isSimulationRunning = true;
-        DwenguinoSimulation.startSimulation();
-        DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simStart", ""));
-        // resume
-      } else if (!DwenguinoSimulation.isSimulationRunning) {
-        DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simResume", ""));
-        DwenguinoSimulation.isSimulationPaused = false;
-        DwenguinoSimulation.isSimulationRunning = true;
-        DwenguinoSimulation.resumeSimulation();
-      }
-    });
-
-    $("#sim_pause").click(function() {
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simPause", ""));
-      DwenguinoSimulation.isSimulationRunning = false;
-      DwenguinoSimulation.isSimulationPaused = true;
-      DwenguinoSimulation.setButtonsPause();
-    });
-
-    $("#sim_stop").click(function() {
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simStopButtonClicked", ""));
-      DwenguinoSimulation.handleSimulationStop();
-    });
-
-    $("#sim_step").click(function() {
-      DwenguinoSimulation.setButtonsStep();
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("simStep", ""));
-      // step 1
-      if (!DwenguinoSimulation.isSimulationPaused && !DwenguinoSimulation.isSimulationRunning) {
-        DwenguinoSimulation.startStepSimulation();
-        DwenguinoSimulation.isSimulationPaused = true;
-        // step n
-      } else if (!DwenguinoSimulation.isSimulationRunning) {
-        DwenguinoSimulation.isSimulationPaused = false;
-        DwenguinoSimulation.oneStep();
-        DwenguinoSimulation.isSimulationPaused = true;
-      }
-    });
-
-    // jquery to create select list with checkboxes that hide
-    /*$("#sim_components_select").on('click', function() {
-      if (!$("#sim_components_options").is(":visible")) {
-        $("#sim_components_options").show();
-      } else {
-        $("#sim_components_options").hide();
-      }
-    });*/
-
-    // enable show hide for dwenguino components
-    /*$("#sim_servo1").hide();
-    $("#servo1").on('change', function() {
-      if (document.getElementById("servo1").checked) {
-        $("#sim_servo1").show();
-      } else {
-        $("#sim_servo1").hide();
-      }
-    });
-
-    $("#sim_servo2").hide();
-    $("#servo2").on('change', function() {
-      if (document.getElementById("servo2").checked) {
-        $("#sim_servo2").show();
-      } else {
-        $("#sim_servo2").hide();
-      }
-    });
-
-    $("#sim_motor1").hide();
-    $("#motor1").on('change', function() {
-      if (document.getElementById("motor1").checked) {
-        $("#sim_motor1").show();
-      } else {
-        $("#sim_motor1").hide();
-      }
-    });
-
-    $("#sim_motor2").hide();
-    $("#motor2").on('change', function() {
-      if (document.getElementById("motor2").checked) {
-        $("#sim_motor2").show();
-      } else {
-        $("#sim_motor2").hide();
-      }
-    });*/
-
-    DwenguinoSimulation.hideSonar();
-    /*$("#sonar").on('change', function() {
-      if (document.getElementById("sonar").checked) {
-        $("#sim_sonar").show();
-        $("#sim_sonar_distance").show();
-        $("#sim_sonar_input").show();
-      } else {
-        $("#sim_sonar").hide();
-        $("#sim_sonar_distance").hide();
-        $("#sim_sonar_input").hide();
-      }
-    });*/
-
-    // push buttons
-    $("#sim_button_N, #sim_button_E, #sim_button_C, #sim_button_S, #sim_button_W").on('mousedown', function() {
-      if (document.getElementById(this.id).className === "sim_button") {
-        document.getElementById(this.id).className = "sim_button sim_button_pushed";
-        // update state of buttons
-        switch(this.id) {
-          case "sim_button_N":
-          DwenguinoSimulation.board.buttons[0] = 0;
-          break;
-          case "sim_button_W":
-          DwenguinoSimulation.board.buttons[1] = 0;
-          break;
-          case "sim_button_C":
-          DwenguinoSimulation.board.buttons[2] = 0;
-          break;
-          case "sim_button_E":
-          DwenguinoSimulation.board.buttons[3] = 0;
-          break;
-          case "sim_button_S":
-          DwenguinoSimulation.board.buttons[4] = 0;
-        }
-      }
-    });
-
-    $("#sim_button_N, #sim_button_E, #sim_button_C, #sim_button_S, #sim_button_W").on('mouseup', function() {
-      if (document.getElementById(this.id).className === "sim_button sim_button_pushed") {
-        document.getElementById(this.id).className = "sim_button";
-        // update state of buttons
-        switch(this.id) {
-          case "sim_button_N":
-          DwenguinoSimulation.board.buttons[0] = 1;
-          break;
-          case "sim_button_W":
-          DwenguinoSimulation.board.buttons[1] = 1;
-          break;
-          case "sim_button_C":
-          DwenguinoSimulation.board.buttons[2] = 1;
-          break;
-          case "sim_button_E":
-          DwenguinoSimulation.board.buttons[3] = 1;
-          break;
-          case "sim_button_S":
-          DwenguinoSimulation.board.buttons[4] = 1;
-        }
-      }
-    });
-    // change speed of simulation
-    $("#sim_speed").on('change', function() {
-      DwenguinoSimulation.setSpeed();
-    });
-
-    $("input[name=scenario_type]:radio").change(function () {
-      console.log($(this).val());
-      DwenguinoSimulation.scenarioView = $(this).val();
-      DwenguinoSimulation.currentScenario = DwenguinoSimulation.scenarios[DwenguinoSimulation.scenarioView];
-      DwenguinoSimulation.currentScenario.initSimulationDisplay(DwenguinoSimulation.simulationViewContainerId);
-      DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("changedScenario", DwenguinoSimulation.scenarioView));
-
-    });
-
-    var toggleSimulatorPaneView = function(currentPane, otherPanes, e){
-      $.each(otherPanes, function(index, pane){
-        $content = $(pane.attr("href"));
-        pane.removeClass("active");
-        $content.hide();
-      });
-
-
-      $(currentPane).addClass("active");
-      $(currentPane.hash).show();
-
-      e.preventDefault();
-    };
-
-    $("a[href$='#db_code_pane']").click(function(e){
-      toggleSimulatorPaneView(this, [$("a[href$='#db_robot_pane']")], e);
-    });
-
-    $("a[href$='#db_robot_pane']").click(function(e){
-      toggleSimulatorPaneView(this, [$("a[href$='#db_code_pane']")], e);
-    });
-
-    $("ul.tabs").each(function(){
-      // For each set of tabs, we want to keep track of
-      // which tab is active and its associated content
-      var $active, $content, $links = $(this).find('a');
-
-      // If the location.hash matches one of the links, use that as the active tab.
-      // If no match is found, use the first link as the initial active tab.
-      $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
-      $active.addClass('active');
-
-      $content = $($active[0].hash);
-
-      // Hide the remaining content
-      $links.not($active).each(function () {
-        $(this.hash).hide();
-      });
-    });
-
-    //Select the scenario view by default.
-    $("a[href$='#db_robot_pane']").trigger("click");
-
-
-  },
 
   /*
   * Simulator event handlers
@@ -341,9 +107,144 @@ var DwenguinoSimulation = {
     $("#sim_lcds").removeClass("on");
   },
 
+ /* board: {
+    lcdContent: new Array(2),
+    buzzer: {
+      osc: null,
+      audiocontext: null,
+      tonePlaying: 0
+    },
+    servoAngles: [0, 0],
+    motorSpeeds: [0, 0],
+    leds: [0,0,0,0,0,0,0,0,0],
+    buttons: [1,1,1,1,1],
+    sonarDistance: 50
+  },*/
+
+  generateStringHistogram: function(text){
+        var histogram = [];
+        for (var i = 0 ; i < 256 ; i++){
+            histogram[i] = 0;
+        }
+        var textLower = text.toLowerCase();
+        for (var i = 0 ; i < textLower.length ; i++){
+            var letterCode = textLower.charCodeAt(i);
+            if (letterCode < histogram.length){
+                histogram[letterCode]++;
+            }
+        }
+        var reducedHistogram = [];
+        // Add numbers
+        for (var i = 48 ; i < 58 ; i++){
+            reducedHistogram.push(histogram[i]);
+        }
+        // Add lowercase letters
+        for (var i = 97 ; i < 126 ; i++){
+            reducedHistogram.push(histogram[i]);
+        }
+        return reducedHistogram;
+  },
+
+  getStateVectorHash: function(stateVector){
+        this.rand = new Math.seedrandom('fixedseed');
+  },
+
+  getCurrentStateVector: function(){
+     var stateVector = [];
+     stateVector.push(Math.ceil(DwenguinoSimulation.board.buzzer.tonePlaying/100)/10);
+     // Limit values to valid range and go from continuous to cathegorical.
+     for (var i = 0 ; i < 2 ; i++){
+        stateVector.push(Math.floor(Math.min(Math.max(DwenguinoSimulation.board.servoAngles[i], 0), 180)/18)/10);
+        stateVector.push(Math.floor(Math.max(Math.min(DwenguinoSimulation.board.motorSpeeds[i], 255), -255)/25)/10);
+     }
+     for (var i = 0 ; i < DwenguinoSimulation.board.leds.length ; i++){
+        stateVector.push(DwenguinoSimulation.board.leds[i]);
+     }
+     // Button state is generated so directly related to the rest of the board state.
+     /*
+     for (var i = 0 ; i < DwenguinoSimulation.board.buttons.length ; i++){
+        stateVector.push(DwenguinoSimulation.board.buttons[i]);
+     }*/
+
+    var line1Hist = DwenguinoSimulation.generateStringHistogram(DwenguinoSimulation.board.lcdContent[0]);
+    var line2Hist = DwenguinoSimulation.generateStringHistogram(DwenguinoSimulation.board.lcdContent[1]);
+    for (var i = 0 ; i < line1Hist.length ; i++){
+        stateVector.push((line1Hist[i] + line2Hist[i])/16); // Normalize (max 16x the same char on screen)
+    }
+    // merge state into one value
+    state = 0;
+    for (var i = 0 ; i < stateVector.length ; i++){
+        state += stateVector[i];
+    }
+    return state;
+
+  },
+  generatedSteps: 0,
+  stateLoggingInterval: 33,
+  timeIntervalMultiplier: 47,
+
+  generateSimulatedData: function(steps, inits){
+    DwenguinoSimulation.initDebugger();
+    DwenguinoSimulation.generatedSteps = 0;
+    var totalStateVector = [];
+    DwenguinoSimulation.currentScenario.reseedRandom();
+
+    for (var i = 0 ; i < inits ; i++){
+    // Initialize new random simulation state.
+    DwenguinoSimulation.currentScenario.initSimulationState();
+    DwenguinoSimulation.generatedSteps = 0;
+    DwenguinoSimulation.initDebugger();
+        while (DwenguinoSimulation.generatedSteps < steps){
+            totalStateVector = DwenguinoSimulation.generateStep(steps, totalStateVector);
+        }
+    }
+    DwenguinoSimulation.stopSimulation();
+    return totalStateVector;
+
+  },
+  generateStep: function(steps, totalStateVector) {
+
+    var line = DwenguinoSimulation.debugger.debuggerjs.machine.getCurrentLoc().start.line - 1;
+    DwenguinoSimulation.debugger.debuggerjs.machine.step();
+
+
+    // Get current line
+    var code = DwenguinoSimulation.debugger.code.split("\n")[line] === undefined ? '' : DwenguinoSimulation.debugger.code.split("\n")[line];
+
+
+
+    // check if current line is not a sleep
+    if (code.trim().startsWith("DwenguinoSimulation.sleep")) {
+      // sleep
+      var delayTime = Number(DwenguinoSimulation.debugger.code.split("\n")[line].replace(/\D+/g, ''));
+      var delayStepsTaken = 0;
+      var delayStepsToTake = delayTime; //Math.floor(Math.log(delayTime) * DwenguinoSimulation.timeIntervalMultiplier);
+      for (delayStepsTaken = 0 ; delayStepsTaken < delayStepsToTake && DwenguinoSimulation.generatedSteps < steps ; delayStepsTaken++){
+        DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
+        DwenguinoSimulation.generatedSteps++;
+        if (DwenguinoSimulation.generatedSteps % DwenguinoSimulation.stateLoggingInterval == 0){
+            var currentState = DwenguinoSimulation.getCurrentStateVector();
+            totalStateVector = totalStateVector.concat(currentState);
+        }
+      }
+    }else{
+        // Update the scenario View
+        DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
+        DwenguinoSimulation.generatedSteps++;
+        if (DwenguinoSimulation.generatedSteps %  DwenguinoSimulation.stateLoggingInterval == 0){
+            var currentState = DwenguinoSimulation.getCurrentStateVector();
+            totalStateVector = totalStateVector.concat(currentState);
+        }
+    }
+    DwenguinoSimulation.checkForEnd();
+    return totalStateVector;
+  },
+
+
   /* -------------------------------------------------------------------------
   * Functions for handling the simulator controls
   ----------------------------------------------------------------------------*/
+
   /*
   * Starts the simulation for the current code
   */
@@ -379,18 +280,7 @@ var DwenguinoSimulation = {
     DwenguinoSimulation.step();
   },
 
-  /*
-  * initialize the debugging environment
-  */
-  initDebugger: function() {
-    // initialize simulation
-    DwenguinoSimulation.initDwenguino();
-
-    // get code
-    DwenguinoSimulation.debugger.code = Blockly.JavaScript.workspaceToCode(DwenguinoBlockly.workspace);
-    DwenguinoSimulation.mapBlocksToCode();
-
-
+  setupDebugger: function(){
     // create debugger
     DwenguinoSimulation.debugger.debuggerjs = debugjs.createDebugger({
       iframeParentElement: document.getElementById('debug'),
@@ -403,13 +293,27 @@ var DwenguinoSimulation = {
     DwenguinoSimulation.debugger.debuggerjs.machine.on('error', function(err) {
       console.error(err.message);
     });
+  },
+
+
+  /*
+  * initialize the debugging environment
+  */
+  initDebugger: function() {
+    // initialize simulation
+    DwenguinoSimulation.initDwenguino();
+
+    // get code
+    DwenguinoSimulation.debugger.code = Blockly.JavaScript.workspaceToCode(DwenguinoBlockly.workspace);
+    //DwenguinoSimulation.mapBlocksToCode();
+
 
     var filename = 'DwenguinoSimulation';
     DwenguinoSimulation.debugger.debuggerjs.load(DwenguinoSimulation.debugger.code, filename);
 
     // Performs a single step to start the debugging process, hihglights the setup loop block.
     DwenguinoSimulation.debugger.debuggerjs.machine.step();
-    DwenguinoSimulation.updateBlocklyColour();
+    //DwenguinoSimulation.updateBlocklyColour();
   },
 
   /*
@@ -642,7 +546,6 @@ var DwenguinoSimulation = {
   initDwenguino: function() {
     //Reset the Dwenguino board display
     DwenguinoSimulation.resetDwenguino();
-    DwenguinoSimulation.currentScenario.initSimulationDisplay(DwenguinoSimulation.simulationViewContainerId);
   },
 
   /*
@@ -650,7 +553,7 @@ var DwenguinoSimulation = {
   */
   resetDwenguino: function() {
     // delete debugger
-    DwenguinoSimulation.debugger.debuggerjs = null;
+    //DwenguinoSimulation.debugger.debuggerjs = null;
     DwenguinoSimulation.debugger.code = "";
     DwenguinoSimulation.debugger.blocks.blockMapping = {};
 

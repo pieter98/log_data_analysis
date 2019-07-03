@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0959801f-d7a9-4cfd-8c7d-b490a5c6f92a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_code_generator.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/code_generator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/program_generator.html" afterDir="false" />
+    <list default="true" id="0959801f-d7a9-4cfd-8c7d-b490a5c6f92a" name="Default Changelist" comment="Added generator class which generates programs which are functionally correct and make a robot drive in a square">
+      <change afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/interaction_recorder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functional_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/log-data-processor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/log-data-processor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_clustering.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_clustering.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/clustering_analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/clustering_analysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style_clustering.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style_code_generator.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DataAnalysis.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlockly.js" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlockly.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlocklyUtils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulation.js" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenario.js" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/clustering_analysis.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/code_generator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/simulator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/blockly/generators/javascript/math.js" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/blockly/generators/javascript/math.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/clustering_analysis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/functional_data_generator/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional_data_generator/program_generator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing_server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,13 +39,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="log-data-processor" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/log_processor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="248" column="17" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="54" />
+            <state relative-caret-position="108">
+              <caret line="345" column="53" selection-start-line="345" selection-start-column="53" selection-end-line="345" selection-end-column="53" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -28,28 +57,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/program_generator.html">
+        <entry file="file://$PROJECT_DIR$/functional_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="316" lean-forward="true" selection-start-line="316" selection-end-line="316" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/code_generator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2397">
-              <caret line="193" column="163" selection-start-line="193" selection-start-column="163" selection-end-line="193" selection-end-column="163" />
+            <state relative-caret-position="186">
+              <caret line="289" column="28" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js">
+        <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="819" column="40" selection-start-line="819" selection-start-column="35" selection-end-line="819" selection-end-column="40" />
+            <state relative-caret-position="27">
+              <caret line="204" column="51" lean-forward="true" selection-start-line="204" selection-start-column="51" selection-end-line="204" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -57,17 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="26" column="34" lean-forward="true" selection-end-line="233" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/lib/colors.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="441" selection-start-line="6" selection-start-column="434" selection-end-line="6" selection-end-column="441" />
+            <state relative-caret-position="216">
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -75,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/processing_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="74" column="51" lean-forward="true" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+            <state relative-caret-position="222">
+              <caret line="194" column="21" lean-forward="true" selection-start-line="194" selection-start-column="21" selection-end-line="194" selection-end-column="21" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -85,31 +99,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.py">
+        <entry file="file://$PROJECT_DIR$/frontend/clustering_analysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code_trees/solution_drive_square.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="28" column="47" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/treeparser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="157" column="29" selection-start-line="157" selection-start-column="29" selection-end-line="157" selection-end-column="29" />
+            <state relative-caret-position="360">
+              <caret line="29" column="69" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
               <folding>
-                <element signature="e#0#34#0" expanded="true" />
+                <element signature="n#style#0;n#canvas#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database_connection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_enums.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/CodeLoader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7488">
+              <caret line="416" column="53" selection-start-line="416" selection-start-column="53" selection-end-line="416" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -125,32 +163,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>session</find>
-      <find>db_header</find>
-      <find>db_main_content</find>
-      <find>db_blockly</find>
-      <find>sessionId</find>
-      <find>workshop_type</find>
-      <find>currentSessionStep</find>
-      <find>restoreFromXml</find>
-      <find>loadSessionSteps</find>
-      <find>zss</find>
-      <find>graph_tool</find>
-      <find>Graph</find>
+      <find>initDebugger</find>
+      <find>loa</find>
+      <find>setupEnvironmentR</find>
+      <find>setupEnvironment</find>
+      <find>functional_data_log</find>
+      <find>dataLoggerRequestHandler</find>
+      <find>session_number</find>
+      <find>kwargs[&quot;session&quot;]</find>
+      <find>generatedSteps</find>
+      <find>reseedRandom</find>
+      <find>cmath</find>
+      <find>board</find>
       <find>print</find>
-      <find>gs</find>
-      <find>final_code_tees</find>
-      <find>session_ids_unique</find>
-      <find>analyzer</find>
-      <find>color_labels_by_session_and_timestamp</find>
-      <find>rgb2hex</find>
-      <find>Clustering</find>
-      <find>parrent</find>
-      <find>generateSecondMotorBlock</find>
-      <find>createEvent</find>
+      <find>GET</find>
+      <find>DwenguinoSimulation.board</find>
+      <find>timeIntervalMultiplier</find>
+      <find>currentTree</find>
+      <find>get_fid_vectors</find>
+      <find>db_blockly</find>
+      <find>data-re</find>
+      <find>database_connection</find>
+      <find>parse_POST</find>
+      <find>post</find>
       <find>recordEvent</find>
-      <find>generateBlockInLoop</find>
-      <find>clear</find>
+      <find>postvars</find>
+      <find>get_code_tree_for_index</find>
+      <find>labels</find>
+      <find>max_elements</find>
+      <find>xml_trees_for_session</find>
+      <find>experimentId</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -164,35 +206,51 @@
       <list>
         <option value="$PROJECT_DIR$/xml_processor.py" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style.css" />
-        <option value="$PROJECT_DIR$/my_enums.py" />
-        <option value="$PROJECT_DIR$/frontend/index.html" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DataAnalysis.js" />
         <option value="$PROJECT_DIR$/tree_kernels/tree.py" />
         <option value="$PROJECT_DIR$/tree_kernels/tree_kernels.py" />
         <option value="$PROJECT_DIR$/treeparser.py" />
-        <option value="$PROJECT_DIR$/database_connection.py" />
         <option value="$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/graphkernels/utilities.py" />
-        <option value="$PROJECT_DIR$/code_tree_analyzer.py" />
-        <option value="$PROJECT_DIR$/clustering_analysis.py" />
         <option value="$PROJECT_DIR$/code_generator.py" />
-        <option value="$PROJECT_DIR$/log_processor.py" />
         <option value="$PROJECT_DIR$/tree_kernels/Utils.py" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/processing_server.py" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/lib/hsluv-0.0.3.min.js" />
-        <option value="$PROJECT_DIR$/frontend/clustering_analysis.html" />
-        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_code_generator.css" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/program_generator.html" />
         <option value="$PROJECT_DIR$/frontend/program_generator.html" />
+        <option value="$PROJECT_DIR$/DataLoggingServer.py" />
+        <option value="$PROJECT_DIR$/code_tree_analyzer.py" />
+        <option value="$PROJECT_DIR$/data_logging_server.py" />
+        <option value="$PROJECT_DIR$/clustering_analysis.py" />
         <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/code_generator.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style.css" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/index.html" />
+        <option value="$PROJECT_DIR$/functional_data_generator/blockly/generators/javascript/math.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/lib/seedrandom.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/index.html" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenario.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoRandomSimulatedEnvironment.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlockly.js" />
+        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_clustering.css" />
+        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js" />
+        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/index.html" />
+        <option value="$PROJECT_DIR$/frontend/index.html" />
+        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/interaction_recorder.js" />
+        <option value="$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js" />
+        <option value="$PROJECT_DIR$/log_processor.py" />
+        <option value="$PROJECT_DIR$/functional_analyzer.py" />
+        <option value="$PROJECT_DIR$/frontend/clustering_analysis.html" />
+        <option value="$PROJECT_DIR$/processing_server.py" />
+        <option value="$PROJECT_DIR$/database_connection.py" />
+        <option value="$PROJECT_DIR$/my_enums.py" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulation.js" />
+        <option value="$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/CodeLoader.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1493" />
-    <option name="y" value="236" />
-    <option name="width" value="1627" />
+    <option name="x" value="1920" />
+    <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -201,7 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,30 +269,25 @@
             <path>
               <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
               <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="code_trees" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_data_generator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
               <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_data_generator" type="462c0819:PsiDirectoryNode" />
               <item name="DwenguinoIDE" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
               <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_data_generator" type="462c0819:PsiDirectoryNode" />
               <item name="DwenguinoIDE" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
               <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_data_generator" type="462c0819:PsiDirectoryNode" />
               <item name="DwenguinoIDE" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -243,19 +295,34 @@
             <path>
               <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
               <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
-              <item name="tree_kernels" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="log-data-processor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="log-data-processor" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
+              <item name="test3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/DwenguinoIDE/css" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.virtualenvs/pycharm-log-proc-env/bin/python3.6" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="log-data-processor" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="log-data-processor" />
+      </console-settings>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -263,8 +330,8 @@
       <recent name="$PROJECT_DIR$/frontend/DwenguinoIDE" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/files" />
     </key>
   </component>
@@ -280,7 +347,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_with_server">
+  <component name="RunManager" selected="Python.run">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python">
       <module name="log-data-processor" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -288,13 +355,13 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.virtualenvs/log-data-processor/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/log_processor.py" />
-      <option name="PARAMETERS" value="parsetrees" />
+      <option name="PARAMETERS" value="runserver" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -346,20 +413,27 @@
       <option name="project" value="LOCAL" />
       <updated>1554125225137</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added generator class which generates programs which are functionally correct and make a robot drive in a square">
+      <created>1554278299544</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554278299544</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1493" y="236" width="1627" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14339152" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6335878" visible="true" weight="0.16022444" />
+      <window_info id="Structure" order="1" sideWeight="0.36641222" side_tool="true" weight="0.15401301" />
+      <window_info id="Favorites" order="2" sideWeight="0.11801242" side_tool="true" weight="0.21633416" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994577" weight="0.17286652" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4737418" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4994577" visible="true" weight="0.3501094" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3118162" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -372,17 +446,17 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16957606" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6335878" visible="true" weight="0.15401301" />
+      <window_info id="Structure" order="1" sideWeight="0.36641222" side_tool="true" visible="true" weight="0.15401301" />
+      <window_info id="Favorites" order="2" sideWeight="0.11801242" side_tool="true" weight="0.21633416" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994577" weight="0.2139738" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.47379914" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4994577" visible="true" weight="0.34678298" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3129103" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32932165" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014663" side_tool="true" weight="0.22192152" />
       <window_info anchor="bottom" id="Python Console" order="10" />
@@ -403,60 +477,116 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added colloring to the plot points based on session id's with vissually equedistant colors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added colloring to the plot points based on session id's with vissually equedistant colors." />
+    <MESSAGE value="Added generator class which generates programs which are functionally correct and make a robot drive in a square" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added generator class which generates programs which are functionally correct and make a robot drive in a square" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clustering_analysis.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code_tree_analyzer.py</url>
-          <line>115</line>
+          <line>179</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code_tree_analyzer.py</url>
-          <line>116</line>
+          <line>180</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/log_processor.py</url>
-          <line>140</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/log_processor.py</url>
-          <line>37</line>
+          <line>40</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/log_processor.py</url>
-          <line>43</line>
+          <line>46</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/log_processor.py</url>
-          <line>264</line>
+          <line>304</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/code_tree_analyzer.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/log_processor.py</url>
-          <line>230</line>
-          <option name="timeStamp" value="28" />
+          <line>153</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/log_processor.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/log_processor.py</url>
+          <line>146</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/log_processor.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/processing_server.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="29" />
+          <line>193</line>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/processing_server.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="31" />
+          <line>124</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/processing_server.py</url>
+          <line>211</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functional_analyzer.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/processing_server.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pymssa/ops.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pymssa/mssa.py</url>
+          <line>350</line>
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functional_analyzer.py</url>
+          <line>378</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functional_analyzer.py</url>
+          <line>364</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functional_analyzer.py</url>
+          <line>375</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functional_analyzer.py</url>
+          <line>294</line>
+          <option name="timeStamp" value="155" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -471,304 +601,427 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>hue/360</expression-string>
+        <expression-string>np.amin(F)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>colorsys.hls_to_rgb(hue/360., lightness/100., saturation/100.)</expression-string>
+        <expression-string>np.minimum(F)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;./files/labels&quot; + kwargs[&quot;experimentId&quot;] + &quot;.npy&quot;</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>./files/labels&quot; + kwargs[&quot;experimentId&quot;] + &quot;.npy&quot;</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;./files/labels&quot; + &quot;_functional&quot; + self.experimentId</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>kwargs[&quot;event&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>kwargs[&quot;index&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>loaded_trees[0:max_elements]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>zip(loaded_trees[0:max_elements]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/pymongo/mongo_client.py">
+    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/sklearn/metrics/cluster/supervised.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="588" selection-start-line="588" selection-end-line="588" />
+        <state relative-caret-position="882">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/css/style.css">
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoSimulationScenario.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        <state relative-caret-position="-486" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2052">
+          <caret line="24" column="68" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlocklyUtils.js">
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoSimulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DataAnalysis.js" />
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="131" column="10" selection-start-line="131" selection-start-column="10" selection-end-line="131" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlocklyUtils.js" />
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenarioSpyrograph.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_enums.py">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/simulator.js" />
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/blockly/generators/javascript/math.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        <state relative-caret-position="546">
+          <caret line="417" column="39" selection-start-line="417" selection-start-column="39" selection-end-line="417" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DataAnalysis.js">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobotWithWall.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <caret line="14" column="29" lean-forward="true" selection-end-line="201" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree_kernels/tree_kernels.py">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/lib/seedrandom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3924">
-          <caret line="36" column="103" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
+        <state relative-caret-position="605">
+          <caret line="252" column="2" selection-start-line="252" selection-start-column="2" selection-end-line="252" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenarioRidingRobot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="396">
+          <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3.6/codecs.py">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulationScenario.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="299" column="11" lean-forward="true" selection-start-line="299" selection-start-column="11" selection-end-line="299" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/graphkernels/utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/numpy/lib/npyio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="383" selection-start-line="383" selection-end-line="383" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/t-SNE_EdgeHistGaussKernel_0-76000-10.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/matplotlib/colors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="259" selection-start-line="259" selection-end-line="259" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/matplotlib/collections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/files/session0.npy">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/t-SNE_EdgeHistGaussKernel_0-17000-2_session2_create.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/t-SNE_EdgeHistGaussKernel_0-17000-2_session2_create_2D.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/files/xml_trees_for_session0.npy">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
-    <entry file="file:///usr/lib/python3.6/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5616">
-          <caret line="316" selection-start-line="316" selection-end-line="316" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code_tree_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="39" column="95" selection-start-line="39" selection-start-column="95" selection-end-line="39" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/graphkernels/kernels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="225" selection-start-line="225" selection-end-line="225" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database_connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="55" column="27" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tree_kernels/tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4122">
-          <caret line="230" column="102" selection-start-line="230" selection-start-column="102" selection-end-line="230" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clustering_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.6/http/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="405" selection-start-line="405" selection-end-line="405" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xml_processor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <marker date="1539594651443" expanded="true" signature="24:25" ph="..." />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treeparser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="157" column="29" selection-start-line="157" selection-start-column="29" selection-end-line="157" selection-end-column="29" />
+        <state relative-caret-position="2790">
+          <caret line="155" column="38" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/lib/hsluv-0.0.3.min.js">
+    <entry file="file:///usr/lib/python3.6/socketserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="368" selection-start-line="7" selection-start-column="368" selection-end-line="7" selection-end-column="368" />
+        <state relative-caret-position="12924">
+          <caret line="722" selection-start-line="722" selection-end-line="722" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/lib/p5.min.js">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/lib/debugjs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="2" column="2014" lean-forward="true" selection-start-line="2" selection-start-column="2014" selection-end-line="2" selection-end-column="2014" />
+        <state relative-caret-position="18">
+          <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processing_server.py">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="74" column="51" lean-forward="true" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+        <state relative-caret-position="18">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/code_generator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4759">
+          <caret line="437" column="68" selection-start-line="437" selection-start-column="45" selection-end-line="437" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_logging_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1016">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
-            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#39#70#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/lib/colors.min.js">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoBlockly.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="441" selection-start-line="6" selection-start-column="434" selection-end-line="6" selection-end-column="441" />
+        <state relative-caret-position="288">
+          <caret line="526" column="14" selection-start-line="526" selection-start-column="14" selection-end-line="526" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymssa/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31248">
+          <caret line="1757" selection-start-line="1757" selection-end-line="1757" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymssa/optimized.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/numba/typing/context.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="659" selection-start-line="659" selection-end-line="659" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/numba/typing/cmathdecl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/numba/dispatcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="369" selection-start-line="369" selection-end-line="369" />
+          <folding>
+            <element signature="e#24#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoRandomSimulatedEnvironment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="194" column="32" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_clustering.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="33" column="144" lean-forward="true" selection-start-line="33" selection-start-column="144" selection-end-line="33" selection-end-column="147" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        <state relative-caret-position="396">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="53" />
           <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/clustering_analysis.html">
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1294">
-          <caret line="297" column="45" selection-start-line="297" selection-start-column="45" selection-end-line="297" selection-end-column="45" />
+        <state relative-caret-position="281">
+          <caret line="483" column="52" selection-start-line="483" selection-start-column="52" selection-end-line="483" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log_processor.py">
+    <entry file="file:///usr/lib/python3.6/http/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="248" column="17" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="54" />
+        <state relative-caret-position="193">
+          <caret line="405" selection-start-line="405" selection-end-line="405" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DataAnalysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1555">
+          <caret line="101" column="43" lean-forward="true" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clustering_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="61" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/log-data-processor/lib/python3.6/site-packages/numpy/lib/npyio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="383" selection-start-line="383" selection-end-line="383" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code_tree_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="25" column="56" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="56" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/css/style_code_generator.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="26" column="34" lean-forward="true" selection-end-line="233" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code_trees/solution_drive_square.xml">
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/interaction_recorder.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="47" />
+          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/program_generator.html">
+    <entry file="file://$PROJECT_DIR$/pymssa/mssa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="316" lean-forward="true" selection-start-line="316" selection-end-line="316" />
+        <state relative-caret-position="8334">
+          <caret line="478" selection-start-line="478" selection-end-line="478" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymssa/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/DwenguinoBlockly.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="819" column="40" selection-start-line="819" selection-start-column="35" selection-end-line="819" selection-end-column="40" />
+        <state relative-caret-position="7488">
+          <caret line="416" column="53" selection-start-line="416" selection-start-column="53" selection-end-line="416" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/code_generator.js">
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/matplotlib/backends/backend_agg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2397">
-          <caret line="193" column="163" selection-start-line="193" selection-start-column="163" selection-end-line="193" selection-end-column="163" />
+        <state relative-caret-position="205">
+          <caret line="525" selection-start-line="525" selection-end-line="525" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log_processor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="345" column="53" selection-start-line="345" selection-start-column="53" selection-end-line="345" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="289" column="28" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processing_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="194" column="21" lean-forward="true" selection-start-line="194" selection-start-column="21" selection-end-line="194" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/clustering_analysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="29" column="69" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#canvas#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/DwenguinoIDE/js/src/clustering_analysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_enums.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/DwenguinoSimulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="204" column="51" lean-forward="true" selection-start-line="204" selection-start-column="51" selection-end-line="204" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_data_generator/DwenguinoIDE/js/src/CodeLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
         </state>
       </provider>
     </entry>

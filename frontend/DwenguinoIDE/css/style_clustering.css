@@ -21,12 +21,20 @@
     overflow:hidden;
 }
 
-#db_blockly{
+#analysis_container{
     top: 0;
     left: 75%;
     height:100%;
     width:25%;
-    position: fixed
+    position: fixed;
+}
+
+#db_blockly{
+    top: 0;
+    height:100%;
+    width:100%;
+    position: fixed;
+    margin-top: 50px;
 }
 
 

@@ -2,14 +2,14 @@
 var ClusteringAnalysis = {
     tsne_data: [],
     data: null,
-    code_tree: 0,
+    code_tree: 525,
     experimentId: "_19-04-2019",
-    session_number: "",
+    data_reduced: false,
     loadSessionData: function(){
         console.log("loading tsne data");
         $.ajax({
             type: "GET",
-            url: "http://localhost:20042/evaluate_clustering?session=" + ClusteringAnalysis.session_number + "&experimentId=" + ClusteringAnalysis.experimentId,
+            url: "http://localhost:20042/evaluate_clustering?experimentId=" + ClusteringAnalysis.experimentId,
             datatype: "json"},
         ).done(function(data){
             ClusteringAnalysis.data = JSON.parse(data);
@@ -31,14 +31,17 @@ var ClusteringAnalysis = {
         //console.log(entry);
         xCoords.push(entry[0][0]);
         yCoords.push(entry[0][1]);
-        zCoords.push(entry[0][2])
-        var rgb = hsluv.hsluvToRgb([entry[3]*4, 100, 50]);
+        zCoords.push(entry[0][2]);
+        if (entry[1] != -1){
+            console.log("recorede element with label");
+        }
+        var rgb = hsluv.hsluvToRgb([(entry[1]+1)*50, 100, 50]);
         //cCoords.push(entry[3]*4)
         cCoords.push(Colors.rgb2hex(Math.round(rgb[0] * 255), Math.round(rgb[1] * 255), Math.round(rgb[2] * 255)));
       });
       var data = [];
       var scatterPoints = {x:xCoords, y:yCoords, z:zCoords, type:"scatter3d", mode:"markers", marker:{size:7, color: cCoords}};
-      this.cluster_distance_pairs[0].forEach(function(entry){
+      this.cluster_distance_pairs.forEach(function(entry){
         var trace = {x: [entry[0][0], entry[1][0]], y: [entry[0][1], entry[1][1]], z: [entry[0][2], entry[1][2]],
         mode: 'lines', type: 'scatter3d', line: {width: 5}};
         data.push(trace);
@@ -51,13 +54,40 @@ var ClusteringAnalysis = {
         var pointIndex = eventdata.points[0].pointNumber;
         console.log(pointIndex);
         ClusteringAnalysis.getCodeTreeForIndex(pointIndex);
+        if (ClusteringAnalysis.data_reduced == true){
+            ClusteringAnalysis.getReducedVectorForIndex(pointIndex);
+        }
       });
 
+    },
+    rainbow: function(value) {
+        var h = (1.0 - value) * 240
+        return "hsl(" + h + ", 100%, 50%)";
+    },
+    getReducedVectorForIndex: function(index){
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:20042/get_reduced_vector_for_index?experimentId=" + ClusteringAnalysis.experimentId + "&index=" + index,
+          datatype: "json"},
+      ).done(function(data){
+            //TODO: process vector
+            var functionalVector = JSON.parse(data);
+            console.log(functionalVector);
+            var c = document.getElementById("functional_vector_canvas");
+            var ctx = c.getContext("2d");
+            for (var i = 0 ; i < functionalVector.length ; i++){
+                ctx.fillStyle = ClusteringAnalysis.rainbow(functionalVector[i]);
+                ctx.fillRect(20 * i, 0, 20, 20);
+            }
+
+      }).fail(function(response, status)  {
+          console.warn('Failed to fetch reduced vector:', status);
+      });
     },
     getCodeTreeForIndex: function(index){
       $.ajax({
           type: "GET",
-          url: "http://localhost:20042/get_code_tree_for_index?experimentId=" + ClusteringAnalysis.experimentId + "&session=" + ClusteringAnalysis.session_number + "&index=" + index,
+          url: "http://localhost:20042/get_code_tree_for_index?experimentId=" + ClusteringAnalysis.experimentId + "&index=" + index,
           datatype: "json"},
       ).done(function(data){
           ClusteringAnalysis.code_tree = JSON.parse(data);
@@ -244,9 +274,15 @@ $(document).ready(function(){
     ClusteringAnalysis.injectBlockly();
     ClusteringAnalysis.loadBlocks('<xml id="startBlocks" style="display: none">' + document.getElementById('startBlocks').innerHTML + '</xml>');
     $("#experiment_id").change(function(val){
+        var selected_option = $( "select option:selected" )
         var selection_value = $( "select option:selected" ).val();
         console.log(selection_value);
         ClusteringAnalysis.experimentId = selection_value;
         ClusteringAnalysis.loadSessionData();
+        if (selected_option.attr("data-reduced") == "true"){
+            ClusteringAnalysis.data_reduced = true;
+        }else{
+            ClusteringAnalysis.data_reduced = false;
+        }
     });
 })

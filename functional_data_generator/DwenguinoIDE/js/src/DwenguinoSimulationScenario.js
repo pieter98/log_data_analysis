@@ -13,6 +13,10 @@ function DwenguinoSimulationScenario(){
   }
 }
 
+DwenguinoSimulationScenario.prototype.reseedRandom = function(){
+    
+}
+
 
 /* @brief Initializes the simulator robot.
  * This resets the simulation state.

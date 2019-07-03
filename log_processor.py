@@ -15,6 +15,7 @@ import sys
 import random
 import collections
 import pandas as pd
+from my_enums import FunctionalDataset
 
 
 def init_database_connection():
@@ -157,15 +158,17 @@ def analyze_on_all_code_trees(arguments, n_components=2, experiment_id="", data_
         # Save kernel affinity matrix
         np.save("./files/distance_matrix_sigma_" + experiment_id + str(sigma), np.array(distance_matrix))
 
-    distance_matrix = np.load("./files/distance_matrix_sigma_" + experiment_id + str(sigma) + ".npy")
+    
     if "t_sne" in arguments:
+        distance_matrix = np.load("./files/distance_matrix_sigma_" + experiment_id + str(sigma) + ".npy")
         # Cluster using t-SNE
         tsne_embedding = ca.cluster_tsne(distance_matrix, tree_labels, kernel_names[5], n_components=n_components, perplexity=50)
         np.save("./files/tsne_embedding" + experiment_id, np.array(tsne_embedding))
 
-    tsne_embedding = np.load("./files/tsne_embedding" + experiment_id + ".npy")
+    tsne_embedding = np.array([])
 
     if "cluster_tsne" in arguments:
+        tsne_embedding = np.load("./files/tsne_embedding" + experiment_id + ".npy")
         labels, n_labels = ca.cluster_t_sne_result(tsne_embedding, tree_labels)
 
 
@@ -335,25 +338,36 @@ def analyze_for_session(arguments, session, n_components=2):
 
     return tsne_embedding
 
+from functional_analyzer import FunctionalAnalyzer
 
 if __name__ == '__main__':
-
-    # Start a thread which runs the logging server for the artificial data generation
-    threading.Thread(target=dataLoggerRequestHandler.run).start()
-
+    print(sys.path)
     conn = init_database_connection()
-    exp_id = "_02-05-2019_perp-30-Create"
-    embedding = analyze_on_all_code_trees(sys.argv, n_components=3, experiment_id=exp_id, data_source=WorkshopType.CREATE)
-    np.save("files/session" + exp_id, np.array(embedding))
+    exp_id = "_03-07-2019_functional_with_recordings"
 
-    print("embedding saved - running server")
+    if "functional" in sys.argv:
+        fAnalyzer = FunctionalAnalyzer(conn, exp_id)
+        fAnalyzer.analyze(FunctionalDataset.GENERATED4)
+
+
+    if "structural" in sys.argv:
+
+        # Start a thread which runs the logging server for the artificial data generation
+        threading.Thread(target=dataLoggerRequestHandler.run).start()
+
+
+
+        embedding = analyze_on_all_code_trees(sys.argv, n_components=3, experiment_id=exp_id, data_source=WorkshopType.GENERATED)
+        np.save("files/session" + exp_id, np.array(embedding))
+
+        print("embedding saved - running server")
 
 
     if "runserver" in sys.argv:
         print("running server")
         init_webserver(conn)
-    #analyze_on_all_code_trees(sys.argv)
+        #analyze_on_all_code_trees(sys.argv)
 
-    '''for s in range(2):
-        session_embedding = analyze_for_session(sys.argv, s)
-        np.save("files/session" + str(s), np.array(session_embedding))'''
+        '''for s in range(2):
+            session_embedding = analyze_for_session(sys.argv, s)
+            np.save("files/session" + str(s), np.array(session_embedding))'''
