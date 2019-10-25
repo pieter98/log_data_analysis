@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 import re
 from my_enums import WorkshopType
+from my_enums import FunctionalDataset
+from bson import ObjectId
 
 client = None
 fix_database = None
@@ -36,6 +38,10 @@ class DatabaseConnection:
         self.functional_data.append(self.client["FunctionalData4"])
         self.functional_data.append(self.client["FunctionalDataRecorded"])
         self.functional_data.append(self.client["FunctionalData5"])
+        self.functional_data.append(self.client["FunctionalRealDataCreate2"])
+        self.functional_data.append(self.client["FunctionalRealDataCreateSplit"])
+        self.functional_data.append(self.client["FunctionalDataInteractiveClustering"])
+        self.functional_data.append(self.client["FunctionalDataCreateMicroseconds"])
         self.functional_data_log = []
 
         for i in range(len(self.functional_data)):
@@ -147,7 +153,7 @@ class DatabaseConnection:
             code_trees_fix = list(self.db_logs[WorkshopType.FIX.value].aggregate(pipeline, allowDiskUse=True))
             code_trees = code_trees_create + code_trees_fix
         else:
-            print(self.db_logs[workshop_type.value].count_documents({}))
+            print(self.db_logs[workshop_type.value].count({}))
             code_trees = list(self.db_logs[workshop_type.value].aggregate(pipeline, allowDiskUse=True))
 
         return code_trees
@@ -158,20 +164,38 @@ class DatabaseConnection:
     @param vector functional identifier of the program in vector format
     @param xml_blocks the program in xml format
     '''
-    def add_functional_log_entry(self, experiment_id, vector, xml_blocks, label, log_nr):
-        self.functional_data_log[int(log_nr)].insert_one({"experiment_id": experiment_id, "vector": vector, "xml_blocks": xml_blocks, "label": label})
+    def add_functional_log_entry(self, experiment_id, vector, xml_blocks, label, log_nr, log_name="log"):
+        self.functional_data[int(log_nr)][log_name].insert_one({"experiment_id": experiment_id, "vector": vector, "xml_blocks": xml_blocks, "label": label})
 
-    def get_functional_log_data(self, log_nr):
-        return self.functional_data_log[int(log_nr)].find({})
+    def update_functional_log_entry(self, mongo_id, experiment_id, vector, xml_blocks, label, log_nr, log_name="log"):
+        test = self.functional_data[int(log_nr)][log_name].find({"_id": ObjectId(mongo_id)})
+        print(list(test))
+        self.functional_data[int(log_nr)][log_name].update_one({"_id": ObjectId(mongo_id)},
+                {"$set": {"experiment_id": experiment_id, "vector": vector, "xml_blocks": xml_blocks, "label": label}})
 
-    def get_fid_vectors(self, log_nr):
-        return self.functional_data_log[int(log_nr)].find({}, {"vector": 1, "_id": 0})
+    def update_functional_log_entry_label(self, mongo_id, label, log_nr, log_name="log"):
+        test = self.functional_data[int(log_nr)][log_name].find({"_id": ObjectId(mongo_id)})
+        print(list(test))
+        self.functional_data[int(log_nr)][log_name].update_one({"_id": ObjectId(mongo_id)},
+                                                               {"$set": {"label": label}})
 
-    def get_f_programs(self, log_nr):
-        return self.functional_data_log[int(log_nr)].find({}, {"xml_blocks": 1, "_id": 0})
+    def get_functional_log_data(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({})
 
-    def get_f_labels(self, log_nr):
-        return self.functional_data_log[int(log_nr)].find({}, {"label": 1, "_id": 0})
+    def get_functional_log_data_blocks_label_and_id(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({}, {"xml_blocks": 1, "_id": 1, "label": 1})
+
+    def get_fid_vectors(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({}, {"vector": 1, "_id": 0})
+
+    def get_f_programs(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({}, {"xml_blocks": 1, "_id": 0})
+
+    def get_f_labels(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({}, {"pathlabel": 1, "_id": 0})
+
+    def get_f_steplabels(self, log_nr, log_name="log"):
+        return self.functional_data[int(log_nr)][log_name].find({}, {"steplabel": 1, "_id": 0})
 
     def get_create_log(self):
         return self.create_log
@@ -179,7 +203,20 @@ class DatabaseConnection:
     def get_fix_log(self):
         return self.fix_log
 
+    def add_to_interactive_data_log(self, collectionName, experiment_id, vector, xml_blocks, label, steplabel, pathlabel):
+        col = self.functional_data[FunctionalDataset.INTERACTIVE_CLUSTERING][collectionName]
+        col.insert_one({"experiment_id": experiment_id, "vector": vector, "xml_blocks": xml_blocks, "label": label, "steplabel": steplabel, "pathlabel": pathlabel})
 
+    def get_interactive_clustering_collection_names(self):
+        return self.functional_data[FunctionalDataset.INTERACTIVE_CLUSTERING].list_collection_names()
+
+
+    def get_create_entry_count(self):
+        nr = self.create_log.count({})
+        return nr
+
+    def get_create_entries(self):
+        return list(self.create_log.find({"event.name": "changedWorkspace"}, {"event.data": 1, "_id": 0}))
 
 
     def insertIntoRecordedDataLog(self, data):

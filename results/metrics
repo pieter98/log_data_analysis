@@ -1,0 +1,33 @@
+
+eps = 0.5
+Estimated number of clusters: 244
+Homogeneity: 0.808
+Completeness: 0.656
+V-measure: 0.724
+Adjusted Rand Index: 0.377
+Adjusted Mutual Information: 0.615
+Silhouette Coefficient: 0.947
+
+eps = 5
+Estimated number of clusters: 26
+Homogeneity: 0.824
+Completeness: 1.000
+V-measure: 0.904
+Adjusted Rand Index: 0.659
+Adjusted Mutual Information: 0.821
+Silhouette Coefficient: 0.971
+
+
+eps = 2.5
+sigma = 5
+comparing different kernel methods
+EdgeHistGauss
+1.0
+Estimated number of clusters: 50
+Estimated number of noise points: 0
+Homogeneity: 0.989
+Completeness: 1.000
+V-measure: 0.994
+Adjusted Rand Index: 0.956
+Adjusted Mutual Information: 0.988
+Silhouette Coefficient: 0.946

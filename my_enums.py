@@ -18,3 +18,7 @@ class FunctionalDataset(IntEnum):
     GENERATED4 = 4
     RECORDED = 5
     GENERATED5 = 6
+    REAL2 = 7
+    REAL_SPLIT = 8
+    INTERACTIVE_CLUSTERING = 9
+    FUNC_CREATE_MICRO = 10

@@ -165,7 +165,6 @@ def analyze_on_all_code_trees(arguments, n_components=2, experiment_id="", data_
         tsne_embedding = ca.cluster_tsne(distance_matrix, tree_labels, kernel_names[5], n_components=n_components, perplexity=50)
         np.save("./files/tsne_embedding" + experiment_id, np.array(tsne_embedding))
 
-    tsne_embedding = np.array([])
 
     if "cluster_tsne" in arguments:
         tsne_embedding = np.load("./files/tsne_embedding" + experiment_id + ".npy")
@@ -339,23 +338,29 @@ def analyze_for_session(arguments, session, n_components=2):
     return tsne_embedding
 
 from functional_analyzer import FunctionalAnalyzer
+from program_analyzer import ProgramAnalyzer
 
 if __name__ == '__main__':
-    print(sys.path)
+    print(sys.executable)
+    print(sys.version_info)
     conn = init_database_connection()
-    exp_id = "_03-07-2019_functional_with_recordings"
+    exp_id = "_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_min_contrib1000_struct-func_steplabel_norm_md"
+
+    if "program" in sys.argv:
+        p_analyzer = ProgramAnalyzer(conn, exp_id)
+        p_analyzer.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING, log_id="new_gen_prog_compare", save_results=True)
 
     if "functional" in sys.argv:
         fAnalyzer = FunctionalAnalyzer(conn, exp_id)
-        fAnalyzer.analyze(FunctionalDataset.GENERATED4)
+        #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO)
+        #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, method="hadamard", incremental=False)
+        fAnalyzer.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING, log_id="new_gen_prog_compare", method="hadamard", incremental=False)
 
 
     if "structural" in sys.argv:
 
         # Start a thread which runs the logging server for the artificial data generation
         threading.Thread(target=dataLoggerRequestHandler.run).start()
-
-
 
         embedding = analyze_on_all_code_trees(sys.argv, n_components=3, experiment_id=exp_id, data_source=WorkshopType.GENERATED)
         np.save("files/session" + exp_id, np.array(embedding))

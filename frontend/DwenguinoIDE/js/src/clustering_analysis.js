@@ -3,6 +3,7 @@ var ClusteringAnalysis = {
     tsne_data: [],
     data: null,
     code_tree: 525,
+    dimension_names: ["scatter2d", "scatter3d"],
     experimentId: "_19-04-2019",
     data_reduced: false,
     loadSessionData: function(){
@@ -15,13 +16,13 @@ var ClusteringAnalysis = {
             ClusteringAnalysis.data = JSON.parse(data);
             ClusteringAnalysis.tsne_data = ClusteringAnalysis.data[0];
             ClusteringAnalysis.cluster_distance_pairs = ClusteringAnalysis.data[1];
-            console.log(ClusteringAnalysis.tsne_data);
-            ClusteringAnalysis.plotClusteringData();
+            console.log(ClusteringAnalysis.tsne_data[0][0].length);
+            ClusteringAnalysis.plotClusteringData(ClusteringAnalysis.tsne_data[0][0].length);
         }).fail(function(response, status)  {
             console.warn('Failed to fetch sessionIdList:', status);
         });
     },
-    plotClusteringData: function(){
+    plotClusteringData: function(dims){
       var myPlot = document.getElementById("db_clustering_plot");
       var xCoords = [];
       var yCoords = [];
@@ -35,17 +36,24 @@ var ClusteringAnalysis = {
         if (entry[1] != -1){
             console.log("recorede element with label");
         }
-        var rgb = hsluv.hsluvToRgb([(entry[1]+1)*50, 100, 50]);
+        var rgb = hsluv.hsluvToRgb([(entry[1]+1)*50, 100, 90 - entry[2] * 3]);
         //cCoords.push(entry[3]*4)
         cCoords.push(Colors.rgb2hex(Math.round(rgb[0] * 255), Math.round(rgb[1] * 255), Math.round(rgb[2] * 255)));
       });
       var data = [];
-      var scatterPoints = {x:xCoords, y:yCoords, z:zCoords, type:"scatter3d", mode:"markers", marker:{size:7, color: cCoords}};
-      this.cluster_distance_pairs.forEach(function(entry){
+      var scatterPoints = {
+                x:xCoords,
+                y:yCoords,
+                z:zCoords,
+                type:ClusteringAnalysis.dimension_names[dims-2],
+                mode:"markers",
+                marker:{size:7, color: cCoords}};
+
+      /*this.cluster_distance_pairs.forEach(function(entry){
         var trace = {x: [entry[0][0], entry[1][0]], y: [entry[0][1], entry[1][1]], z: [entry[0][2], entry[1][2]],
         mode: 'lines', type: 'scatter3d', line: {width: 5}};
         data.push(trace);
-      });
+      });*/
       data.push(scatterPoints);
       layout = { hovermode:'closest', title:'Click on Points'};
       Plotly.newPlot('db_clustering_plot', data, layout);
@@ -54,9 +62,6 @@ var ClusteringAnalysis = {
         var pointIndex = eventdata.points[0].pointNumber;
         console.log(pointIndex);
         ClusteringAnalysis.getCodeTreeForIndex(pointIndex);
-        if (ClusteringAnalysis.data_reduced == true){
-            ClusteringAnalysis.getReducedVectorForIndex(pointIndex);
-        }
       });
 
     },
@@ -64,7 +69,7 @@ var ClusteringAnalysis = {
         var h = (1.0 - value) * 240
         return "hsl(" + h + ", 100%, 50%)";
     },
-    getReducedVectorForIndex: function(index){
+    /*getReducedVectorForIndex: function(index){
         $.ajax({
           type: "GET",
           url: "http://localhost:20042/get_reduced_vector_for_index?experimentId=" + ClusteringAnalysis.experimentId + "&index=" + index,
@@ -83,7 +88,7 @@ var ClusteringAnalysis = {
       }).fail(function(response, status)  {
           console.warn('Failed to fetch reduced vector:', status);
       });
-    },
+    },*/
     getCodeTreeForIndex: function(index){
       $.ajax({
           type: "GET",

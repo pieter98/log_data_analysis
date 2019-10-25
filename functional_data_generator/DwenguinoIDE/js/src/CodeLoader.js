@@ -1,8 +1,8 @@
 var CodeLoader = {
     /*latest recorded dataset: _01-07-2019_data_recorded*/
     nrOfCodeTrees: -1,
-    experimentId: "_19-04-2019",
-    currentTree: 1772,
+    experimentId: "_08-10-2019_functional_data",
+    currentTree: 5826,
     init: function(){
         DwenguinoSimulation.setupEnvironment("randomSimulatedEnvironment");
         $.ajax({
@@ -39,7 +39,7 @@ var CodeLoader = {
         DwenguinoBlockly.workspace.clear();
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(codeTree), DwenguinoBlockly.workspace);
         try {
-            var functionalDataVector = DwenguinoSimulation.generateSimulatedData(30000, 1);
+            var functionalDataVector = DwenguinoSimulation.generateSimulatedData(3900000, 1);
             console.log(functionalDataVector);
             var data = {"experimentId": CodeLoader.experimentId
                     , "vector": JSON.stringify(functionalDataVector)

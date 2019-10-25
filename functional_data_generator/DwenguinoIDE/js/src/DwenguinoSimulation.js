@@ -123,7 +123,58 @@ var DwenguinoSimulation = {
 
   generateStringHistogram: function(text){
         var histogram = [];
-        for (var i = 0 ; i < 256 ; i++){
+        var histogram = [];
+        var letterMapping =
+        {'0': 0,
+         '1': 1,
+         '2': 2,
+         '3': 3,
+         '4': 4,
+         '5': 5,
+         '6': 6,
+         '7': 7,
+         '8': 8,
+         '9': 9,
+         'e': 10,
+         'n': 11,
+         'a': 12,
+         't': 13,
+         'i': 13,
+         'o': 14,
+         'd': 14,
+         's': 15,
+         'l': 15,
+         'g': 15,
+         'v': 15,
+         'h': 15,
+         'k': 16,
+         'm': 16,
+         'u': 16,
+         'b': 16,
+         'p': 16,
+         'w': 16,
+         'j': 16,
+         'z': 17,
+         'c': 17,
+         'f': 17,
+         'x': 17,
+         'y': 17,
+         'q': 17,
+         };
+
+        for (var i = 0 ; i  < 18 ; i++){
+            histogram[i] = 0;
+        }
+        var textLower = text.toLowerCase();
+        for (var i = 0 ; i < textLower.length ; i++){
+            var letter = textLower.charAt(i);
+            if (letter in letterMapping){
+                histogram[letterMapping[letter]]++;
+            }
+
+        }
+        return histogram;
+        /*for (var i = 0 ; i < 256 ; i++){
             histogram[i] = 0;
         }
         var textLower = text.toLowerCase();
@@ -142,7 +193,7 @@ var DwenguinoSimulation = {
         for (var i = 97 ; i < 126 ; i++){
             reducedHistogram.push(histogram[i]);
         }
-        return reducedHistogram;
+        return reducedHistogram;*/
   },
 
   getStateVectorHash: function(stateVector){
@@ -173,14 +224,15 @@ var DwenguinoSimulation = {
     }
     // merge state into one value
     state = 0;
-    for (var i = 0 ; i < stateVector.length ; i++){
+    state = stateVector;
+    /*for (var i = 0 ; i < stateVector.length ; i++){
         state += stateVector[i];
-    }
+    }*/
     return state;
 
   },
   generatedSteps: 0,
-  stateLoggingInterval: 33,
+  stateLoggingInterval: 1300,
   timeIntervalMultiplier: 47,
 
   generateSimulatedData: function(steps, inits){
@@ -189,19 +241,32 @@ var DwenguinoSimulation = {
     var totalStateVector = [];
     DwenguinoSimulation.currentScenario.reseedRandom();
 
+
+
     for (var i = 0 ; i < inits ; i++){
     // Initialize new random simulation state.
     DwenguinoSimulation.currentScenario.initSimulationState();
     DwenguinoSimulation.generatedSteps = 0;
     DwenguinoSimulation.initDebugger();
+
+    DwenguinoSimulation.code = DwenguinoSimulation.debugger.code.split("\n");
+
         while (DwenguinoSimulation.generatedSteps < steps){
             totalStateVector = DwenguinoSimulation.generateStep(steps, totalStateVector);
         }
     }
     DwenguinoSimulation.stopSimulation();
-    return totalStateVector;
+    var groupedVector = [];
+    // groupedVector = totalStateVector; // If not grouping: set this line and remove the following two for loops.
+    for (var i = 0 ; i < totalStateVector[0].length ; i++){
+        for (var j = 0 ; j < totalStateVector.length ; j++){
+            groupedVector.push(totalStateVector[j][i]);
+        }
+    }
+    return groupedVector;
 
   },
+  code: '',
   generateStep: function(steps, totalStateVector) {
 
     var line = DwenguinoSimulation.debugger.debuggerjs.machine.getCurrentLoc().start.line - 1;
@@ -209,22 +274,32 @@ var DwenguinoSimulation = {
 
 
     // Get current line
-    var code = DwenguinoSimulation.debugger.code.split("\n")[line] === undefined ? '' : DwenguinoSimulation.debugger.code.split("\n")[line];
+    var code = DwenguinoSimulation.code[line];
 
+    if (code == undefined){
+        code = "";
+    }
 
+    /*if (code == undefined){
+        throw "code is undefined";
+    }*/
+    /*if (code.trim().startsWith("if")){
+        console.log("if statement");
+    }*/
 
     // check if current line is not a sleep
     if (code.trim().startsWith("DwenguinoSimulation.sleep")) {
       // sleep
       var delayTime = Number(DwenguinoSimulation.debugger.code.split("\n")[line].replace(/\D+/g, ''));
       var delayStepsTaken = 0;
-      var delayStepsToTake = delayTime; //Math.floor(Math.log(delayTime) * DwenguinoSimulation.timeIntervalMultiplier);
+      var delayStepsToTake = delayTime*100; //Math.floor(Math.log(delayTime) * DwenguinoSimulation.timeIntervalMultiplier);
       for (delayStepsTaken = 0 ; delayStepsTaken < delayStepsToTake && DwenguinoSimulation.generatedSteps < steps ; delayStepsTaken++){
         DwenguinoSimulation.board = DwenguinoSimulation.currentScenario.updateScenario(DwenguinoSimulation.board);
         DwenguinoSimulation.generatedSteps++;
         if (DwenguinoSimulation.generatedSteps % DwenguinoSimulation.stateLoggingInterval == 0){
             var currentState = DwenguinoSimulation.getCurrentStateVector();
-            totalStateVector = totalStateVector.concat(currentState);
+            totalStateVector.push(currentState);
+            //totalStateVector = totalStateVector.concat(currentState);
         }
       }
     }else{
@@ -233,7 +308,8 @@ var DwenguinoSimulation = {
         DwenguinoSimulation.generatedSteps++;
         if (DwenguinoSimulation.generatedSteps %  DwenguinoSimulation.stateLoggingInterval == 0){
             var currentState = DwenguinoSimulation.getCurrentStateVector();
-            totalStateVector = totalStateVector.concat(currentState);
+            totalStateVector.push(currentState);
+            //totalStateVector = totalStateVector.concat(currentState);
         }
     }
     DwenguinoSimulation.checkForEnd();
@@ -292,6 +368,7 @@ var DwenguinoSimulation = {
 
     DwenguinoSimulation.debugger.debuggerjs.machine.on('error', function(err) {
       console.error(err.message);
+      throw "Debugging machine fail";
     });
   },
 
@@ -619,7 +696,7 @@ var DwenguinoSimulation = {
     * @param {int} column: 0-15: the start position on the given row
     */
     writeLcd: function(text, row, column) {
-      DwenguinoSimulation.lcdBacklightOn();
+      //DwenguinoSimulation.lcdBacklightOn();
       // replace text in current content (if text is hello and then a is written this gives aello)
       text = DwenguinoSimulation.board.lcdContent[row].substr(0, column) +
       text.substring(0, 16 - column) +
@@ -627,14 +704,14 @@ var DwenguinoSimulation = {
       DwenguinoSimulation.board.lcdContent[row] = text;
 
       // write new text to lcd screen and replace spaces with &nbsp;
-      $("#sim_lcd_row" + row).text(text);
+     /* $("#sim_lcd_row" + row).text(text);
       document.getElementById('sim_lcd_row' + row).innerHTML =
       document.getElementById('sim_lcd_row' + row).innerHTML.replace(/ /g, '&nbsp;');
       // repaint
       var element = document.getElementById("sim_lcds");
       element.style.display = 'none';
       element.offsetHeight;
-      element.style.display = 'block';
+      element.style.display = 'block';*/
     },
 
     /*
@@ -651,10 +728,10 @@ var DwenguinoSimulation = {
         }
         if (state === 'HIGH' || state === "1") {
           pin=== 13? DwenguinoSimulation.board.leds[8] = 1 : DwenguinoSimulation.board.leds[pin] = 1;
-          document.getElementById('sim_light_' + pin).className = "sim_light sim_light_on";
+          //document.getElementById('sim_light_' + pin).className = "sim_light sim_light_on";
         } else {
           pin === 13? DwenguinoSimulation.board.leds[8] = 0 : DwenguinoSimulation.board.leds[pin] = 0;
-          document.getElementById('sim_light_' + pin).className = "sim_light sim_light_off";
+          //document.getElementById('sim_light_' + pin).className = "sim_light sim_light_off";
         }
       }
     },
@@ -669,9 +746,17 @@ var DwenguinoSimulation = {
     * @returns {int} 1 if not pressed, 0 if pressed
     */
     digitalRead: function(pin) {
+      var switches = {
+        "SW_N": 0,
+        "SW_W": 1,
+        "SW_C": 2,
+        "SW_E": 3,
+        "SW_S": 4
+      };
+
       // read value from buttons
       if (pin.startsWith("SW_")) {
-        return document.getElementById("sim_button_" + pin[3]).className === "sim_button" ? 1 : 0;
+        return DwenguinoSimulation.board.buttons[switches[pin]];
       }
 
       pin = Number(pin);
@@ -710,7 +795,7 @@ var DwenguinoSimulation = {
       }
       if (DwenguinoSimulation.board.buzzer.osc === null) {
         // initiate sound object
-        try {
+       /* try {
           DwenguinoSimulation.board.buzzer.audiocontext = new(window.AudioContext || window.webkitAudioContext)();
         } catch (e) {
           alert('Web Audio API is not supported in this browser');
@@ -728,7 +813,7 @@ var DwenguinoSimulation = {
         // start tone
         DwenguinoSimulation.board.buzzer.osc.frequency.value = frequency; // Hz
         DwenguinoSimulation.board.buzzer.osc.connect(DwenguinoSimulation.board.buzzer.audiocontext.destination); // connect it to the destination
-        DwenguinoSimulation.board.buzzer.osc.start(); // start the oscillator
+        DwenguinoSimulation.board.buzzer.osc.start(); // start the oscillator*/
 
         DwenguinoSimulation.board.buzzer.tonePlaying = frequency;
       }
@@ -742,7 +827,7 @@ var DwenguinoSimulation = {
       if (pin === "BUZZER") {
         // stop tone
         DwenguinoSimulation.board.buzzer.tonePlaying = 0;
-        DwenguinoSimulation.board.buzzer.osc.stop();
+       // DwenguinoSimulation.board.buzzer.osc.stop();
       }
     },
 
@@ -836,10 +921,10 @@ var DwenguinoSimulation = {
         return;
       }
       DwenguinoSimulation.board.motorSpeeds[channel - 1] = speed;
-      DwenguinoSimulation.dcMotorRotate(channel, speed);
+     // DwenguinoSimulation.dcMotorRotate(channel, speed);
 
       // change view of driving robot
-      var e = document.getElementById("sim_scenario");
+     // var e = document.getElementById("sim_scenario");
       //var option = e.options[e.selectedIndex].value;
 
     },
@@ -871,7 +956,7 @@ var DwenguinoSimulation = {
     sonar: function(trigPin, echoPin) {
       DwenguinoSimulation.showSonar();
       //document.getElementById("sonar").checked = true;
-      document.getElementById('sonar_input').value = DwenguinoSimulation.board.sonarDistance;
+     // document.getElementById('sonar_input').value = DwenguinoSimulation.board.sonarDistance;
       return this.board.sonarDistance;
     },
 
@@ -880,11 +965,11 @@ var DwenguinoSimulation = {
     */
     setButtonsStart: function() {
       // enable pauze and stop
-      document.getElementById('sim_pause').className = "sim_item";
-      document.getElementById('sim_stop').className = "sim_item";
+      //document.getElementById('sim_pause').className = "sim_item";
+      //document.getElementById('sim_stop').className = "sim_item";
       // disable start and step
-      document.getElementById('sim_start').className = "sim_item disabled";
-      document.getElementById('sim_step').className = "sim_item disabled";
+      //document.getElementById('sim_start').className = "sim_item disabled";
+      //document.getElementById('sim_step').className = "sim_item disabled";
     },
 
     /*
@@ -892,11 +977,11 @@ var DwenguinoSimulation = {
     */
     setButtonsPause: function() {
       // enable start, stop and step
-      document.getElementById('sim_start').className = "sim_item";
+      /*document.getElementById('sim_start').className = "sim_item";
       document.getElementById('sim_step').className = "sim_item";
       document.getElementById('sim_stop').className = "sim_item";
       // disable pause
-      document.getElementById('sim_pause').className = "sim_item disabled";
+      document.getElementById('sim_pause').className = "sim_item disabled";*/
     },
 
     /*
@@ -904,11 +989,11 @@ var DwenguinoSimulation = {
     */
     setButtonsStop: function() {
       // enable start, stop and step
-      document.getElementById('sim_start').className = "sim_item";
+      /*document.getElementById('sim_start').className = "sim_item";
       document.getElementById('sim_step').className = "sim_item";
       // disable pause
       document.getElementById('sim_stop').className = "sim_item disabled";
-      document.getElementById('sim_pause').className = "sim_item disabled";
+      document.getElementById('sim_pause').className = "sim_item disabled";*/
     },
 
     /*
@@ -916,11 +1001,11 @@ var DwenguinoSimulation = {
     */
     setButtonsStep: function() {
       // enable start, stop and step
-      document.getElementById('sim_start').className = "sim_item";
+      /*document.getElementById('sim_start').className = "sim_item";
       document.getElementById('sim_step').className = "sim_item";
       document.getElementById('sim_stop').className = "sim_item";
       // disable pause
-      document.getElementById('sim_pause').className = "sim_item disabled";
+      document.getElementById('sim_pause').className = "sim_item disabled";*/
     },
     /*
     * Adjusts the view during simulation

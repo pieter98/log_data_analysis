@@ -15,22 +15,75 @@
 
 <body id="db_body">
         <div id="resultset">
-            <select id="experiment_id">
-                <option value="_19-04-2019">19-04-2019</option>
-                <option value="_02-05-2019_perp-50">02-05-2019 perplexity=50</option>
-                <option value="_02-05-2019_perp-50-Create">02-05-2019 perplexity=50 create</option>
-                <option value="_02-05-2019_perp-30-Create">02-05-2019 perplexity=30 Create</option>
-                <option value="_functional_24-06-2019">24-06-2019 functional2</option>
-                <option value="_functional_27-06-2019">27-06-2019 functional2 nnmf</option>
-                <option value="_functionalreal_data_27-06-2019">27-06-2019 functional2 nnmf</option>
-                <option value="_functional_28-06-2019">27-06-2019 testing</option>
-                <option value="_functional_28-06-2019_data_generated1" data-reduced=true>28-06-2019 testing</option>
-                <option value="_functional_01-07-2019_functional_with_recordings" data-reduced=true>01-07-2019 with recordings</option>
-                <option value="_functional_02-07-2019_functional_with_recordings" data-reduced=true>02-07-2019 with recordings</option>
-                <option value="_functional_03-07-2019_functional_with_recordings" data-reduced=true>03-07-2019 with recordings</option>
+                <select id="experiment_id">
+                    <option value="_19-04-2019">19-04-2019</option>
+                    <option value="_02-05-2019_perp-50">02-05-2019 perplexity=50</option>
+                    <option value="_02-05-2019_perp-50-Create">02-05-2019 perplexity=50 create</option>
+                    <option value="_02-05-2019_perp-30-Create">02-05-2019 perplexity=30 Create</option>
+                    <option value="_functional_24-06-2019">24-06-2019 functional2</option>
+                    <option value="_functional_27-06-2019">27-06-2019 functional2 nnmf</option>
+                    <option value="_functionalreal_data_27-06-2019">27-06-2019 functional2 nnmf</option>
+                    <option value="_functional_28-06-2019">27-06-2019 testing</option>
+                    <option value="_functional_28-06-2019_data_generated1" data-reduced=true>28-06-2019 testing</option>
+                    <option value="_functional_01-07-2019_functional_with_recordings" data-reduced=true>01-07-2019 with recordings</option>
+                    <option value="_functional_02-07-2019_functional_with_recordings" data-reduced=true>02-07-2019 with recordings</option>
+                    <option value="_functional_03-07-2019_functional_with_recordings" data-reduced=true>03-07-2019 with recordings</option>
+                    <option value="_functional_03-07-2019_functional_with_recordings_general_basis_vects" data-reduced=true>03-07-2019 fourier basis</option>
+                    <option value="_functional_04-07-2019_functional_real_data" data-reduced=true>03-07-2019 SSA with SVD on real data</option>
+                    <option value="_functional_05-07-2019_functional_real_data_fourier" data-reduced=true>03-07-2019 fourier decomposition on real data</option>
+                    <option value="_functional_08-07-2019_functional_real_data_fourier" data-reduced=true>08-07-2019 fourier decomposition on real data</option>
+                    <option value="_functional_08-07-2019_functional_real_data_fourier_pca" data-reduced=true>08-07-2019 fourier decomposition on real data pca</option>
+                    <option value="_functional_08-07-2019_functional_real_data_hadamard_pca" data-reduced=true>08-07-2019 hadamard decomposition on real data pca</option>
+                    <option value="_functional_08-07-2019_functional_real_data_hadamard_pca_2" data-reduced=true>08-07-2019 hadamard decomposition on real data pca_2</option>
+                    <option value="_functional_08-07-2019_functional_real_data_split_hadamard_pca_2" data-reduced=true>08-07-2019 hadamard decomposition on split data pca_2</option>
+                    <option value="_functional_23-09-2019_functional_real_data_split_labeled_hadamard_pca_2" data-reduced=true>23-09-2019 hadamard decomposition on labeled split data pca_2 (REAL2) perp5</option>
+                    <option value="_functional_23-09-2019_functional_real_data_split_labeled_hadamard_pca_3" data-reduced=true>23-09-2019 hadamard decomposition on labeled split data pca_3 H512 (REAL2) perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard2048_pca_4" data-reduced=true>25-09-2019 hadamard2048 decomposition on labeled split data pca_4 H2048 (REAL2) perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_no_hadamard_pca_4" data-reduced=true>25-09-2019 no hadamard decomposition on labeled split data pca_4(REAL2) perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard_averaged" data-reduced=true>25-09-2019 hadamard decomposition averaged on labeled split data H256(REAL2) perp5 perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard_averaged_no_pca" data-reduced=true>25-09-2019 hadamard decomposition averaged on labeled split data H256(REAL2) no pca perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard1024_averaged_no_pca" data-reduced=true>25-09-2019 hadamard decomposition averaged on labeled split data H1024(REAL2) no pca perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard256_averaged_freq_energy_no_pca" data-reduced=true>25-09-2019 hadamard decomposition averaged freq and energy on labeled split data H256(REAL2) no pca perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard256_averaged_energy_no_pca" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H256(REAL2) no pca perp5</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard256_averaged_energy_no_pca_perp_50" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H256(REAL2) no pca perp30</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard256_averaged_energy_no_pca_perp_60" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H256(REAL2) no pca perp60</option>
+                    <option value="_functional_25-09-2019_functional_real_data_split_labeled_hadamard256_averaged_energy_no_pca_perp_100" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H256(REAL2) no pca perp100</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard64_averaged_energy_no_pca_perp_60" data-reduced=true>25-09-2019 hadamard decomposition on labeled split data H64(REAL2) no pca perp60</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard64_averaged_energy_no_pca_perp_30" data-reduced=true>25-09-2019 hadamard decomposition on labeled split data H64(REAL2) no pca perp30</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard64_averaged_energy_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition on labeled split data H64(REAL2) no pca perp20</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard64_freq_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition averaged freq only on labeled split data H64(REAL2) no pca perp20</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard64_energy_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H64(REAL2) no pca perp20</option>
+                    <option value="_functional_functional_26-09-2019_functional_real_data_split_labeled_hadamard128_averaged_energy_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition on labeled split data H128(REAL2) no pca perp20</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard128_freq_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition averaged freq only on labeled split data H128(REAL2) no pca perp20</option>
+                    <option value="_functional_26-09-2019_functional_real_data_split_labeled_hadamard128_energy_no_pca_perp_20" data-reduced=true>25-09-2019 hadamard decomposition averaged energy only on labeled split data H128(REAL2) no pca perp20</option>
+                    <option value="_functional_26-09-2019_absfreq_perp30_cosine" data-reduced=true>25-09-2019 hadamard decomposition absfreq perp30 cosine H256(REAL2)</option>
+                    <option value="_functional_14-10-2019_absfreq_perp30_cosine" data-reduced=true>14-10-2019 hadamard decomposition absfreq perp30 cosine H512(FUNC_CREATE_MICRO)</option>
+                    <option value="_functional_18-10-2019_absfreq_perp30_cosine_autoencode" data-reduced=true>18-10-2019 autoencode H512(FUNC_CREATE_MICRO)</option>
+                    <option value="_program_22-10-2019_functional_and_structural_new_gen_prog_compare" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_1-2_struct-func" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-2_struct-func</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_1-3_struct-func" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-3_struct-func</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_1-3_struct-func log_cos" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-3_struct-func log cos</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_2-1_struct-func" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 2-1_struct-func log cos</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_1-1_struct-func_steplabel" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-1_struct-func log cos steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_1-4_struct-func_steplabel" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-4_struct-func log cos steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_min-min_struct-func_steplabel" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus min-min_struct-func cos steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_max-max_struct-func_steplabel" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus max-max_struct-func cos steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_min-min_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus min-min_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_struct_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus struct normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_compare_func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_1-1_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus 1-1_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_log1-log1_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus log-log_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus inverted_weight_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_min_contrib_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus inverted_weight_min_contrib100_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_min_contrib1000_struct-func_steplabel_norm" data-reduced=true>22-10-2019 hadamard H512(FUNC_CREATE_MICRO) structural edgehistgaus inverted_weight_min_contrib1000_struct-func normalized steplabel</option>
+                    <option value="_program_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_min_contrib1000_struct-func_steplabel_norm_md" data-reduced=true>25-10-2019 hadamard H512(FUNC_CREATE_MICRO - more data) structural edgehistgaus inverted_weight_min_contrib100_struct-func normalized steplabel</option>
 
 
-            </select>
+
+
+
+
+                </select>
         </div>
         <div id="db_clustering_plot" class="db_clustering_plots"></div>
         <!--<div id="db_main_content" class="db_content resize-container">-->

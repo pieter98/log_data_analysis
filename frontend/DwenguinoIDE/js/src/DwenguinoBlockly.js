@@ -106,7 +106,7 @@ var DwenguinoBlockly = {
         });
 
         //turn on the simulator by default
-        DwenguinoBlockly.toggleSimulator();
+        //DwenguinoBlockly.toggleSimulator();
 
         //save/upload buttons
         $("#db_menu_item_run").click(DwenguinoBlockly.runEventHandler);
@@ -401,6 +401,9 @@ var DwenguinoBlockly = {
     * This function submits an event to the python logging server.
     */
     recordEvent: function(eventToRecord){
+      if (!DwenguinoBlockly.recording_now){
+        return;
+      }
       var serverSubmission = {
         "sessionId": DwenguinoBlockly.sessionId,
         "agegroup": DwenguinoBlockly.agegroupSetting,
@@ -450,18 +453,20 @@ var DwenguinoBlockly = {
       //DwenguinoBlockly.build(code.replace(/\r?\n|\r/g, "\\n"));
       DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("runClicked", ""));
     },
-
+    recording_now: true,
     prevWorkspaceXml: "",
     /**
     *   Take a snapshot of the current timestamp, simulatorstate, selectedDifficulty, activeTutorial and blocks in the workspace.
     */
     takeSnapshotOfWorkspace: function(){
-        console.log("taking snapshot");
-        var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
-        var text = Blockly.Xml.domToText(xml);
-        if (text != DwenguinoBlockly.prevWorkspaceXml){
-            DwenguinoBlockly.prevWorkspaceXml = text;
-            DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("changedWorkspace", text));
+        if (DwenguinoBlockly.recording_now){
+            console.log("taking snapshot");
+            var xml = Blockly.Xml.workspaceToDom(DwenguinoBlockly.workspace);
+            var text = Blockly.Xml.domToText(xml);
+            if (text != DwenguinoBlockly.prevWorkspaceXml){
+                DwenguinoBlockly.prevWorkspaceXml = text;
+                DwenguinoBlockly.recordEvent(DwenguinoBlockly.createEvent("changedWorkspace", text));
+            }
         }
     },
 
@@ -816,7 +821,6 @@ var DwenguinoBlockly = {
     });
   },
 
-  //TODO: remove following function: not used anywhere
     setWorkspaceBlockFromXml: function(xml){
         DwenguinoBlockly.workspace.clear();
         try {

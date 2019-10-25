@@ -511,18 +511,18 @@ function isGen(val) {
  * @param {*} val The value of the yield expression to pass to the generator.
  */
 Runner.prototype.step = function (val) {
-  this.timers.step();
+  //this.timers.step();
   try {
     this.state = this.gen.next(val);
   } catch (e) {
     this.$propError(e);
     return;
   } finally {
-    this.timers.stepEnd(
+    /*this.timers.stepEnd(
       this.state.done &&
       !isGen(this.state.value) &&
       !this.stack.length
-    );
+    );*/
   }
   if (this.state.value && this.state.value instanceof Thunk) {
     this.stack.push(this.gen);

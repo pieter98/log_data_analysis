@@ -12,7 +12,7 @@ function DwenguinoRandomSimulatedEnvironment(){
   //call super prototype
   DwenguinoSimulationScenario.call(this);
   //Init predictable random generator
-  this.rand = new Math.seedrandom('fixedseed');
+  //this.rand = new Math.seedrandom('fixedseed');
   //init robot state
   this.initSimulationState();
 
@@ -31,6 +31,7 @@ DwenguinoRandomSimulatedEnvironment.prototype.reseedRandom = function(){
 DwenguinoRandomSimulatedEnvironment.prototype.initSimulationState = function(){
   // init superclass
    DwenguinoSimulationScenario.prototype.initSimulationState.call(this);
+   /*this.tick = 0;
    // Randomize start state based on seed
    var w = 10 + Math.floor(this.rand() * 100);
    var h = 10 + Math.floor(this.rand() * 100);
@@ -56,7 +57,7 @@ DwenguinoRandomSimulatedEnvironment.prototype.initSimulationState = function(){
        type: 'circle',
        radius: 25
      }]
-   };
+   };*/
  }
 
 /* @brief Initializes the simulator robot display.
@@ -110,99 +111,35 @@ DwenguinoRandomSimulatedEnvironment.prototype.updateScenario = function(dwenguin
  */
 DwenguinoRandomSimulatedEnvironment.prototype.updateScenarioState = function(dwenguinoState){
   DwenguinoSimulationScenario.prototype.updateScenarioState.call(this, dwenguinoState);
-  var speed1 = dwenguinoState.motorSpeeds[0];
-  var speed2 = dwenguinoState.motorSpeeds[1];
-
-  // Save the current state of the robot into local variables.
-  var x = this.robot.position.x;
-  var y = this.robot.position.y;
-  var angle = this.robot.position.angle;
-
-  // decide on angle (in deg) and distance (in px) based on 2 motor speeds
-  var distance = (speed1 + speed2) / 100;
-
-  if (speed1 !== speed2) {
-    angle += ((speed2 - speed1) / 30)%360;
-  }
-
-  x += distance * Math.cos(Math.PI / 180 * angle);
-  y += distance * Math.sin(Math.PI / 180 * angle);
-
-  // move to other side of frame if out of frame
-  if (x > this.containerWidth - this.robot.image.width){
-    x = this.containerWidth - this.robot.image.width;
-  }else if (x < 0){
-    x = 0;
-  }
-  if (y > this.containerHeight - this.robot.image.height){
-    y = this.containerHeight - this.robot.image.height;
-  } else if (y < 0) {
-    y = 0;
-  }
-
-  // Calulate distance to wall
-  //calculate distance between front of car and wall
-
-  var xMiddle = x;
-  var yMiddle = y;
-
-  angle = ((angle % 360)+360)%360;  // Normalize angle
-
-  var xFront = xMiddle + (this.robot.image.width/2) * Math.cos(Math.PI / 180 * angle);
-  var yFront = yMiddle + (this.robot.image.width/2) * Math.sin(Math.PI / 180 * angle);
-
-
-  //Calculate the intersection point between the two possible intersecting horizontal and vertical lines
-  // and the line through the robot with a slope defined by its angle.
-  var intersectionPoint = [0, 0];
-  var intersectionLiness = [[this.containerWidth, this.containerHeight], [0, this.containerHeight], [0, 0], [this.containerWidth, 0]];
-  var intersectionPointX = [0, 0];
-  var intersectionPointY = [0, 0];
-
-  // do edge cases first
-  if (angle == 90){
-    intersectionPointX = intersectionPointY = [xFront, this.containerHeight];
-  } else if (angle == 270){
-    intersectionPointX = intersectionPointY = [xFront, 0];
-  } else if (angle == 180){
-    intersectionPointX = intersectionPointY = [0, yFront];
-  } else if (angle == 0){
-    intersectionPointX = intersectionPointY = [this.containerWidth, yFront];
-  } else {
-    var slope = Math.tan(angle);
-    var intersectionLines = intersectionLiness[Math.floor(angle/90)%4];
-    intersectionPointX = [intersectionLines[0], Math.tan(angle*Math.PI / 180) * (intersectionLines[0] - xFront) + yFront];
-    intersectionPointY = [(intersectionLines[1] - yFront) / Math.tan(angle*Math.PI / 180) + xFront, intersectionLines[1]];
+  var returnState = dwenguinoState
+  this.tick += 1;
+  if (this.tick == 1000000){
+    this.tick = 0;
   }
 
   // Pick the distance to the closest intersecting line.
-  var D = Math.min(this.calcDistanceBetweenPoints(intersectionPointX, [xFront, yFront]),
-      this.calcDistanceBetweenPoints(intersectionPointY, [xFront, yFront]));
+  var D = Math.sin(this.tick/(Math.PI*100)*50) * 250;
 
-  dwenguinoState.sonarDistance = Math.abs(D - 25); // Compensate for borders
 
-  if (isNaN(dwenguinoState.sonarDistance)){
-    dwenguinoState.sonarDistance = -1;
+  if (isNaN(D)){
+    returnState.sonarDistance = -1;
+  }else{
+    returnState.sonarDistance = D;
   }
 
-  this.robot.position = {
-    x: x,
-    y: y,
-    angle: angle
-  };
 
   // Generate random button presses
   for (var i = 0 ; i < 5 ; i++){
-    var test = this.rand();
-    if (test < 0.5){
-        dwenguinoState.buttons[i] = 0;
+    var B = Math.sin(this.tick/(15*100));
+    if (B < 0){
+        returnState.buttons[i] = 0;
     }else{
-        dwenguinoState.buttons[i] = 1;
+        returnState.buttons[i] = 1;
     }
 
   }
 
-  return dwenguinoState;
+  return returnState;
 };
 
 DwenguinoRandomSimulatedEnvironment.prototype.calcDistanceBetweenPoints = function(p1, p2){
