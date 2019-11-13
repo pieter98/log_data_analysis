@@ -54,12 +54,12 @@ class FunctionalAnalyzer:
         tmpStepLabels = self.db_connection.get_f_steplabels(dataset_id, log_name=log_id)
 
         steplabels = []
-        for label in tmpStepLabels:
-            steplabels.append(label['steplabel'])
+        '''for label in tmpStepLabels:
+            steplabels.append(label['steplabel'])'''
 
         labels = []
         for label in tmpLabels:
-            labels.append(label['pathlabel'])
+            labels.append(label['label']) # pathlabel for new method
 
         code_trees = []
         for ct in tmpCodeTrees:

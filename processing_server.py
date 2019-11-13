@@ -164,7 +164,7 @@ def makeProcessingServerHandler(database_connection):
             return json.dumps(names).encode()
 
         def get_labeler_data_count(self):
-            labeler_data = list(database_connection.get_functional_log_data_blocks_label_and_id(FunctionalDataset.REAL_SPLIT))
+            labeler_data = list(database_connection.get_functional_log_data_blocks_label_and_id(FunctionalDataset.FUNC_CREATE_MICRO))
             print(len(labeler_data))
             return json.dumps(len(labeler_data)).encode()
 
@@ -175,7 +175,7 @@ def makeProcessingServerHandler(database_connection):
                 kwargs["prog_number"] = int(query["prog_number"][0])
             else:
                 kwargs["prog_number"] = 0
-            labeler_data = list(database_connection.get_functional_log_data_blocks_label_and_id(FunctionalDataset.REAL_SPLIT))
+            labeler_data = list(database_connection.get_functional_log_data_blocks_label_and_id(FunctionalDataset.FUNC_CREATE_MICRO))
             data = labeler_data[kwargs["prog_number"]]
             json_data = JSONEncoder().encode(data)
             return json_data.encode()

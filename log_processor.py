@@ -344,17 +344,17 @@ if __name__ == '__main__':
     print(sys.executable)
     print(sys.version_info)
     conn = init_database_connection()
-    exp_id = "_23-10-2019_functional_and_structural_new_gen_prog_inverted_weights_min_contrib1000_struct-func_steplabel_norm_md"
+    exp_id = "_23-10-2019_functional_and_structural_create_micro_inverted_weights_min_contrib1000_struct-func_steplabel_norm_md"
 
     if "program" in sys.argv:
         p_analyzer = ProgramAnalyzer(conn, exp_id)
-        p_analyzer.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING, log_id="new_gen_prog_compare", save_results=True)
+        p_analyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, log_id="log", save_results=True)
 
     if "functional" in sys.argv:
         fAnalyzer = FunctionalAnalyzer(conn, exp_id)
         #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO)
         #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, method="hadamard", incremental=False)
-        fAnalyzer.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING, log_id="new_gen_prog_compare", method="hadamard", incremental=False)
+        fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, log_id="log", method="hadamard", incremental=False)
 
 
     if "structural" in sys.argv:

@@ -192,7 +192,7 @@ class DatabaseConnection:
         return self.functional_data[int(log_nr)][log_name].find({}, {"xml_blocks": 1, "_id": 0})
 
     def get_f_labels(self, log_nr, log_name="log"):
-        return self.functional_data[int(log_nr)][log_name].find({}, {"pathlabel": 1, "_id": 0})
+        return self.functional_data[int(log_nr)][log_name].find({}, {"label": 1, "_id": 0}) #pathlabel for new method
 
     def get_f_steplabels(self, log_nr, log_name="log"):
         return self.functional_data[int(log_nr)][log_name].find({}, {"steplabel": 1, "_id": 0})

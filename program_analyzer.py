@@ -65,7 +65,7 @@ class ProgramAnalyzer:
         #dmat = np.minimum(np.divide(f_dmat, scipy.linalg.norm(f_dmat)), s_dmat)
         #dmat = np.divide(np.add(np.log(np.add(np.multiply(f_dmat, 100), 1)), np.log(np.add(np.multiply(s_dmat, 100), 1))), 2)
         #dmat = np.divide(dmat, scipy.linalg.norm(dmat))  #normalize
-        min_contrib = 1000
+        min_contrib = 100
         divisor = np.add(s_dmat, f_dmat)
         #f_weights = np.nan_to_num(np.divide(np.add(s_dmat, np.divide(divisor, min_contrib)), np.add(divisor, np.divide(divisor, min_contrib*2))))
         f_weights = np.nan_to_num(np.divide(s_dmat, divisor))
