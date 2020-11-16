@@ -12,6 +12,7 @@ from sklearn.metrics import pairwise_distances
 import pandas as pd
 from pymssa import MSSA
 import scipy
+import umap
 from scipy.spatial.distance import euclidean
 from scipy.spatial.distance import correlation
 from my_enums import FunctionalDataset
@@ -22,12 +23,12 @@ import math
 import json
 from functional_analyzer import FunctionalAnalyzer
 from structural_analyzer import StructuralAnalyzer
+from utils import AnalysisUtils
 
 
 class ProgramAnalyzer:
-    def __init__(self, database_connection, experimentId):
+    def __init__(self, experimentId):
         self.experimentId = experimentId
-        self.db_connection = database_connection
 
     def log_cosine_distance(self, a, b):
         azeros = np.count_nonzero(a)
@@ -40,11 +41,9 @@ class ProgramAnalyzer:
         dist = math.log(cosdist)
         return dist
 
-    def analyze(self, dataset_id, log_id="log", save_results=False, embedding_dims=2, func_method="hadamard", func_incremental=False):
-        f_analyzer = FunctionalAnalyzer(self.db_connection, self.experimentId)
-        s_analyzer = StructuralAnalyzer(self.db_connection, self.experimentId)
+    def analyze(self, dataset_id, f_analyzer, s_analyzer, log_id="log", save_results=False, embedding_dims=2, func_method="hadamard", func_incremental=False, clustering_method="t-sne"):
         # Get functional embedding and distance matrix
-        f_embedding, f_code_trees, f_labels, f_steplabels, f_vectors = f_analyzer.analyze(dataset_id, log_id=log_id, method=func_method, incremental=func_incremental, save_results=False, embedding_dims=embedding_dims)
+        f_embedding, f_code_trees, f_labels, f_steplabels, f_vectors = f_analyzer.analyze(dataset_id, log_id=log_id, method=func_method, incremental=func_incremental, save_results=False, embedding_dims=embedding_dims, clustering_method=clustering_method)
         f_dmat = pairwise_distances(f_vectors, metric="cosine")
         f_dmat = np.divide(f_dmat, scipy.linalg.norm(f_dmat))
         # plot distance matrix
@@ -77,21 +76,19 @@ class ProgramAnalyzer:
         plt.imshow(dmat, cmap='gist_ncar', interpolation='none')
         plt.show()
 
-        # Cluster using t-SNE
-        tsne = t_sne(n_components=embedding_dims, metric="precomputed", perplexity=10)
-        embedding = tsne.fit_transform(dmat)
+        if clustering_method == "t-sne":
+            # Cluster using t-SNE
+            tsne = t_sne(n_components=embedding_dims, metric="precomputed", perplexity=10)
+            embedding = tsne.fit_transform(dmat)
+
+
+        elif clustering_method == "umap":
+            reducer = umap.UMAP(metric="precomputed", min_dist=0.99, n_neighbors=100)
+            embedding = reducer.fit_transform(dmat)
+
         if save_results:
-            self.save_experiment(embedding, f_code_trees, f_labels, f_steplabels)
+            utils = AnalysisUtils()
+            utils.save_experiment(self.experimentId, embedding, f_code_trees, f_labels, f_steplabels)
+
         print("done")
 
-    def save_experiment(self, embedding, code_trees, labels, steplabels):
-        # Save the embedded points in 3D space to a file
-        np.save("./files/session" + "_program" + self.experimentId, embedding)
-        # Save the coresponding program xmls to a file
-        np.save("./files/xml_trees_for_session" + "_program" + self.experimentId, code_trees)
-        # Save the coresponding labels to a file
-        np.save("./files/labels" + "_program" + self.experimentId, labels)
-        #save the steplabels
-        np.save("./files/steplabels" + "_program" + self.experimentId, steplabels)
-        # TODO: Calculate the centroid of the clusters and get the two closest clusters for each cluster
-        np.save("./files/nearby_cluster_pair_points" + "_program" + self.experimentId, [])

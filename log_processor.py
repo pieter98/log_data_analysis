@@ -1,6 +1,9 @@
+from Visualisations.Visualizer.VisualizerControl import VisualizerControl
+from Visualisations.Visualizer.VisualizerTypes import VisualizerTypes
 from database_connection import DatabaseConnection
 from processing_server import ProcessingServer
 from code_tree_analyzer import CodeTreeAnalyzer
+from structural_analyzer import StructuralAnalyzer
 from treeparser import BlocklyTreeParser
 from clustering_analysis import ClusteringAnalysis
 from sklearn.preprocessing import RobustScaler
@@ -31,7 +34,7 @@ def init_webserver(database_connection):
 
 
 def random_color():
-    rgbl=[255,0,0]
+    rgbl=[255, 0, 0]
     random.shuffle(rgbl)
     return tuple(rgbl)
 
@@ -344,17 +347,21 @@ if __name__ == '__main__':
     print(sys.executable)
     print(sys.version_info)
     conn = init_database_connection()
-    exp_id = "_23-10-2019_functional_and_structural_create_micro_inverted_weights_min_contrib1000_struct-func_steplabel_norm_md"
+    exp_id = "_03-04-20_simplified_functional_base_structural_umap_100_0.99"
 
     if "program" in sys.argv:
-        p_analyzer = ProgramAnalyzer(conn, exp_id)
-        p_analyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, log_id="log", save_results=True)
+        f_analyzer = FunctionalAnalyzer(conn, exp_id)
+        s_analyzer = StructuralAnalyzer(conn, exp_id)
+        p_analyzer = ProgramAnalyzer(exp_id)
+        p_analyzer.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING, f_analyzer, s_analyzer, log_id="new_gen_prog_compare", save_results=True,
+                           clustering_method="umap")
+        #p_analyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, f_analyzer, s_analyzer, log_id="log", save_results=True, clustering_method="umap")
 
     if "functional" in sys.argv:
         fAnalyzer = FunctionalAnalyzer(conn, exp_id)
         #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO)
         #fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, method="hadamard", incremental=False)
-        fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, log_id="log", method="hadamard", incremental=False)
+        fAnalyzer.analyze(FunctionalDataset.FUNC_CREATE_MICRO, log_id="log", method="hadamard", incremental=False, clustering_method="umap")
 
 
     if "structural" in sys.argv:
@@ -376,3 +383,9 @@ if __name__ == '__main__':
         '''for s in range(2):
             session_embedding = analyze_for_session(sys.argv, s)
             np.save("files/session" + str(s), np.array(session_embedding))'''
+
+
+    if "visualize" in sys.argv:
+        vis = VisualizerControl()
+        vis.showVisualisation(VisualizerTypes.COLORPLOTVISUALISATION1)
+

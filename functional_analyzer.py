@@ -21,6 +21,7 @@ import seaborn as sns
 import os
 import math
 import json
+import umap
 import tensorflow as tf
 from keras import layers
 from keras import models
@@ -29,6 +30,7 @@ from numpy import newaxis
 from keras import backend as K
 from keras.losses import mse, binary_crossentropy
 
+from utils import AnalysisUtils
 
 
 class FunctionalAnalyzer:
@@ -40,9 +42,10 @@ class FunctionalAnalyzer:
         self.timestep_size = 32 # The number of features logged in each timestep.
         self.nr_of_transforms = 0
         self.HMat = []
+        self.utils = AnalysisUtils()
 
 
-    def analyze(self, dataset_id, log_id="log", save_results=True, method="hadamard", embedding_dims=3, incremental=False):
+    def analyze(self, dataset_id, log_id="log", save_results=True, method="hadamard", embedding_dims=3, incremental=False, clustering_method="t-sne"):
         print("Starting functional analysis")
 
         if incremental:
@@ -72,18 +75,19 @@ class FunctionalAnalyzer:
             else:
                 tmpVectors.append(vector["vector"])
 
-
-        fVectors = np.array(tmpVectors, dtype=np.float32)
+        print("Reducing fVector size")
+        fVectors = np.array(tmpVectors, dtype=np.float16)
         '''fVectors = fVectors[0:4000:5, :]
         fVectors, unique_indices = np.unique(fVectors, return_index=True, axis=0)
         labels = labels[0:4000:5]
-        labels = np.array(labels)[unique_indices]'''
+        labels = np.array(labels)[unique_indices
 
-        fVectors = np.nan_to_num(fVectors)
+        fVectors = np.nan_to_num(fVectors)'''
 
         reducedVectors = np.array([])
 
         if method == "hadamard":
+            print("hadamard")
             rows = fVectors.shape[0]
             nr_of_parts = 10
             partsize = rows//nr_of_parts
@@ -127,17 +131,19 @@ class FunctionalAnalyzer:
         if save_results:
             np.save("./files/reduced_vectors" + "_functional" + self.experimentId, reducedVectors)
 
-        if method == "autoencode":
+        if clustering_method == "autoencode":
 
             # fVectors = np.nan_to_num(fVectors)
             embedding = self.autoencode(fVectors, labels)
-        else:
+        elif clustering_method == "umap":
+            embedding = self.umap(reducedVectors)
+        elif clustering_method == 't-sne':
             embedding = self.cluster_tsne(reducedVectors, embedding_dims, 30)
 
         #self.plot_embedding(embedding, labels)
 
-        if save_results:
-            self.save_experiment(embedding, code_trees, labels)
+        #if save_results:
+            #self.utils.save_experiment(embedding, code_trees, labels)
         '''
         #self.plot_vectors(fVectors)
         reducedVectors = self.select_pricipal_components(fVectors, 5)
@@ -150,6 +156,8 @@ class FunctionalAnalyzer:
         '''
 
         return embedding, code_trees, labels, steplabels, reducedVectors
+
+
 
     def analize_inc(self, dataset_id, log_id="log", save_results=True, method="hadamard", embedding_dims=3):
         print("incremental")
@@ -201,7 +209,7 @@ class FunctionalAnalyzer:
         self.plot_embedding(embedding, labels)
 
         if save_results:
-            self.save_experiment(embedding, code_trees, labels)
+            self.utils.save_experiment(embedding, code_trees, labels)
         '''
         #self.plot_vectors(fVectors)
         reducedVectors = self.select_pricipal_components(fVectors, 5)
@@ -215,7 +223,7 @@ class FunctionalAnalyzer:
 
         return embedding, code_trees, labels, reducedVectors
 
-    def save_experiment(self, embedding, code_trees, labels):
+    '''def save_experiment(self, embedding, code_trees, labels):
         # Save the embedded points in 3D space to a file
         np.save("./files/session" + "_functional" + self.experimentId, embedding)
         # Save the coresponding program xmls to a file
@@ -223,7 +231,7 @@ class FunctionalAnalyzer:
         # Save the coresponding labels to a file
         np.save("./files/labels" + "_functional" + self.experimentId, labels)
         # TODO: Calculate the centroid of the clusters and get the two closest clusters for each cluster
-        np.save("./files/nearby_cluster_pair_points" + "_functional" + self.experimentId, [])
+        np.save("./files/nearby_cluster_pair_points" + "_functional" + self.experimentId, [])'''
 
 
 
@@ -242,6 +250,11 @@ class FunctionalAnalyzer:
         tsne = t_sne(n_components=n_components, perplexity=perplexity, metric='cosine')
         #tsne = t_sne(n_components=n_components, perplexity=perplexity, metric=self.hierarchcal_distance)
         embedding = tsne.fit_transform(fVectors)
+        return embedding
+
+    def umap(self, fVectors):
+        reducer = umap.UMAP()
+        embedding = reducer.fit_transform(fVectors);
         return embedding
 
     def hierarchcal_distance(self, A, B):

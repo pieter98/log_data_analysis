@@ -90,9 +90,12 @@ def makeProcessingServerHandler(database_connection):
             if len(labels) == 0:
                 labels = np.zeros(10000)
 
+            if len(steplabels) == 0:
+                steplabels = labels
+
             '''utils = AnalysisUtils()
             normalized_loaded_session_ids = utils.normalize_session_id_list(loaded_session_ids)'''
-            max_elements = self.max_points
+            max_elements = min(self.max_points, len(loaded_trees))
 
             nr_of_trees = len(loaded_trees)
             packed_data = list(zip(loaded_trees[0:max_elements], labels[0:max_elements], steplabels[0:max_elements]))
@@ -338,7 +341,8 @@ def makeProcessingServerHandler(database_connection):
                 embedding, code_trees, labels, steplabels, reducedVectors = fa.analyze(FunctionalDataset.INTERACTIVE_CLUSTERING,
                                                            log_id=kwargs["collection"],
                                                            save_results=False,
-                                                           embedding_dims=kwargs["embedding_dims"])
+                                                           embedding_dims=kwargs["embedding_dims"],
+                                                           clustering_method="umap")
                 packed_data = list((embedding.tolist(), code_trees, labels, reducedVectors.tolist()))
 
                 print("New vector")
