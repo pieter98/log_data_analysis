@@ -62,8 +62,8 @@ class DatabaseConnection:
     def get_ordered_session_ids(self):
         ordered_session_ids = {}
         pipeline = [{"$match": {"event.name": "changedWorkspace"}}, {"$sort": {"timestamp": 1}}, {"$group": { "_id": "$sessionId"}}]
-        create_ids = list(self.create_log.aggregate(pipeline))
-        fix_ids = list(self.fix_log.aggregate(pipeline))
+        create_ids = list(self.create_log.aggregate(pipeline, allowDiskUse = True))
+        fix_ids = list(self.fix_log.aggregate(pipeline, allowDiskUse = True))
         for index, element in enumerate(create_ids):
             key = "C" + str(index)
             ordered_session_ids.update({key: element['_id']})
