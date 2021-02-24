@@ -54,7 +54,7 @@ class CodeTreeAnalyzer:
     def convert_xml_trees_to_ast_trees(self, xml_trees):
         ast_trees = []
         for index, xml_tree in enumerate(xml_trees):
-            ast_trees.append(self.treeparser.constructCodeTree(xml_tree['xml_blocks']))
+            ast_trees.append(self.treeparser.constructCodeTree(xml_tree))
             if index % 1000 == 0:
                 print("Number of trees converted:")
                 print(index)
