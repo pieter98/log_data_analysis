@@ -1,0 +1,17 @@
+base.xml
+
+logic compares returns true/false
+	verwachten twee variabelen om te vergelijken
+	- value A 
+	- value B 
+	
+logic operations returns true/false
+	verwachten twee true/false statements
+	- value A 
+	- value B
+	
+loop blocks
+	contain block type elements
+	
+vraiabelen
+	
