@@ -1,8 +1,10 @@
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import copy
 import random
 from yaspin import yaspin
 from xml.etree import ElementTree as ET
-from treeparser import treeparser
+from treeparser import BlocklyTreeParser
 from code_tree_analyzer import CodeTreeAnalyzer
 ET.register_namespace("","https://developers.google.com/blockly/xml")
 
@@ -45,6 +47,8 @@ class ScenarioDataGenerator:
         self.add_dc_motors_in_loop(root)
         with open('generator-test.xml', 'wb') as f:
             new_tree.write(f)
+        
+        return new_tree.getroot()
 
     #=========== LOAD BLOCKS FROM XML FILES ===========#
     def load_base_tree(self):
@@ -133,7 +137,29 @@ class ScenarioDataGenerator:
 
 
 generator = ScenarioDataGenerator(False)
-generator.generate_code_test()
+tree = generator.generate_code_test()
 
-parser = treeparser()
+def print_ET(tree):
+    print("{} {}".format(tree.attrib.get('name'),tree.attrib.get('type')))
+    for child in tree:
+        print_ET(child)
+
+print_ET(tree)
+
+parser = BlocklyTreeParser()
 analyser = CodeTreeAnalyzer(None, parser)
+ast = analyser.convert_xml_trees_to_ast_trees([ET.tostring(tree)])
+
+print("\n\n")
+
+def print_ast_tree(tree):
+    print(tree)
+    for child in tree.childNodes:
+        print_ast_tree(child)
+
+print(ast[0])
+
+print("\n\n")
+
+igraph = analyser.convert_ast_trees_to_igraph_ast_trees(ast)
+print(igraph[0])
