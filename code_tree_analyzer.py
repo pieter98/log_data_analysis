@@ -81,6 +81,26 @@ class CodeTreeAnalyzer:
             plot(g, layout=layout)'''
         return igraph_ast_trees
 
+    def convert_ast_trees_to_igraph_ast_trees_keep_label(self, ast_trees):
+        # fist count the number of unique labels:
+        nr_unique_labels = self.count_unique_vertex_labels(ast_trees)
+        igraph_ast_trees = []
+        node_label_conversion_table = []    # This list maps the original node names to unique integers.
+        for i, ast_tree in enumerate(ast_trees):
+            index = -1
+            graph = Graph()
+            self.construct_igraph_subtree_keep_label(ast_tree, index, -1, graph, node_label_conversion_table, nr_unique_labels)
+            igraph_ast_trees.append(graph)
+            if i % 1000 == 0:
+                print("Number of trees converted to igraph:")
+                print(i)
+        '''for a in range(70000, 70020):
+            g = igraph_ast_trees[a]
+            layout = g.layout("kk")
+            g.vs["label"] = g.vs["name"]
+            plot(g, layout=layout)'''
+        return igraph_ast_trees
+
     def convert_ast_trees_to_igraph_ast_trees_connected_siblings(self, ast_trees):
         # fist count the number of unique labels:
         nr_unique_labels = self.count_unique_vertex_labels(ast_trees)
@@ -129,6 +149,23 @@ class CodeTreeAnalyzer:
         parent_index = index
         for i, child in enumerate(vertex.childNodes):
             index = self.construct_igraph_subtree(child, index, parent_index, graph, node_label_conversion_table, nr_unique_labels)
+        return index
+
+    def construct_igraph_subtree_keep_label(self, vertex, index, parent_index, graph, node_label_conversion_table, nr_unique_labels, parent=None):
+        # Map the vertex name to an integer, if it does not exist yet -> add it
+        if vertex.type not in node_label_conversion_table:
+            node_label_conversion_table.append(vertex.type)
+        new_label = vertex.type
+
+        graph.add_vertex(name=new_label)
+        index += 1
+        if (parent_index != -1):
+            # edge_label = graph.vs[parent_index]["name"]*nr_unique_labels + graph.vs[index]["name"]
+            # edge_label = "{} - {}".format(parent.type, vertex.type)
+            graph.add_edge(index, parent_index)
+        parent_index = index
+        for i, child in enumerate(vertex.childNodes):
+            index = self.construct_igraph_subtree_keep_label(child, index, parent_index, graph, node_label_conversion_table, nr_unique_labels, vertex)
         return index
 
     def construct_igraph_subtree_connected_siblings(self, vertex, index, parent_index, graph, node_label_conversion_table, nr_unique_labels):
