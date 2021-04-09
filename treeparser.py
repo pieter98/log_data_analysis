@@ -151,30 +151,31 @@ class BlocklyTreeParser:
     def getSubTree(self, element, treeNode):
         newNode = None
         for child in element:
-            if child.tag == "{http://www.w3.org/1999/xhtml}statement":
+            if 'statement' in child.tag:
                 # Insert wrapper node for statement
                 statementNode = MyTreeNode(child.get('name'), treeNode)
-                statementContentBlock = child[0]
-                newNode = MyTreeNode(statementContentBlock.get("type"), statementNode)
-                newNodeWithChildren = self.getSubTree(statementContentBlock, newNode)
-                statementNode.addChild(newNodeWithChildren)
+                if len(child) > 0:
+                    statementContentBlock = child[0]
+                    newNode = MyTreeNode(statementContentBlock.get("type"), statementNode)
+                    newNodeWithChildren = self.getSubTree(statementContentBlock, newNode)
+                    statementNode.addChild(newNodeWithChildren)
                 # Move the next nodes previously saved lower in the hierarchy after the currently inserted node
                 for node in statementNode.nextNodes:
                     statementNode.childNodes.append(node)
                 statementNode.nextNodes = []
                 treeNode.addChild(statementNode)
-            elif child.tag == "{http://www.w3.org/1999/xhtml}value":
+            elif 'value' in child.tag:
                 # Insert wrapper node for value
                 valueNode = MyTreeNode(child.get('name'), treeNode)
                 valueContentBlock = child[0]
                 newNode = MyTreeNode(valueContentBlock.get("type"), valueNode)
                 valueNode.addChild(self.getSubTree(valueContentBlock, newNode))
                 treeNode.addChild(valueNode)
-            elif child.tag == "{http://www.w3.org/1999/xhtml}field":
+            elif 'field' in child.tag:
                 fieldValue = child.text
                 newNode = ValueTreeNode(child.get('name'), treeNode, fieldValue)
                 treeNode.addChild(newNode)
-            elif child.tag == "{http://www.w3.org/1999/xhtml}next":
+            elif 'next' in child.tag:
                 # print("next")
                 nextBlock = child[0]
                 newNode = MyTreeNode(nextBlock.get('type'), treeNode.getParent())
