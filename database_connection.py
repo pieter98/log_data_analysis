@@ -26,6 +26,7 @@ class DatabaseConnection:
 
         # Scenario generator data
         self.generated_simple_data = self.client["GeneratedSimpleData"]
+        self.generated_zig_zag_scenario = self.client["ZigZagScenario"]
 
         self.fix_log = self.fix_database.log
         self.create_log = self.create_database.log
@@ -235,6 +236,15 @@ class DatabaseConnection:
         for data in self.generated_simple_data["dataset"].find():
             dataset.append({"node": data["node"], "children": data["children"], "parent": data["parent"]})
         return dataset
+
+    def get_generated_zig_zag_scenario_DB(self):
+        return self.generated_zig_zag_scenario
+    
+    def get_generated_zig_zag_scenario_xml_blocks(self):
+        xml_blocks = []
+        for x in self.generated_zig_zag_scenario["xml_data"].find():
+            xml_blocks.append(x["xml_blocks"])
+        return xml_blocks
 
     def insertIntoRecordedDataLog(self, data):
         """Insert an log element into the log collection."""
