@@ -2,6 +2,7 @@ import pymongo
 import igraph
 from ast_node_encoding_upgrade import train, load_vectors
 from data_generation.scenario_data_generator import ScenarioDataGenerator
+from data_generation.xml_decision_tree_generator import XMLDecisionTreeGenerator
 from treeparser import BlocklyTreeParser
 from code_tree_analyzer import CodeTreeAnalyzer
 from yaspin import yaspin
@@ -42,6 +43,34 @@ class AstAnalyzer:
 
             self.__parse_data_from_ast_trees__(ast_trees)
             
+        if 'generate_zig_zag_data' in args:
+            self.__generate_zig_zag_data__(3000)
+        
+        if 'parse_zig_zag_data' in args:
+            xml_trees = self.db_connection.get_generated_zig_zag_scenario_xml_blocks()
+            print(xml_trees[0])
+            
+            parser = BlocklyTreeParser()
+            analyzer = CodeTreeAnalyzer(None, parser)
+
+            ast_trees = analyzer.convert_xml_trees_to_ast_trees(xml_trees)
+            print(ast_trees[0])
+
+            igraph_trees = analyzer.convert_ast_trees_to_igraph_ast_trees_keep_label(ast_trees)
+            print(igraph_trees[0])
+            print("\n")
+            
+            # igraph_obj = igraph_trees[0]
+
+            # layout = igraph_obj.layout("kk")
+            # igraph_obj.vs["label"] = igraph_obj.vs["name"]
+            # igraph.plot(igraph_obj, layout=layout, bbox=(1600,900), margin=40, vertex_label_dist=-3)
+
+
+            print(self.__get_unique_nodes_from_igraph_trees__(igraph_trees))
+
+            self.__parse_data_from_ast_trees__(ast_trees)
+
         if 'train_network' in args:
             train.train()
 
@@ -57,8 +86,22 @@ class AstAnalyzer:
 
         generator = ScenarioDataGenerator(False)
         with yaspin(color='blue', text='Generated 0 xml trees') as spinner:
-            for i in range (1,amount+1):
+            for i in range (1, amount+1):
                 mycol.insert_one({"xml_blocks":generator.generate_code()})
+                spinner.text = "Generated {} xml trees".format(i)
+            spinner.ok("✔")
+    
+    def __generate_zig_zag_data__(self, amount):
+        print("Generate Zig Zag Scenario data\n")
+        mydb = self.db_connection.get_generated_zig_zag_scenario_DB()
+        mycol = mydb["xml_data"]
+        mycol.drop()
+
+        generator = XMLDecisionTreeGenerator()
+        with yaspin(color='blue', text='Generated 0 xml trees') as spinner:
+            for i in range(1, amount+1):
+                xml_blocks, label = generator.generate_from_solution()
+                mycol.insert_one({"xml_blocks":xml_blocks, "label":label})
                 spinner.text = "Generated {} xml trees".format(i)
             spinner.ok("✔")
     
