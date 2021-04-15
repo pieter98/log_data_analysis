@@ -24,6 +24,9 @@ class DatabaseConnection:
         self.generated2_data_log = self.client["Generated2"]
         self.recorded_data_log = self.client["RecordedDataLog"]
 
+        # Scenario generator data
+        self.generated_simple_data = self.client["GeneratedSimpleData"]
+
         self.fix_log = self.fix_database.log
         self.create_log = self.create_database.log
         self.generated_data_log = self.generated_data_log.log
@@ -218,6 +221,20 @@ class DatabaseConnection:
     def get_create_entries(self):
         return list(self.create_log.find({"event.name": "changedWorkspace"}, {"event.data": 1, "_id": 0}))
 
+    def get_generated_simple_data_DB(self):
+        return self.generated_simple_data
+
+    def get_generated_simple_data_xml_blocks(self):
+        xml_blocks = []
+        for x in self.generated_simple_data["xml_data"].find():
+            xml_blocks.append(x["xml_blocks"])
+        return xml_blocks
+
+    def get_generated_simple_data_dataset(self):
+        dataset = []
+        for data in self.generated_simple_data["dataset"].find():
+            dataset.append({"node": data["node"], "children": data["children"], "parent": data["parent"]})
+        return dataset
 
     def insertIntoRecordedDataLog(self, data):
         """Insert an log element into the log collection."""
