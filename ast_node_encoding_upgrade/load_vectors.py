@@ -5,10 +5,7 @@ import codecs
 from sklearn.manifold import TSNE
 from gensim.models.keyedvectors import KeyedVectors
 import matplotlib.pyplot as plt
-with open("./ast_node_encoding_upgrade/data/vectors.pkl", "rb") as sample_file:
-	samples = pickle.load(sample_file)
 
-print(samples)
 
 def search_dict_by_value(value,node_map):
 	result = None
@@ -46,30 +43,36 @@ def print_word2vec_format(outfile):
 			f.write(row + "\n")
 		index += 1
 
-words = list()
-for key, value in samples[1].items():
-	words.append(key)
+def load_vectors():
+	with open("./ast_node_encoding_upgrade/data/vectors.pkl", "rb") as sample_file:
+		samples = pickle.load(sample_file)
 
-words = tuple(words)
-# print_word2vec_format(samples)	
+	print(samples)
 
+	words = list()
+	for key, value in samples[1].items():
+		words.append(key)
 
-
-vectors = KeyedVectors.load_word2vec_format("./ast_node_encoding_upgrade/data/vectors.txt",binary=False)
-
-print(vectors["Module"])
-tsne = TSNE(n_components=2, random_state=0)
-
-
-Y = tsne.fit_transform(samples[0])
-
-plt.scatter(Y[:,0],Y[:,1])
-for label, x, y in zip(words,Y[:,0],Y[:,1]):
-	# color = "blue"
-	# if "cs" in label:
-	# 	color = "red"
-	
-	plt.annotate(label,xy=(x,y),xytext=(0,0),textcoords="offset points",color="blue")
+	words = tuple(words)
+	# print_word2vec_format(samples)	
 
 
-plt.show()
+
+	# vectors = KeyedVectors.load_word2vec_format("./ast_node_encoding_upgrade/data/vectors.txt",binary=False)
+	# print(vectors["Module"])
+	tsne = TSNE(n_components=2, random_state=0)
+
+
+	print(samples[0])
+	Y = tsne.fit_transform(samples[0])
+
+	plt.scatter(Y[:,0],Y[:,1])
+	for label, x, y in zip(words,Y[:,0],Y[:,1]):
+		# color = "blue"
+		# if "cs" in label:
+		# 	color = "red"
+		
+		plt.annotate(label,xy=(x,y),xytext=(0,0),textcoords="offset points",color="blue")
+
+
+	plt.show()

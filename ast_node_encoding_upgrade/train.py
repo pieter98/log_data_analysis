@@ -1,12 +1,14 @@
-import os
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import pickle
 import logging
 import tensorflow as tf
-import network
-import sampling
-from node_map import NODE_MAP
-from constants import NUM_FEATURES, LEARN_RATE, BATCH_SIZE, EPOCHS, CHECKPOINT_EVERY
+from ast_node_encoding_upgrade import network, sampling
+import ast_node_encoding_upgrade.sampling
+from database_connection import DatabaseConnection
+from ast_node_encoding_upgrade.node_map import NODE_MAP
+from ast_node_encoding_upgrade.constants import NUM_FEATURES, LEARN_RATE, BATCH_SIZE, EPOCHS, CHECKPOINT_EVERY
 from tensorboard.plugins import projector
 tf.compat.v1.disable_eager_execution()
 
@@ -46,7 +48,7 @@ def learn_vectors(samples, logdir, outfile, num_feats=NUM_FEATURES, epochs=EPOCH
     embed_file = open(outfile, 'wb')
 
     step = 0
-    for epoch in range(1, epochs+1):
+    for epoch in range(1, 100+1):
         sample_gen = sampling.batch_samples(samples, BATCH_SIZE)
         for batch in sample_gen:
             input_batch, label_batch = batch
@@ -68,6 +70,8 @@ def learn_vectors(samples, logdir, outfile, num_feats=NUM_FEATURES, epochs=EPOCH
                 # save embeddings
                 pickle.dump((embed, NODE_MAP), embed_file)
             step += 1
+            
+        
 
     # save embeddings and the mapping
     pickle.dump((embed, NODE_MAP), embed_file)
@@ -75,13 +79,14 @@ def learn_vectors(samples, logdir, outfile, num_feats=NUM_FEATURES, epochs=EPOCH
     saver.save(sess, os.path.join(checkfile), step)
 
 
-def main():
-
-    with open("./ast_node_encoding_upgrade/data/algorithm_nodes.pkl", "rb") as sample_file:
-        samples = pickle.load(sample_file)
+def train():
     
+    # with open("./ast_node_encoding_upgrade/data/algorithm_nodes.pkl", "rb") as sample_file:
+    #     samples = pickle.load(sample_file)
+    conn = DatabaseConnection()
+    samples = conn.get_generated_simple_data_dataset()
+    
+   
     # if args.model.lower() == 'ast2vec':
     learn_vectors(samples, "logs/algorithm", "./ast_node_encoding_upgrade/data/vectors.pkl")
 
-if __name__ == "__main__":
-    main()

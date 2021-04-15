@@ -1,8 +1,8 @@
 import math
 import tensorflow as tf
 
-from node_map import NODE_MAP
-from constants import BATCH_SIZE, NUM_FEATURES, HIDDEN_NODES
+from ast_node_encoding_upgrade.node_map import NODE_MAP
+from ast_node_encoding_upgrade.constants import BATCH_SIZE, NUM_FEATURES, HIDDEN_NODES
 tf.compat.v1.disable_eager_execution()
 
 def init_net(batch_size=BATCH_SIZE, num_feat=NUM_FEATURES, hidden_size=HIDDEN_NODES):

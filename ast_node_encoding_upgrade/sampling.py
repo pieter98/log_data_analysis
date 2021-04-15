@@ -2,7 +2,7 @@
 
 import ast
 
-from node_map import NODE_MAP
+from ast_node_encoding_upgrade.node_map import NODE_MAP
 
 def batch_samples(samples, batch_size):
     """Batch samples and return batches in a generator."""
