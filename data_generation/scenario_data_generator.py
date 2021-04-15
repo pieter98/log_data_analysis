@@ -39,14 +39,14 @@ class ScenarioDataGenerator:
 
             spinner.ok("✔")
 
-    def generate_code_test(self):
+    def generate_code_test(self, file_path):
         new_tree = copy.deepcopy(self.base_tree)
         setup_loop = new_tree.getroot()[1]
         root = self.__add_loop__(setup_loop[1],False)
         root = self.__add_loop__(root, True)
         # root = self.add_loop(root, True)
         self.__add_dc_motors_in_loop__(root)
-        with open('generator-test.xml', 'wb') as f:
+        with open(file_path + '.xml', 'wb') as f:
             new_tree.write(f)
         
         return new_tree.getroot()
@@ -137,19 +137,10 @@ class ScenarioDataGenerator:
             
 
 
-generator = ScenarioDataGenerator(False)
-tree = generator.generate_code_test()
-
 def print_ET(tree):
     print("{} {}".format(tree.attrib.get('name'),tree.attrib.get('type')))
     for child in tree:
         print_ET(child)
-
-print_ET(tree)
-
-parser = BlocklyTreeParser()
-analyser = CodeTreeAnalyzer(None, parser)
-ast = analyser.convert_xml_trees_to_ast_trees([ET.tostring(tree)])
 
 print("\n\n")
 
@@ -158,13 +149,25 @@ def print_ast_tree(tree):
     for child in tree.childNodes:
         print_ast_tree(child)
 
-print(ast[0])
+def generate_test_data():
+    for i in range(1,11):
+        generator = ScenarioDataGenerator(False)
+        tree = generator.generate_code_test("data_generation/test_data/test_data_" + str(i))
 
-print("\n\n")
+        print_ET(tree)
 
-igraphs = analyser.convert_ast_trees_to_igraph_ast_trees_keep_label(ast)
-igraph_obj = igraphs[0]
+        parser = BlocklyTreeParser()
+        analyser = CodeTreeAnalyzer(None, parser)
+        ast = analyser.convert_xml_trees_to_ast_trees([ET.tostring(tree)])
 
-layout = igraph_obj.layout("kk")
-igraph_obj.vs["label"] = igraph_obj.vs["name"]
-igraph.plot(igraph_obj, layout=layout, bbox=(1600,900), margin=40, vertex_label_dist=-3)
+        print(ast[0])
+
+        print("\n\n")
+
+        igraphs = analyser.convert_ast_trees_to_igraph_ast_trees_keep_label(ast)
+        igraph_obj = igraphs[0]
+
+        layout = igraph_obj.layout("kk")
+        igraph_obj.vs["label"] = igraph_obj.vs["name"]
+        igraph.plot(igraph_obj, layout=layout, bbox=(1600,900), margin=40, vertex_label_dist=-3)
+
