@@ -34,7 +34,7 @@ class ScenarioDataGenerator:
             spinner.write("  > Loading For Loops")
             self.for_loops = self.__load_for_loops__()
 
-            spinner.write(" > Loading variable increments")
+            spinner.write("  > Loading variable increments")
             self.variable_increment = self.__load_variable_increment__()
 
             spinner.ok("✔")
@@ -50,6 +50,24 @@ class ScenarioDataGenerator:
             new_tree.write(f)
         
         return new_tree.getroot()
+    
+    def generate_code(self):
+        new_tree = copy.deepcopy(self.base_tree)
+        setup_loop = new_tree.getroot()[1]
+        root = setup_loop[1]
+        if random.randint(0,100) < 80:
+            root = self.__add_loop__(root, False)
+            chance = 80
+            generate = True
+            while(generate):
+                if random.randint(0,100) < chance and chance > 0:
+                    root = self.__add_loop__(root, True)
+                    chance = chance - 20
+                else:
+                    generate = False
+        
+        return ET.tostring(new_tree.getroot())
+
 
     #=========== LOAD BLOCKS FROM XML FILES ===========#
     def __load_base_tree__(self):
