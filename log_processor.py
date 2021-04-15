@@ -10,6 +10,7 @@ from sklearn.preprocessing import RobustScaler
 import threading
 from data_logging_server import dataLoggerRequestHandler
 from my_enums import WorkshopType
+from ast_analyzer import AstAnalyzer
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
@@ -373,6 +374,10 @@ if __name__ == '__main__':
         np.save("files/session" + exp_id, np.array(embedding))
 
         print("embedding saved - running server")
+    
+    if "ast_analyzer" in sys.argv:
+        astAnalyzer = AstAnalyzer(conn, exp_id)
+        astAnalyzer.analyze(sys.argv)
 
 
     if "runserver" in sys.argv:
