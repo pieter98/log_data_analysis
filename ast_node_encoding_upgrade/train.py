@@ -48,7 +48,7 @@ def learn_vectors(samples, logdir, outfile, num_feats=NUM_FEATURES, epochs=EPOCH
     embed_file = open(outfile, 'wb')
 
     step = 0
-    for epoch in range(1, 100+1):
+    for epoch in range(1, epochs+1):
         sample_gen = sampling.batch_samples(samples, BATCH_SIZE)
         for batch in sample_gen:
             input_batch, label_batch = batch
@@ -86,7 +86,7 @@ def train():
     conn = DatabaseConnection()
     samples = conn.get_generated_simple_data_dataset()
     
-   
+    print(samples[0])
     # if args.model.lower() == 'ast2vec':
     learn_vectors(samples, "logs/algorithm", "./ast_node_encoding_upgrade/data/vectors.pkl")
 

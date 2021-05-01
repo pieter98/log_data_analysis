@@ -60,7 +60,7 @@ def load_vectors():
 
 	# vectors = KeyedVectors.load_word2vec_format("./ast_node_encoding_upgrade/data/vectors.txt",binary=False)
 	# print(vectors["Module"])
-	tsne = TSNE(n_components=2, random_state=0)
+	tsne = TSNE(perplexity=2, n_components=2, init='pca',random_state=23)
 
 
 	print(samples[0])
@@ -72,7 +72,7 @@ def load_vectors():
 		# if "cs" in label:
 		# 	color = "red"
 		
-		plt.annotate(label,xy=(x,y),xytext=(0,0),textcoords="offset points",color="blue")
+		plt.annotate(label,xy=(x,y),xytext=(2,4),textcoords="offset points",color="blue")
 
 
 	plt.show()
