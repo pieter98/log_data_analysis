@@ -32,7 +32,7 @@ class XMLDecisionTreeGenerator:
 
     def __load_solutions__(self):
         solutions = []
-        tree = ET.parse("./data_generation/zig_zag_robot/zig_zag_solutions_collection.xml")
+        tree = ET.parse("./data_generation/zig_zag_robot/zig_zag_solutions_collection_2.xml")
         for child in list(tree.getroot()):
             solutions.append(child)
         return solutions
@@ -72,6 +72,19 @@ class XMLDecisionTreeGenerator:
         root = new_tree.getroot()
         root.append(solution)
         return ET.tostring(new_tree.getroot()), label
+
+    def generate_from_solution_tree(self):
+        index = random.randint(0,len(self.solutions)-1)
+        solution = copy.deepcopy(self.solutions[index])
+        steps = self.__traverse_solution__(solution, 0, None)
+        label = "{}/{}".format(steps[1], self.solution_depths[index])
+        
+
+        new_tree = copy.deepcopy(self.base_tree)
+        root = new_tree.getroot()
+        root.append(solution)
+        return new_tree, label
+
 
     def __traverse_solution__(self, node, step_count, parent):
         end = False
