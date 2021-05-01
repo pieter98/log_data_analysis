@@ -44,7 +44,7 @@ class AstAnalyzer:
             self.__parse_data_from_ast_trees__(ast_trees)
             
         if 'generate_zig_zag_data' in args:
-            self.__generate_zig_zag_data__(3000)
+            self.__generate_zig_zag_data__(5000)
         
         if 'parse_zig_zag_data' in args:
             xml_trees = self.db_connection.get_generated_zig_zag_scenario_xml_blocks()
@@ -60,11 +60,14 @@ class AstAnalyzer:
             print(igraph_trees[0])
             print("\n")
             
-            # igraph_obj = igraph_trees[0]
+            igraph_obj = igraph_trees[0]
+            
 
-            # layout = igraph_obj.layout("kk")
-            # igraph_obj.vs["label"] = igraph_obj.vs["name"]
-            # igraph.plot(igraph_obj, layout=layout, bbox=(1600,900), margin=40, vertex_label_dist=-3)
+            layout = igraph_obj.layout("kk")
+            igraph_obj.vs["label"] = igraph_obj.vs["name"]
+            igraph.plot(igraph_obj, layout=layout, bbox=(1600,900), margin=40, vertex_label_dist=-3)
+
+            
 
 
             print(self.__get_unique_nodes_from_igraph_trees__(igraph_trees))
