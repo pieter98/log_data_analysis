@@ -1,0 +1,2132 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="setup_loop_structure" id="$amV=R{s+)LF)p_G1vER" x="-1470" y="-533">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="T],d@Vgyf.bsQ}7Vlz%9">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="{1dre0EIkWEQ_%%Ek^sG">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dwenguino_lcd" id="UZh]`;CWa[;12pr)2o5P">
+                        <value name="text">
+                            <block type="text" id="jQDdb:N8iP_mQ!EFdWP[">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="MXfdhLVI}JX,Ls]qLh]%">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="t*wgWXO7Vv+8?b=o(mWy">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="controls_if" id="Z(L|k{Sk*gv^=U5kT`6S">
+                <mutation else="1"/>
+                <value name="IF0">
+                    <block type="logic_compare" id="^dAWR=NbVnj-M|G?kZlJ">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                            <block type="variables_get_int" id="p#zC.+8G.7Gocp`b;iTK">
+                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="char_type" id="4OT`^WrbBb2[=6g)DHUA">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <statement name="DO0">
+                    <block type="variables_declare_set_int" id="Xiigf_$48vSqNSn+AhrR">
+                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                        <value name="VALUE">
+                            <block type="char_type" id="Ho97Bao_RejwWvYL4i0f">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="controls_whileUntil" id="jgJk_8$X..!93r+XteK]">
+                                <field name="MODE">UNTIL</field>
+                                <value name="BOOL">
+                                    <block type="logic_compare" id="b5zA}K]rCoO0kF_gW^Hg">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="variables_get_int" id="C]IBCeFe;X:+9Ys*6HT(">
+                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="char_type" id="ea;J63hP`HKV-Gw|0:65">
+                                                <field name="BITMASK">5</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="dc_motor" id="}18;dQ+I30$F~79C;j^R">
+                                        <value name="channel">
+                                            <block type="math_number" id="~uZ%nKmxA0@.)T:n^[G*">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="RfBr!4GcDpRXhdhB`5;{">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="WIbX,y81?yb*DJ(g{^#6">
+                                                <value name="channel">
+                                                    <block type="math_number" id="(n*!^ceru*~_J!J+NkxW">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="J(N*,;T1h?k_7~D3QR$`">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="variables_declare_set_int" id="2~U]cDDzb,~=k1}*u=0U">
+                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                        <value name="VALUE">
+                                                            <block type="math_arithmetic" id="m.pZShakLe5gMk(*`_b2">
+                                                                <field name="OP">ADD</field>
+                                                                <value name="A">
+                                                                    <block type="variables_get_int" id="JKXoelWCaLO_gb*fSocL">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                    <block type="char_type" id="?Zd5rbUe|~!PRU9cmaS:">
+                                                                        <field name="BITMASK">1</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="variables_declare_set_int" id="T,7l6R3OG5P1G:W4EGjT">
+                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                        <value name="VALUE">
+                                            <block type="char_type" id="y@j9Ql46uON]F0w}ggfK">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="controls_whileUntil" id="Wrs~~K|$6I,2*{xFT5uy">
+                                                <field name="MODE">UNTIL</field>
+                                                <value name="BOOL">
+                                                    <block type="logic_compare" id="zAhD=K;o#R;jV$0_v2Ce">
+                                                        <field name="OP">EQ</field>
+                                                        <value name="A">
+                                                            <block type="variables_get_int" id=";Eo_xX(cJJo/gs[+mY?~">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="char_type" id="YcfgKa{6#KEw(WKCH^D?">
+                                                                <field name="BITMASK">5</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO">
+                                                    <block type="dc_motor" id="E-}$D5mGfsD?!|1@2;CB">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="WKGrPf(tGwJnegKH`u!-">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="S#o$TXB1-:a-g`W0,?lW">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dc_motor" id="qc_m@w|PM,}%[Q:amlGS">
+                                                                <value name="channel">
+                                                                    <block type="math_number" id="*O*b-i3u6l5KCq#*OD=j">
+                                                                        <field name="NUM">2</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="speed">
+                                                                    <block type="math_number" id="lDnT|$|gkrF.)o3n-.7v">
+                                                                        <field name="NUM">100</field>
+                                                                    </block>
+                                                                </value>
+                                                                <next>
+                                                                    <block type="variables_declare_set_int" id="JUFszt={P-`0M^[JMGxo">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                        <value name="VALUE">
+                                                                            <block type="math_arithmetic" id="FzZv(Sg-FzjmaAyxml8(">
+                                                                                <field name="OP">ADD</field>
+                                                                                <value name="A">
+                                                                                    <block type="variables_get_int" id="OgE/,8qlw?~h^o:nMel3">
+                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <value name="B">
+                                                                                    <block type="char_type" id="`+h2J@,RW]i{)wZULH_n">
+                                                                                        <field name="BITMASK">1</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </statement>
+                                                <next>
+                                                    <block type="variables_declare_set_int" id="j+b7g5nwR95~b2mQPuCZ">
+                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                        <value name="VALUE">
+                                                            <block type="math_arithmetic" id="p)C1kA7n;HHG=J#@M7)1">
+                                                                <field name="OP">ADD</field>
+                                                                <value name="A">
+                                                                    <block type="variables_get_int" id="(2{xBBI6u3,=r}~kxtu(">
+                                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                    <block type="char_type" id="Y}wt+`t5Zk!8;^UneQag">
+                                                                        <field name="BITMASK">1</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dwenguino_lcd" id="E9[B;%)RW~i^t,gRop0D">
+                                                                <value name="text">
+                                                                    <block type="text" id="Ja5^YfPqQ;J:y^h*t7Q{">
+                                                                        <field name="TEXT">Zag</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="line_number">
+                                                                    <block type="char_type" id="2xPGLZ(+d{y1-X]Q7t@X">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="character_number">
+                                                                    <block type="char_type" id="2sPRXYP7Z]k9Z,^c?jh!">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </statement>
+                <statement name="ELSE">
+                    <block type="variables_declare_set_int" id="#QDc[v(c1204IFRwp|K`">
+                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                        <value name="VALUE">
+                            <block type="char_type" id="/Y0YP.RI#{Nzw~m60^Cb">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="controls_whileUntil" id="/9gwQuC{GkNmE^Ou^~4F">
+                                <field name="MODE">UNTIL</field>
+                                <value name="BOOL">
+                                    <block type="logic_compare" id="U~`lpvy#R#aoSt(Z:xWy">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="variables_get_int" id="@!;@s%-Lvu``*qxCNBC.">
+                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="char_type" id="p]jq0}I+`v~4oFQ|B/:4">
+                                                <field name="BITMASK">5</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="dc_motor" id="By9#BwZolLXm$hM/:1yx">
+                                        <value name="channel">
+                                            <block type="math_number" id="rs2hW_u7/kv^H~,)6GCz">
+                                                <field name="NUM">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="fn[j.D,Sl-Mm8j2*~M),">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="6_f1YQAMK0hN?~sta))4">
+                                                <value name="channel">
+                                                    <block type="math_number" id="uW-srpJL!X#+Pt|lDJfK">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="pl6kO;P$sp,zI2eHsU(v">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="variables_declare_set_int" id="FL|O}rF7|RdWZ6Mi!-0w">
+                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                        <value name="VALUE">
+                                                            <block type="math_arithmetic" id="dr7WXUK[23]*Qei+k*@c">
+                                                                <field name="OP">ADD</field>
+                                                                <value name="A">
+                                                                    <block type="variables_get_int" id="k#INHA+QD_8pXV[L2`P:">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                    <block type="char_type" id="OUMmja6z0aZ![0clx78`">
+                                                                        <field name="BITMASK">1</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="variables_declare_set_int" id="~5a#phgb9onh1jn1^v8g">
+                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                        <value name="VALUE">
+                                            <block type="char_type" id="oHA!ln{glkBEYm1A6F@P">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="controls_whileUntil" id="jH9Ik(jzK3G21G1yQb7P">
+                                                <field name="MODE">UNTIL</field>
+                                                <value name="BOOL">
+                                                    <block type="logic_compare" id="*gt+AMj~``b[E4q%P)]s">
+                                                        <field name="OP">EQ</field>
+                                                        <value name="A">
+                                                            <block type="variables_get_int" id="4GK3,3c$RC~2tfHS]s!Q">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="char_type" id=";=[|U^(~-i-10P_r.[Ze">
+                                                                <field name="BITMASK">5</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO">
+                                                    <block type="dc_motor" id="H^L:$K+`9Yzh$4DTrA5b">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="[{6enDEc;PBGB!A*ZrBG">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="}amwJfFwE:VaVrap6n92">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dc_motor" id="77JLr#~tIrUQ;K=m`P4D">
+                                                                <value name="channel">
+                                                                    <block type="math_number" id="~Rt}p7p/:~jTl;+.?=9l">
+                                                                        <field name="NUM">2</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="speed">
+                                                                    <block type="math_number" id="|Je4/rUoMkt4Opg(=n(=">
+                                                                        <field name="NUM">100</field>
+                                                                    </block>
+                                                                </value>
+                                                                <next>
+                                                                    <block type="variables_declare_set_int" id="}Du|GVW{Pm[ALm3}t0E3">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                        <value name="VALUE">
+                                                                            <block type="math_arithmetic" id="]cjMS5CcfSgTUr)h+^]6">
+                                                                                <field name="OP">ADD</field>
+                                                                                <value name="A">
+                                                                                    <block type="variables_get_int" id="sAh+yWc/:FCBuX`Ij{j}">
+                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <value name="B">
+                                                                                    <block type="char_type" id=";!tJB/6Yx]?:41niVta!">
+                                                                                        <field name="BITMASK">1</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </statement>
+                                                <next>
+                                                    <block type="variables_declare_set_int" id="[x+H{P-mrefcmR:81hk9">
+                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                        <value name="VALUE">
+                                                            <block type="char_type" id="UG6?eU,b+6c$:/:fXEN2">
+                                                                <field name="BITMASK">0</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dwenguino_lcd" id="sbemXn/c~BsL6]D))z/C">
+                                                                <value name="text">
+                                                                    <block type="text" id="9lV1eU2djNM=,4{_VU6.">
+                                                                        <field name="TEXT">Zig</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="line_number">
+                                                                    <block type="char_type" id="Q2I~e|hjO,,?l-N9=j+U">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="character_number">
+                                                                    <block type="char_type" id="v=w!N?W@a{DgRk]:29jE">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </statement>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="B;R9OaUoM*v2c.eDwJSr" x="-942" y="-540">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="q2O$u,/S72i2[0QyemtU">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="uZ21CW_Xy%,17*b^W~Ib">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dwenguino_lcd" id=":9-)cY5?3_kq]~HTW$cK">
+                        <value name="text">
+                            <block type="text" id=".v90*t31b2c)[cA[[;aO">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="quemagYL-5-Eh6cz7DTO">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="#$9qY{$Df.U*bs_)z#}j">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="controls_if" id="4!rA)~e/z^aU[Sq/?Yy=">
+                <mutation else="1"/>
+                <value name="IF0">
+                    <block type="logic_compare" id="bS{%|vvyQQ.ta%YRh%P~">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                            <block type="variables_get_int" id="BhTi1N*rikQy1ByJ:?Gl">
+                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="char_type" id="kQUAE+1w`VMKS7lEly6m">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <statement name="DO0">
+                    <block type="controls_for" id="W2LJf$_)V;tMN!9,FA=)">
+                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                        <value name="FROM">
+                            <block type="char_type" id="/OOw!UA?4v#LbC-8Us(K">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="TO">
+                            <block type="char_type" id="5UG7T.4!O+wY0+T8S-8}">
+                                <field name="BITMASK">5</field>
+                            </block>
+                        </value>
+                        <value name="BY">
+                            <block type="char_type" id="BW[a2N^Bh8re[|jl_4PY">
+                                <field name="BITMASK">1</field>
+                            </block>
+                        </value>
+                        <statement name="DO">
+                            <block type="dc_motor" id="3BDhLm#UlInH;66OCtPZ">
+                                <value name="channel">
+                                    <block type="math_number" id="3W[#_ajv!GE9()#@QIlP">
+                                        <field name="NUM">1</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id="Wq4!gT~%d,9leP)u.r5h">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="dc_motor" id="]e:BT)p^i%}ux$V8NyfY">
+                                        <value name="channel">
+                                            <block type="math_number" id=":aP+kd`}v0!O/pQrbXCS">
+                                                <field name="NUM">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="Zb;2O[Sl2CQ_vf}/$~^E">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="controls_for" id=",jTKd;Ss{^_T_CoEOl[P">
+                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                <value name="FROM">
+                                    <block type="char_type" id="q,[)mJI|**.2Xu1P?T}X">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <value name="TO">
+                                    <block type="char_type" id="V3`Y)%Qmz$4*GTgLTi:w">
+                                        <field name="BITMASK">5</field>
+                                    </block>
+                                </value>
+                                <value name="BY">
+                                    <block type="char_type" id="VLj_KxMT)nr7eiqL3!sU">
+                                        <field name="BITMASK">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="dc_motor" id="SD(`L3!O5Q^nK+X9Xtt5">
+                                        <value name="channel">
+                                            <block type="math_number" id="-M#TPW}0O^9v+fW!aN[s">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="Y|4e%$,|O3X4Ptl`./O@">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="9hoqSWd4iDt85mFqtBet">
+                                                <value name="channel">
+                                                    <block type="math_number" id="-B8)B)PgdP6n+qHxS[hj">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="~Ak^C}LG0b_B7dW:jiZ5">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="variables_declare_set_int" id="}6%-OM.|^!_?h%kI9Gr3">
+                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                        <value name="VALUE">
+                                            <block type="math_arithmetic" id="}F;/?i@cy[|#hMiOMiHI">
+                                                <field name="OP">ADD</field>
+                                                <value name="A">
+                                                    <block type="variables_get_int" id="{YH/;?mz9WrzD.e7qv@3">
+                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="char_type" id="$%WwrJk69mzGPb6%~xaV">
+                                                        <field name="BITMASK">1</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dwenguino_lcd" id="}6FcPB4J13=i)?T^;//n">
+                                                <value name="text">
+                                                    <block type="text" id="lI8zpaR~`u5;x!o{uPa}">
+                                                        <field name="TEXT">Zag</field>
+                                                    </block>
+                                                </value>
+                                                <value name="line_number">
+                                                    <block type="char_type" id="R{[UpC6Zd,wkL;Y308wY">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                                <value name="character_number">
+                                                    <block type="char_type" id="A3Mg;g7Gsh;O:LT#J@Y)">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </statement>
+                <statement name="ELSE">
+                    <block type="controls_for" id="+wBy+k{;BV8X+x;4o/:I">
+                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                        <value name="FROM">
+                            <block type="char_type" id="5CLp5G}_f@M0;DI:]Li6">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="TO">
+                            <block type="char_type" id="J0|R+]+.5Y=)jFEU[Y7g">
+                                <field name="BITMASK">5</field>
+                            </block>
+                        </value>
+                        <value name="BY">
+                            <block type="char_type" id="Kr4DEknTfo`ubwG*{fLg">
+                                <field name="BITMASK">1</field>
+                            </block>
+                        </value>
+                        <statement name="DO">
+                            <block type="dc_motor" id="N4IW]/x9lHdAX2tCtQ`z">
+                                <value name="channel">
+                                    <block type="math_number" id="PJs=Q-N{]1F[eG}+Hv-P">
+                                        <field name="NUM">2</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id="R|Iu:(XjPnfKAyP/yc#=">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="dc_motor" id="-:8i*N?D2/c?}Lhx,-uP">
+                                        <value name="channel">
+                                            <block type="math_number" id="AM#YN64C^|)ZSuT7[52x">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="Y`Ix.Y0*xc.}4xhk;Kcb">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="controls_for" id="vD/Tc`-_sWPyF#eIc8)Z">
+                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                <value name="FROM">
+                                    <block type="char_type" id="GPOkuWo{ROkrXoMmc{Lc">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <value name="TO">
+                                    <block type="char_type" id="THZ;[VTh)L/F+vJgC:Zf">
+                                        <field name="BITMASK">5</field>
+                                    </block>
+                                </value>
+                                <value name="BY">
+                                    <block type="char_type" id="R*=lp$m9Wabd;WVXMY#o">
+                                        <field name="BITMASK">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="dc_motor" id="Y*0RMf-;bmI(|+.r8zv}">
+                                        <value name="channel">
+                                            <block type="math_number" id="P@LGRSFeLUTOJ^]J{T0(">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="8NWhH4^B6Tbq@W)zXaf?">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="~^@:W79PY}^f[J@,u.z;">
+                                                <value name="channel">
+                                                    <block type="math_number" id="V]O[o-gX%1kx.mLLSJPf">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="|3Sgb%}|4:E#`s=RyCb[">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="variables_declare_set_int" id="pof@ENbb-$ow%RnI_QQf">
+                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                        <value name="VALUE">
+                                            <block type="char_type" id="ne%2M,MJ;VfMe{k:ctO@">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dwenguino_lcd" id="P2`}^O,+!jCR}oeR-w`]">
+                                                <value name="text">
+                                                    <block type="text" id="V{.]}]WE~!]lmoyR:i(K">
+                                                        <field name="TEXT">Zig</field>
+                                                    </block>
+                                                </value>
+                                                <value name="line_number">
+                                                    <block type="char_type" id="U%eR@LMdr=Lxw2%7}3aX">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                                <value name="character_number">
+                                                    <block type="char_type" id="r[SEX~%Zm9:G0axTFtZ7">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </statement>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="1u{@qZ,vctC[1.Vp:=gU" x="-314" y="-551">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="V5EUP;)JNi4|4@(dRBsE">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="(tTHq%V+N5N]`29^jXgV">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dwenguino_lcd" id="$95tH_|?vXk/[gxvO$?2">
+                        <value name="text">
+                            <block type="text" id="xNy6QdDqf/]abm_m9/][">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="VhFwYI9A,Bu3V!F}Vsxk">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id=";--r7~Fe}lx[{46m5SN5">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="controls_for" id="F{Td;3_ROFk,!flZA82K">
+                <field name="VAR" id=")[]X6PAdCN0J#mqjb]v$" variabletype="Number">m</field>
+                <value name="FROM">
+                    <block type="char_type" id="Z|#qxZsU,;$Nf#eSXKst">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <value name="TO">
+                    <block type="char_type" id="BJ76NF1[D-:jT)2gaFr@">
+                        <field name="BITMASK">5</field>
+                    </block>
+                </value>
+                <value name="BY">
+                    <block type="char_type" id="@/YNQ]KrP=mlz?Z{4wUk">
+                        <field name="BITMASK">1</field>
+                    </block>
+                </value>
+                <statement name="DO">
+                    <block type="dc_motor" id="P-^UxFe6BSnIYi#R-PRl">
+                        <value name="channel">
+                            <block type="math_number" id="o=J2-~,7gq,Y1MV]ZJv_">
+                                <field name="NUM">2</field>
+                            </block>
+                        </value>
+                        <value name="speed">
+                            <block type="math_number" id="oj[Sw]cu!{@QL-6fJnIM">
+                                <field name="NUM">0</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="dc_motor" id="nPV5xw95c,fnK|~!XU-3">
+                                <value name="channel">
+                                    <block type="math_number" id="muS`k_.(,on)m#VrR!^r">
+                                        <field name="NUM">1</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id="dM`(TWinhoT2bapefRCq">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </next>
+                    </block>
+                </statement>
+                <next>
+                    <block type="controls_for" id="@O9S4?YTVEb=obIR|V,o">
+                        <field name="VAR" id=")[]X6PAdCN0J#mqjb]v$" variabletype="Number">m</field>
+                        <value name="FROM">
+                            <block type="char_type" id="JR@ef-$e0qJk|xJj2iG6">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="TO">
+                            <block type="char_type" id="A!*!TNzv=F4jfcgsvjY;">
+                                <field name="BITMASK">5</field>
+                            </block>
+                        </value>
+                        <value name="BY">
+                            <block type="char_type" id="bWmolHhkXacOT:{NKXaQ">
+                                <field name="BITMASK">1</field>
+                            </block>
+                        </value>
+                        <statement name="DO">
+                            <block type="dc_motor" id="AgX0Vc4T{P%H4LnR(8~u">
+                                <value name="channel">
+                                    <block type="math_number" id=",TPQy.-{JoiL@CIKQ,E$">
+                                        <field name="NUM">1</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id="cJa/29{fx2S0kA!ju5Np">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="dc_motor" id="L$U?}}/WcJHD5A#8Pb(;">
+                                        <value name="channel">
+                                            <block type="math_number" id=";u@UFYztCOF!,(JlzT2,">
+                                                <field name="NUM">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="Sn{EtOh3u=?eoxKK@f9m">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </next>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="dwenguino_lcd" id="Ry!Q@HNnkN=}M[Q]bHm,">
+                                <value name="text">
+                                    <block type="text" id="3wY5f9y~vnGw}kN)AT[p">
+                                        <field name="TEXT">Zag</field>
+                                    </block>
+                                </value>
+                                <value name="line_number">
+                                    <block type="char_type" id="50gjAKZph:GR`{O-3@7;">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <value name="character_number">
+                                    <block type="char_type" id="|}Em]@K|$7*2##~XE;!I">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="controls_for" id="vZo^P2_NZnWO~SGE0#P_">
+                                        <field name="VAR" id=")[]X6PAdCN0J#mqjb]v$" variabletype="Number">m</field>
+                                        <value name="FROM">
+                                            <block type="char_type" id="l5fxXu(*AViE~YH;i*TH">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                        <value name="TO">
+                                            <block type="char_type" id="/YIT_q#jp@=GfGn{M%(^">
+                                                <field name="BITMASK">5</field>
+                                            </block>
+                                        </value>
+                                        <value name="BY">
+                                            <block type="char_type" id="xGMCbk/1k@AWl@L7_~zQ">
+                                                <field name="BITMASK">1</field>
+                                            </block>
+                                        </value>
+                                        <statement name="DO">
+                                            <block type="dc_motor" id="/NAzkk?Q+$cFRTVy/yhb">
+                                                <value name="channel">
+                                                    <block type="math_number" id="EpRf.5l_r{$Zp[h1Q`kn">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="lmBT6bTYWRAHcZw}kn0h">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="dc_motor" id="ow6e(-/3q$hTATNGD+ga">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="#,6G7aZ:SA=9q0OFCot,">
+                                                                <field name="NUM">2</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="kUPT!|]a{KYxF%!D|c4w">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </statement>
+                                        <next>
+                                            <block type="controls_for" id="(N$KvGCf_B)j2oBrcZh$">
+                                                <field name="VAR" id=")[]X6PAdCN0J#mqjb]v$" variabletype="Number">m</field>
+                                                <value name="FROM">
+                                                    <block type="char_type" id="n0#4eTWOt@`V]^)},z,r">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                                <value name="TO">
+                                                    <block type="char_type" id="Ixn4[ZXY{4.kRQ8fF]mC">
+                                                        <field name="BITMASK">5</field>
+                                                    </block>
+                                                </value>
+                                                <value name="BY">
+                                                    <block type="char_type" id="+@?_k~a#`h4-3[/0g)GD">
+                                                        <field name="BITMASK">1</field>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO">
+                                                    <block type="dc_motor" id="I/H|(V7vkaBpWHI]4M*I">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="@[0sqp?[a*/a)4e;,@[9">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="}l0Gw2cLpttdw(HTn,7p">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dc_motor" id="NBSUe-qJ}:s3zcjpVp[-">
+                                                                <value name="channel">
+                                                                    <block type="math_number" id="?FIl|RmNy[H#E!(JoN?^">
+                                                                        <field name="NUM">2</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="speed">
+                                                                    <block type="math_number" id="O:R+U*aN+,h/:j^^B*{i">
+                                                                        <field name="NUM">100</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </statement>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="vI)%Tq:R0^9b)O_[lVqZ" x="216" y="-563">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="q*@y}dMSlIA]Lr~[);X.">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="kHxm$:~B9]93^z.|4Ab%">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dwenguino_lcd" id="lE`(rxtZu`{[GoWOUyV2">
+                        <value name="text">
+                            <block type="text" id="qkDYXR3?$C3nc4Sj#Deo">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="dV%1=w?jx4.u@]{wa2_e">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="TAk!nDz1Y@0?Gop7b_@D">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="variables_declare_set_int" id="YZ-LD2][`P(i;](;Q-or">
+                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                <value name="VALUE">
+                    <block type="char_type" id="2sq*$1-rqs[zRx=nZ-B7">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="controls_whileUntil" id="3fmK64/lXW!U,vYsh^{#">
+                        <field name="MODE">UNTIL</field>
+                        <value name="BOOL">
+                            <block type="logic_compare" id="=)_UwKnyAy%9Jr7W}cb1">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                    <block type="variables_get_int" id=",,_ovBVN+nY!Py=rY[5A">
+                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                    </block>
+                                </value>
+                                <value name="B">
+                                    <block type="char_type" id="P1!MAkQx~J*U|]@)S=oL">
+                                        <field name="BITMASK">5</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                        <statement name="DO">
+                            <block type="dc_motor" id="A-q=(,M%0^~K%iEoO.KU">
+                                <value name="channel">
+                                    <block type="math_number" id="23w1ZYto2M$J(;RfXtqo">
+                                        <field name="NUM">1</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id="=g[/-.ncRV)_r%s`X@lQ">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="dc_motor" id="%C{i!SLMn[$x4gBd96JM">
+                                        <value name="channel">
+                                            <block type="math_number" id="dX)miCNIJ@)cmnTcicA~">
+                                                <field name="NUM">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="}PUU}TUf?D={aPlo2p13">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="variables_declare_set_int" id="G+Hk%xK@{R7TzHBZe?qw">
+                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                <value name="VALUE">
+                                                    <block type="math_arithmetic" id="(jEnwgH?}0?.Qh)D{S2`">
+                                                        <field name="OP">ADD</field>
+                                                        <value name="A">
+                                                            <block type="variables_get_int" id="PW!8e^R.K^I|(Cst=Buj">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="char_type" id="8Im2?,v~/Ch[zI4^h0=+">
+                                                                <field name="BITMASK">1</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="variables_declare_set_int" id="WRPKdmIt:9j(_2%B[wJf">
+                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                <value name="VALUE">
+                                    <block type="char_type" id="a*pV((qP/Zmj|]D7@=%f">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="controls_whileUntil" id=")9wU@1=Ib!9xhUEIsJ8J">
+                                        <field name="MODE">UNTIL</field>
+                                        <value name="BOOL">
+                                            <block type="logic_compare" id=",;PD8y,t6E:j2IN**s_!">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="variables_get_int" id="B+8mkLP5hEV,F_AE/8(N">
+                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="char_type" id="*o!f:dRo~^*b$))^{{z_">
+                                                        <field name="BITMASK">5</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <statement name="DO">
+                                            <block type="dc_motor" id="b)}?LAs{Nf0/yBf]USE:">
+                                                <value name="channel">
+                                                    <block type="math_number" id="1@i,wZa6v]SDIGaZc{3O">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="VjE5,qMWdR`VD#F((ZPy">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="dc_motor" id="@oQ9v#e6mxd;$sNZo[$X">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="Oy;pU.-u-^KN]wR*{xrE">
+                                                                <field name="NUM">2</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="!Hbl9U@?Bk^fEFe;5KlT">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="variables_declare_set_int" id=",Mp#X9gmKY9xG=+;CO#:">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                <value name="VALUE">
+                                                                    <block type="math_arithmetic" id=")`/F~wJSVaHNT`vhS0c@">
+                                                                        <field name="OP">ADD</field>
+                                                                        <value name="A">
+                                                                            <block type="variables_get_int" id="R@:R0q}WA@#$hW;ptg_W">
+                                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <value name="B">
+                                                                            <block type="char_type" id="JFU91l^Z,U,{iiFd=o2i">
+                                                                                <field name="BITMASK">1</field>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </statement>
+                                        <next>
+                                            <block type="dwenguino_lcd" id="]:sYkj/t]ewZPH%O#{m~">
+                                                <value name="text">
+                                                    <block type="text" id="(g0kaQ~#NM;eKKW|zC5T">
+                                                        <field name="TEXT">Zag</field>
+                                                    </block>
+                                                </value>
+                                                <value name="line_number">
+                                                    <block type="char_type" id="~YY2xv?d)69EfGTnvM6A">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                                <value name="character_number">
+                                                    <block type="char_type" id="Oy!d`vyfqp!pIw7pbO4E">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="variables_declare_set_int" id="Nij/0d/Srop@@D8lD|@6">
+                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                        <value name="VALUE">
+                                                            <block type="char_type" id="c{CO{[1)Yel-$eU/}%1E">
+                                                                <field name="BITMASK">0</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="controls_whileUntil" id="4Ea:[*!9iw7c$kQ}~]q+">
+                                                                <field name="MODE">UNTIL</field>
+                                                                <value name="BOOL">
+                                                                    <block type="logic_compare" id="fZdj4jS}WjAjys(O}Z@U">
+                                                                        <field name="OP">EQ</field>
+                                                                        <value name="A">
+                                                                            <block type="variables_get_int" id="QI)M@$`}i$a|6PQuv5jj">
+                                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <value name="B">
+                                                                            <block type="char_type" id="oO!_]tcYUwQnstEPckJB">
+                                                                                <field name="BITMASK">5</field>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </value>
+                                                                <statement name="DO">
+                                                                    <block type="dc_motor" id="IEjL]AH=5xQb8rRL(2-V">
+                                                                        <value name="channel">
+                                                                            <block type="math_number" id="JtE@ToXjLN8%keK~N1Qs">
+                                                                                <field name="NUM">2</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <value name="speed">
+                                                                            <block type="math_number" id="8BcfB-un-D*{YC|Gt:dy">
+                                                                                <field name="NUM">100</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <next>
+                                                                            <block type="dc_motor" id="I7*,giLgV*|*}I-Hh]8y">
+                                                                                <value name="channel">
+                                                                                    <block type="math_number" id="`0/L?PV7kWVlGQzbuZbg">
+                                                                                        <field name="NUM">1</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <value name="speed">
+                                                                                    <block type="math_number" id="#d!%Rx)`F%yTk|?h4+oM">
+                                                                                        <field name="NUM">0</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                    <block type="variables_declare_set_int" id="2UBBt5MQ2}$u19jbolsJ">
+                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                        <value name="VALUE">
+                                                                                            <block type="math_arithmetic" id="E}W$kh13xNlYsea;W~)y">
+                                                                                                <field name="OP">ADD</field>
+                                                                                                <value name="A">
+                                                                                                    <block type="variables_get_int" id="OfqFYGd1OCYW/l`geZA_">
+                                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                                    </block>
+                                                                                                </value>
+                                                                                                <value name="B">
+                                                                                                    <block type="char_type" id="ISx=3D!,.S?}@|0Th9eY">
+                                                                                                        <field name="BITMASK">1</field>
+                                                                                                    </block>
+                                                                                                </value>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                    </block>
+                                                                                </next>
+                                                                            </block>
+                                                                        </next>
+                                                                    </block>
+                                                                </statement>
+                                                                <next>
+                                                                    <block type="variables_declare_set_int" id="qe(jl@1}4?,|)Xi8i(E?">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                        <value name="VALUE">
+                                                                            <block type="char_type" id="RdVt/sYsGL00f5=,|P@]">
+                                                                                <field name="BITMASK">0</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <next>
+                                                                            <block type="controls_whileUntil" id="pNb_?,R@F?jkq}wLjhb_">
+                                                                                <field name="MODE">UNTIL</field>
+                                                                                <value name="BOOL">
+                                                                                    <block type="logic_compare" id="5g!0p~HKr;mX~T)6C`CO">
+                                                                                        <field name="OP">EQ</field>
+                                                                                        <value name="A">
+                                                                                            <block type="variables_get_int" id="JaY}zY6`_BR.Mj=|Yi.G">
+                                                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                        <value name="B">
+                                                                                            <block type="char_type" id="usCK1LlksZoHfjD`~gJh">
+                                                                                                <field name="BITMASK">5</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <statement name="DO">
+                                                                                    <block type="dc_motor" id="sG_{R;LK.g5+Eef|%$Gt">
+                                                                                        <value name="channel">
+                                                                                            <block type="math_number" id="nu@Rzu~_GvoPob~d2x*^">
+                                                                                                <field name="NUM">1</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                        <value name="speed">
+                                                                                            <block type="math_number" id=")PW/DrFJIxAM@?$~FZrP">
+                                                                                                <field name="NUM">100</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                            <block type="dc_motor" id="gKP6a@^#G}cb|bi0VjcE">
+                                                                                                <value name="channel">
+                                                                                                    <block type="math_number" id="`Eyz$U,QB-Z3I7TZyYSH">
+                                                                                                        <field name="NUM">2</field>
+                                                                                                    </block>
+                                                                                                </value>
+                                                                                                <value name="speed">
+                                                                                                    <block type="math_number" id="oAR9`0P01!QG7~)l(eue">
+                                                                                                        <field name="NUM">100</field>
+                                                                                                    </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                    <block type="variables_declare_set_int" id="43)3iAMqMy;X^V5/W!od">
+                                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                                        <value name="VALUE">
+                                                                                                            <block type="math_arithmetic" id="0C5BGt!i]%gsU6gP0Og=">
+                                                                                                                <field name="OP">ADD</field>
+                                                                                                                <value name="A">
+                                                                                                                    <block type="variables_get_int" id="r;H{-p/u;,H+Y]j^tUfl">
+                                                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                                                    </block>
+                                                                                                                </value>
+                                                                                                                <value name="B">
+                                                                                                                    <block type="char_type" id="C!nqLToyX=[VPnbgd_e#">
+                                                                                                                        <field name="BITMASK">1</field>
+                                                                                                                    </block>
+                                                                                                                </value>
+                                                                                                            </block>
+                                                                                                        </value>
+                                                                                                    </block>
+                                                                                                </next>
+                                                                                            </block>
+                                                                                        </next>
+                                                                                    </block>
+                                                                                </statement>
+                                                                            </block>
+                                                                        </next>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="7cC%d09:m$_ICTw#-@UW" x="640" y="-571">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="M#Vp+Y^]Sy#0PDAhRNO+">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="bW,wMcJhwR;29.m,_^pI">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="controls_if" id="8~zzsYg=eFUK5!Y4=(.2">
+                <mutation else="1"/>
+                <value name="IF0">
+                    <block type="logic_compare" id="gCaQ5t$PP(:2GymPcEo1">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                            <block type="variables_get_int" id="]^?@uLrZ0bL8_8#l[DLB">
+                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="char_type" id="=RULP8O{sam,_@DDRpLZ">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <statement name="DO0">
+                    <block type="dwenguino_lcd" id="rWrUZ;k6fo6F-B6hb_(:">
+                        <value name="text">
+                            <block type="text" id="%zIK5E^nXvcH.H;Bwj?$">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="B}Aa=a^~7iT)^hQ%Eo]^">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="CsTzi7OxvLBIYDXSBXbZ">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </statement>
+                <statement name="ELSE">
+                    <block type="dwenguino_lcd" id="nIWJAV:sJ%7lJ!bN%1uM">
+                        <value name="text">
+                            <block type="text" id="NquYH+]~bHGrw#9$Te#A">
+                                <field name="TEXT">Zag</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id=";:#:qQpr{dCeIc:r;dmQ">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id=",QVQCl?BcBUn4CUda_Xa">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </statement>
+                <next>
+                    <block type="controls_for" id="Xx$r5G/W:`XVYFsgBTJR">
+                        <field name="VAR" id=");6agqSUid-mw,,=hP%{" variabletype="Number">n</field>
+                        <value name="FROM">
+                            <block type="char_type" id="pW*Aen/3AHytglde3i[$">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="TO">
+                            <block type="char_type" id="f.^5MFd1@}Q68UZd0g`5">
+                                <field name="BITMASK">5</field>
+                            </block>
+                        </value>
+                        <value name="BY">
+                            <block type="char_type" id="!!jK~RI0No,OsOze%HVq">
+                                <field name="BITMASK">1</field>
+                            </block>
+                        </value>
+                        <statement name="DO">
+                            <block type="controls_if" id="Wd}*6,/.!B!?m#SN9wSU">
+                                <mutation else="1"/>
+                                <value name="IF0">
+                                    <block type="logic_compare" id="+qR)^1O5FKDmF9-X;HVt">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="variables_get_int" id="^rv_w#j{0aFQYU/w!HaF">
+                                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="char_type" id="}2YgJe(Mk475I6zk*5%]">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <statement name="DO0">
+                                    <block type="dc_motor" id="zPx{Ev^w#B|?0wC(ZjQ/">
+                                        <value name="channel">
+                                            <block type="math_number" id="NKg2VP(gT7FTpM(t3TuS">
+                                                <field name="NUM">2</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="~0t@Kcz-Nlx{m(lyk)uF">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="Mr+L]Xo[AQt3od{0FhBg">
+                                                <value name="channel">
+                                                    <block type="math_number" id="(w$dR|Y9.VX7jj%6Qq*D">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="^y|`]KL6y{L]L|G}7i6o">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <statement name="ELSE">
+                                    <block type="dc_motor" id="w/Qqs}{6CLR@Rpwvq!:S">
+                                        <value name="channel">
+                                            <block type="math_number" id="7md?5X4Cd99Nc]a%b^5Y">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="`E?2vj$SXqEXf/-D@G_C">
+                                                <field name="NUM">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="J`.dZ4sSX2jVQl8+Yymg">
+                                                <value name="channel">
+                                                    <block type="math_number" id="Bp]A$iY*-{epB)`zUSl1">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="6|vpr2nxF(xMOXe?Cxp3">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                            </block>
+                        </statement>
+                        <next>
+                            <block type="controls_for" id="U;N3@=]mUfIKsvL1h5V~">
+                                <field name="VAR" id=");6agqSUid-mw,,=hP%{" variabletype="Number">n</field>
+                                <value name="FROM">
+                                    <block type="char_type" id="_s9[._?A!%W$H[58C_5/">
+                                        <field name="BITMASK">0</field>
+                                    </block>
+                                </value>
+                                <value name="TO">
+                                    <block type="char_type" id="7lHjPv^8:ZGa,u$%N/Iw">
+                                        <field name="BITMASK">5</field>
+                                    </block>
+                                </value>
+                                <value name="BY">
+                                    <block type="char_type" id="1YH1}Qy`Ezu1Va51~yt^">
+                                        <field name="BITMASK">1</field>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="dc_motor" id="88hVXXV#W2Kt-%yy2c:(">
+                                        <value name="channel">
+                                            <block type="math_number" id="T)$enO]:WSE(Lx_VIAS*">
+                                                <field name="NUM">1</field>
+                                            </block>
+                                        </value>
+                                        <value name="speed">
+                                            <block type="math_number" id="p?;e!;Psa%!JCcJV8~;n">
+                                                <field name="NUM">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="*|Lz_9Bq($n94Tl%Tvhn">
+                                                <value name="channel">
+                                                    <block type="math_number" id="{1z/1eO9mu#LKqas:i8A">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="%RA^|7xrb76GwO/VO7(?">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="controls_if" id="ggm}rLsG#[Ni`ZhdTEIk">
+                                        <mutation else="1"/>
+                                        <value name="IF0">
+                                            <block type="logic_compare" id="9|Mmx!eEMy*B}NJn[*mW">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="variables_get_int" id="CVxO[#=8c+S.sLd6Exst">
+                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="char_type" id="8kZ2D(VfLlkL3iu2HLK*">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="variables_declare_set_int" id="ClE-T%?l_UV(hNep2-jn">
+                                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                <value name="VALUE">
+                                                    <block type="char_type" id="+Z.L%r-daj/IMUe)VEdH">
+                                                        <field name="BITMASK">1</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </statement>
+                                        <statement name="ELSE">
+                                            <block type="variables_declare_set_int" id="ECWmnAw*S-r1H*IanK$z">
+                                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                <value name="VALUE">
+                                                    <block type="char_type" id="YQ~z(F8v=rPfk4UHS}D(">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </statement>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="7!DI4dF#ZkBm/cNL3_wm" x="1169" y="-573">
+        <statement name="SETUP">
+            <block type="variables_declare_set_int" id="w/A.Ies!Aj.{1Ozbsc7M">
+                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                <value name="VALUE">
+                    <block type="char_type" id="S|c@+iT{qBjfs8${X`06">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="controls_if" id="s~xa1|T_%Dn-MRPn9{%1">
+                <mutation else="1"/>
+                <value name="IF0">
+                    <block type="logic_compare" id=")K]YhF!eTT=J+)1*g%r#">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                            <block type="variables_get_int" id="%b6.8,yQnDC#Gd/qVB`)">
+                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="char_type" id="KjQcpn9;8gB1T}e/BlXA">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </value>
+                <statement name="DO0">
+                    <block type="dwenguino_lcd" id="-@i)jfHD%^ZTKpY!{,o-">
+                        <value name="text">
+                            <block type="text" id="{|`Y~wq9|hHi^)0/R{Tb">
+                                <field name="TEXT">Zig</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id=".=+tDe.jGEj1L!EQ#[ll">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="%ts;HqOy4S#FmBS)(opT">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </statement>
+                <statement name="ELSE">
+                    <block type="dwenguino_lcd" id="[Ke4a9b6.L*b_e}/*+X!">
+                        <value name="text">
+                            <block type="text" id="w$@6jG@m/!?F1vG6cr+r">
+                                <field name="TEXT">Zag</field>
+                            </block>
+                        </value>
+                        <value name="line_number">
+                            <block type="char_type" id="MAD67P,`bf[u^]v)Q7b+">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <value name="character_number">
+                            <block type="char_type" id="%5XmY|F:5@)g}SJNpW::">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                    </block>
+                </statement>
+                <next>
+                    <block type="variables_declare_set_int" id="uQ%*ENTEx]9SX*?m$HHy">
+                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                        <value name="VALUE">
+                            <block type="char_type" id="#~lUErQDvrneZOg9d4Z+">
+                                <field name="BITMASK">0</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="controls_whileUntil" id="t$xP~tbIvx@mj8at1Se=">
+                                <field name="MODE">UNTIL</field>
+                                <value name="BOOL">
+                                    <block type="logic_compare" id="+e$Kilm2%O!22/f^bH%0">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                            <block type="variables_get_int" id="VDwuGjktV:y~l7;lY-zL">
+                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                            </block>
+                                        </value>
+                                        <value name="B">
+                                            <block type="char_type" id="P6#;g?dVaztihp-q]/hR">
+                                                <field name="BITMASK">5</field>
+                                            </block>
+                                        </value>
+                                    </block>
+                                </value>
+                                <statement name="DO">
+                                    <block type="controls_if" id="0V9o~lyJMOtO7,LbWGVC">
+                                        <mutation else="1"/>
+                                        <value name="IF0">
+                                            <block type="logic_compare" id="_qIwp-`U=?hIi/u?xm1/">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                    <block type="variables_get_int" id="QKy6I$K~:q3S`E.[QG}E">
+                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                    </block>
+                                                </value>
+                                                <value name="B">
+                                                    <block type="char_type" id="Kp#Z[~R9ZtTmxeoHZo@Z">
+                                                        <field name="BITMASK">0</field>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </value>
+                                        <statement name="DO0">
+                                            <block type="dc_motor" id="fWn`hL8dd2PR}rN_Wd;k">
+                                                <value name="channel">
+                                                    <block type="math_number" id="Hdb,4u9^Pck{=!As{U]i">
+                                                        <field name="NUM">2</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="FOUsaM^/Am1)6LY]PtmY">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="dc_motor" id=":PB=L[olY|iF3N?$3ikt">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="bVk]*78|p7+iNjCr;)wo">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="3m2;|rcA$JfT*)Ha^YS4">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </statement>
+                                        <statement name="ELSE">
+                                            <block type="dc_motor" id="AWD%pj#(uGg0M(5!9N*4">
+                                                <value name="channel">
+                                                    <block type="math_number" id="vJ|%N|t.5#2!GT)tH+hs">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="m#a?VMdAb]Yu|m`~^TKx">
+                                                        <field name="NUM">0</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="dc_motor" id="KaB_9TzG4[C!vs]?W`Oi">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="[e6H+fvr%;0YyOL3vvm(">
+                                                                <field name="NUM">2</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="de=M5f_3imm/.p6RhB_1">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </statement>
+                                        <next>
+                                            <block type="variables_declare_set_int" id="hmWLK%*Gk4x[(|Ucoa=8">
+                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                <value name="VALUE">
+                                                    <block type="math_arithmetic" id="H%aH;]g[7^Mq9D/+PH_w">
+                                                        <field name="OP">ADD</field>
+                                                        <value name="A">
+                                                            <block type="variables_get_int" id="VU0+0_}b(%4Ec]5=6{-,">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="char_type" id="`5Jz?/~@WKnWs~V@+*vA">
+                                                                <field name="BITMASK">1</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </statement>
+                                <next>
+                                    <block type="variables_declare_set_int" id="tEGS]K1`qn?GaciaGy$.">
+                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                        <value name="VALUE">
+                                            <block type="char_type" id=".kE)_P`+~N7JMf~JiR}r">
+                                                <field name="BITMASK">0</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="controls_whileUntil" id="p42jO4+//MX#GeWl]=m|">
+                                                <field name="MODE">UNTIL</field>
+                                                <value name="BOOL">
+                                                    <block type="logic_compare" id="Wklx-/T7=[0o,il?Uur;">
+                                                        <field name="OP">EQ</field>
+                                                        <value name="A">
+                                                            <block type="variables_get_int" id="%|mdAI=3Ic7I{RsFH.k$">
+                                                                <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="B">
+                                                            <block type="char_type" id="nynpi_S5lbme`?~^ig]c">
+                                                                <field name="BITMASK">5</field>
+                                                            </block>
+                                                        </value>
+                                                    </block>
+                                                </value>
+                                                <statement name="DO">
+                                                    <block type="dc_motor" id="l-8R{bvmWNT2WOq5Azn?">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="v}Np9W1+JE6B/=(f75e4">
+                                                                <field name="NUM">1</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="uE`=H4[eXzzS/Srm/z=G">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dc_motor" id="/+irCdM.QI8q/nB7gA~z">
+                                                                <value name="channel">
+                                                                    <block type="math_number" id="%)|n*!}fZP|eb3)b!#5)">
+                                                                        <field name="NUM">2</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="speed">
+                                                                    <block type="math_number" id="VH4_1rQhu:DJ!*=8MuGO">
+                                                                        <field name="NUM">100</field>
+                                                                    </block>
+                                                                </value>
+                                                                <next>
+                                                                    <block type="variables_declare_set_int" id="Ya0|j1~G1rpR2IxaWPVI">
+                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                        <value name="VALUE">
+                                                                            <block type="math_arithmetic" id="8C)iRG]RXXd=pc_9RSgp">
+                                                                                <field name="OP">ADD</field>
+                                                                                <value name="A">
+                                                                                    <block type="variables_get_int" id="-:/-+4GPhfC59teK=8uv">
+                                                                                        <field name="VAR" id="E#4-J^{q-jk(1KX3}Jr^" variabletype="Number">j</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <value name="B">
+                                                                                    <block type="char_type" id=")`E#If|*pQFvr;~{L|aw">
+                                                                                        <field name="BITMASK">1</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                            </block>
+                                                                        </value>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </statement>
+                                                <next>
+                                                    <block type="controls_if" id="J--qq`:Q;XbD5{}V(KIM">
+                                                        <mutation else="1"/>
+                                                        <value name="IF0">
+                                                            <block type="logic_compare" id="?@u_GWCu^Le{:k8*8jC)">
+                                                                <field name="OP">EQ</field>
+                                                                <value name="A">
+                                                                    <block type="variables_get_int" id="A;z]ql~@BbiT(huIiS]T">
+                                                                        <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                                    </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                    <block type="char_type" id="C9JD79ZuxZvg3]q^1K!$">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </value>
+                                                        <statement name="DO0">
+                                                            <block type="variables_declare_set_int" id="fORsx=j[eLn/3@lKLL{p">
+                                                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                                <value name="VALUE">
+                                                                    <block type="char_type" id="sh)v@+p48hBmmWC^(tuS">
+                                                                        <field name="BITMASK">1</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </statement>
+                                                        <statement name="ELSE">
+                                                            <block type="variables_declare_set_int" id="XU2$QznY:d-{q)yolgXv">
+                                                                <field name="VAR" id="#rA;k]Za5]}7^+r/-y6O" variabletype="Number">i</field>
+                                                                <value name="VALUE">
+                                                                    <block type="char_type" id="eN6r%oLF)VAa]k}rT!Vb">
+                                                                        <field name="BITMASK">0</field>
+                                                                    </block>
+                                                                </value>
+                                                            </block>
+                                                        </statement>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </statement>
+    </block>
+    <block type="setup_loop_structure" id="(h4TreLiO$@VlKmT[lE]" x="1687" y="-587">
+        <statement name="SETUP">
+            <block type="dc_motor" id="o!jHHkh`dbyKYsa}sNxo">
+                <value name="channel">
+                    <block type="math_number" id="ehA-9$_**6;S8h:=bn@|">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="speed">
+                    <block type="math_number" id="d(EH%Af|n~^]6*tRx(dM">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dc_motor" id="`~$uQMOlb6!fTSSC~A@k">
+                        <value name="channel">
+                            <block type="math_number" id="68$w`-$y)i]`/UD(+ef8">
+                                <field name="NUM">2</field>
+                            </block>
+                        </value>
+                        <value name="speed">
+                            <block type="math_number" id="wf7Z0VhASq,-eOW|$+4o">
+                                <field name="NUM">-100</field>
+                            </block>
+                        </value>
+                    </block>
+                </next>
+            </block>
+        </statement>
+        <statement name="LOOP">
+            <block type="dwenguino_lcd" id=")aX8Pk8/qU!WUZ6]EYoo">
+                <value name="text">
+                    <block type="text" id="5__QjvJzXixG}o{I(E2P">
+                        <field name="TEXT">Zig</field>
+                    </block>
+                </value>
+                <value name="line_number">
+                    <block type="char_type" id="*fNBzHMxRTvH%}7*Hz7n">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <value name="character_number">
+                    <block type="char_type" id="TG[Gt7,8CR4}`77MkzpM">
+                        <field name="BITMASK">0</field>
+                    </block>
+                </value>
+                <next>
+                    <block type="dc_motor" id="gj=9ENoaAvp=cT;@3%Fp">
+                        <value name="channel">
+                            <block type="math_number" id="5xu#SfH%YBb6{8nq:1MS">
+                                <field name="NUM">1</field>
+                            </block>
+                        </value>
+                        <value name="speed">
+                            <block type="math_number" id="=+Y,!?`nbqXi4}9Uc@^i">
+                                <field name="NUM">-100</field>
+                            </block>
+                        </value>
+                        <next>
+                            <block type="dc_motor" id="y)||zzK+%jrHJrvyB9={">
+                                <value name="channel">
+                                    <block type="math_number" id="mGgk;A3W_1;EAY^OdQqM">
+                                        <field name="NUM">2</field>
+                                    </block>
+                                </value>
+                                <value name="speed">
+                                    <block type="math_number" id=".RRkfKXGFbfd@gxJ[;[i">
+                                        <field name="NUM">100</field>
+                                    </block>
+                                </value>
+                                <next>
+                                    <block type="dwenguino_delay" id="p?Ewvf?r1$9)_Y:N9[z7">
+                                        <value name="DELAY_TIME">
+                                            <block type="char_type" id="pRv7+A),DmP3;LQc)9go">
+                                                <field name="BITMASK">100</field>
+                                            </block>
+                                        </value>
+                                        <next>
+                                            <block type="dc_motor" id="!6M-!dRMOrA0e=pe(!%m">
+                                                <value name="channel">
+                                                    <block type="math_number" id="uA$7dTBR5LWP+.-qG%Y%">
+                                                        <field name="NUM">1</field>
+                                                    </block>
+                                                </value>
+                                                <value name="speed">
+                                                    <block type="math_number" id="@dxNU|a|rCD[4deka`zV">
+                                                        <field name="NUM">100</field>
+                                                    </block>
+                                                </value>
+                                                <next>
+                                                    <block type="dc_motor" id="T)b#[WWPro#*o15+9[6o">
+                                                        <value name="channel">
+                                                            <block type="math_number" id="Tnmr~xd:x6.L,qTpu~!9">
+                                                                <field name="NUM">2</field>
+                                                            </block>
+                                                        </value>
+                                                        <value name="speed">
+                                                            <block type="math_number" id="{W!-929lqpWap|)]j[ID">
+                                                                <field name="NUM">100</field>
+                                                            </block>
+                                                        </value>
+                                                        <next>
+                                                            <block type="dwenguino_delay" id="S6$_Z^+A/eJ}av5N25cq">
+                                                                <value name="DELAY_TIME">
+                                                                    <block type="char_type" id="1/1=oY#@YYDNAYAj%2VO">
+                                                                        <field name="BITMASK">300</field>
+                                                                    </block>
+                                                                </value>
+                                                                <next>
+                                                                    <block type="dwenguino_lcd" id="IG/[c3eO/GWJOS@}cXd2">
+                                                                        <value name="text">
+                                                                            <block type="text" id="lEu5n[X-x:utAGixvujJ">
+                                                                                <field name="TEXT">Zag</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <value name="line_number">
+                                                                            <block type="char_type" id="jyYW{q[wSGv]oxl2x9Q.">
+                                                                                <field name="BITMASK">0</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <value name="character_number">
+                                                                            <block type="char_type" id="VE]c-BiMQy=2(TJQVP#n">
+                                                                                <field name="BITMASK">0</field>
+                                                                            </block>
+                                                                        </value>
+                                                                        <next>
+                                                                            <block type="dc_motor" id="ccRI:~Gk_.0GctUi^IiO">
+                                                                                <value name="channel">
+                                                                                    <block type="math_number" id="O76F9I4sOYT3D!{^:n`e">
+                                                                                        <field name="NUM">1</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <value name="speed">
+                                                                                    <block type="math_number" id="ct`/fkb/:HAfB%br^{A#">
+                                                                                        <field name="NUM">100</field>
+                                                                                    </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                    <block type="dc_motor" id="a-t/xem`dE}RHt2g:`x0">
+                                                                                        <value name="channel">
+                                                                                            <block type="math_number" id="^9H8N1tIBi}JEKd_#%CG">
+                                                                                                <field name="NUM">2</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                        <value name="speed">
+                                                                                            <block type="math_number" id="BA*rY(eA?z*(B4cuscO~">
+                                                                                                <field name="NUM">-100</field>
+                                                                                            </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                            <block type="dwenguino_delay" id="jS!?tiVS]ZLN!:-S?a8p">
+                                                                                                <value name="DELAY_TIME">
+                                                                                                    <block type="char_type" id="z:k!|8Suficd]l=sAIOf">
+                                                                                                        <field name="BITMASK">100</field>
+                                                                                                    </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                    <block type="dc_motor" id="P`PFL*fV4]VG+|oX{6.2">
+                                                                                                        <value name="channel">
+                                                                                                            <block type="math_number" id="=s?y.)WCQe)CkBr@P]F:">
+                                                                                                                <field name="NUM">1</field>
+                                                                                                            </block>
+                                                                                                        </value>
+                                                                                                        <value name="speed">
+                                                                                                            <block type="math_number" id="-~Js,v*J;;QEKQ::Vle(">
+                                                                                                                <field name="NUM">100</field>
+                                                                                                            </block>
+                                                                                                        </value>
+                                                                                                        <next>
+                                                                                                            <block type="dc_motor" id="+VXuwW}Y3$j8U?Iq6WEz">
+                                                                                                                <value name="channel">
+                                                                                                                    <block type="math_number" id="J/:;:]I-.=)4y#+3,5B:">
+                                                                                                                        <field name="NUM">2</field>
+                                                                                                                    </block>
+                                                                                                                </value>
+                                                                                                                <value name="speed">
+                                                                                                                    <block type="math_number" id=",[]hWKDj6MP29SZFF%pG">
+                                                                                                                        <field name="NUM">100</field>
+                                                                                                                    </block>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                    <block type="dwenguino_delay" id="{4x/gLp)fT//;@dZRRGq">
+                                                                                                                        <value name="DELAY_TIME">
+                                                                                                                            <block type="char_type" id=",e!.*RTO=B-j!F$Kx?zc">
+                                                                                                                                <field name="BITMASK">300</field>
+                                                                                                                            </block>
+                                                                                                                        </value>
+                                                                                                                    </block>
+                                                                                                                </next>
+                                                                                                            </block>
+                                                                                                        </next>
+                                                                                                    </block>
+                                                                                                </next>
+                                                                                            </block>
+                                                                                        </next>
+                                                                                    </block>
+                                                                                </next>
+                                                                            </block>
+                                                                        </next>
+                                                                    </block>
+                                                                </next>
+                                                            </block>
+                                                        </next>
+                                                    </block>
+                                                </next>
+                                            </block>
+                                        </next>
+                                    </block>
+                                </next>
+                            </block>
+                        </next>
+                    </block>
+                </next>
+            </block>
+        </statement>
+    </block>
+</xml>
